@@ -1,16 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Objects;
 
 public class AnimatorOverrider : MonoBehaviour
 {
     public Skin Skin;
     
-    public Animator TorsoAnimator;
-    public Animator LegsAnimator;
+    public Animator Animator;
 
     private void Start()
     {
-        TorsoAnimator.runtimeAnimatorController = Skin.WalkM16;
+        //Animator.runtimeAnimatorController = ;
     }
 }

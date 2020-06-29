@@ -74,7 +74,6 @@
     <Compile Include="Assets\Scripts\Objects\Bullet.cs" />
     <Compile Include="Assets\Scripts\Objects\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\Objects\Character.cs" />
-    <Compile Include="Assets\Scripts\Objects\CharacterSkin.cs" />
     <Compile Include="Assets\Scripts\Objects\Fire.cs" />
     <Compile Include="Assets\Scripts\Objects\Health.cs" />
     <Compile Include="Assets\Scripts\Objects\InputController.cs" />

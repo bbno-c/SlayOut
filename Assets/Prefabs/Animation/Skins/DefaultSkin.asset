@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d5e41f1742f56e45b2c4a3e266b39aa, type: 3}
   m_Name: DefaultSkin
   m_EditorClassIdentifier: 
-  WalkUnarmed: {fileID: 0}
+  _skinData:
+  - _name: 0
+    _controller: {fileID: 0}
+  - _name: 0
+    _controller: {fileID: 0}

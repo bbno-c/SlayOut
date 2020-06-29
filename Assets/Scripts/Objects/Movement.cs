@@ -19,8 +19,7 @@ namespace Objects
 
         void Update()
         {
-            AnimatorOverrider.TorsoAnimator.SetFloat("Magnitude", _moveDirection.magnitude);
-            AnimatorOverrider.LegsAnimator.SetFloat("Magnitude", _moveDirection.magnitude);
+            AnimatorOverrider.Animator.SetFloat("Magnitude", _moveDirection.magnitude);
 
             TorsoTransform.rotation = Quaternion.AngleAxis(_lookDirection, Vector3.forward);
             LegsTransform.rotation = Quaternion.AngleAxis((Mathf.Atan2(_moveDirection.y, _moveDirection.x) * Mathf.Rad2Deg), Vector3.forward);

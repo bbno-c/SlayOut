@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2364404008734817663}
   - component: {fileID: 2364404008734817660}
-  - component: {fileID: 2364404008734817661}
   m_Layer: 0
   m_Name: Torso
   m_TagString: Untagged
@@ -83,25 +82,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &2364404008734817661
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2364404008734817634}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5662649b5f5bbff4597fb904eddeeec0, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2364404009090712712
 GameObject:
   m_ObjectHideFlags: 0
@@ -113,6 +93,7 @@ GameObject:
   - component: {fileID: 2364404009090712708}
   - component: {fileID: 2364404009090712705}
   - component: {fileID: 2364404009090712714}
+  - component: {fileID: 5623188033543772290}
   - component: {fileID: 2364404009090712715}
   - component: {fileID: 2364404009090712710}
   - component: {fileID: 1943986567055128949}
@@ -179,6 +160,25 @@ CapsuleCollider2D:
   m_Offset: {x: -0.013304301, y: -0.0016294122}
   m_Size: {x: 0.14524235, y: 0.2668249}
   m_Direction: 0
+--- !u!95 &5623188033543772290
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2364404009090712712}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d55f6c0f83c6df244a73c0b4007cff51, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &2364404009090712715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,10 +206,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08b08b8adeaa03b44adfe2b7a0a3467b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AnimatorOverrider: {fileID: 0}
+  AnimatorOverrider: {fileID: 2509470406812257876}
   PlayerRigidbody: {fileID: 2364404009090712705}
-  TorsoTransform: {fileID: 0}
-  LegsTransform: {fileID: 0}
+  TorsoTransform: {fileID: 2364404008734817663}
+  LegsTransform: {fileID: 2364404009361417155}
 --- !u!114 &1943986567055128949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,8 +270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Skin: {fileID: 11400000, guid: 9540eed891e98d64e87fa18dcde66b6c, type: 2}
-  TorsoAnimator: {fileID: 2364404008734817661}
-  LegsAnimator: {fileID: 2364404009361417154}
+  Animator: {fileID: 5623188033543772290}
 --- !u!1 &2364404009361417152
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,7 +281,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2364404009361417155}
   - component: {fileID: 2364404009361417181}
-  - component: {fileID: 2364404009361417154}
   m_Layer: 0
   m_Name: Legs
   m_TagString: Untagged
@@ -354,25 +352,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &2364404009361417154
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2364404009361417152}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ce5c226ed36e1fd4fa92a43a3b1a5190, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5246217245199541936
 GameObject:
   m_ObjectHideFlags: 0
