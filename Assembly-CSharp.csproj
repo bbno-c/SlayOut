@@ -80,6 +80,10 @@
     <Compile Include="Assets\Scripts\Objects\Movement.cs" />
     <Compile Include="Assets\Scripts\Objects\Skin.cs" />
     <Compile Include="Assets\Scripts\Objects\Weapon.cs" />
+    <Compile Include="Assets\Scripts\Objects\WeaponData.cs" />
+    <Compile Include="Assets\Scripts\Objects\WeaponHolder.cs" />
+    <Compile Include="Assets\Scripts\Objects\WeaponPickup.cs" />
+    <Compile Include="Assets\Scripts\Objects\WeaponSpawner.cs" />
     <Compile Include="Assets\Scripts\Views\BaseView.cs" />
     <Compile Include="Assets\Scripts\Views\EndGameView.cs" />
     <Compile Include="Assets\Scripts\Views\GameView.cs" />

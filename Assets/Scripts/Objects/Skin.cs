@@ -9,6 +9,23 @@ namespace Objects
     public class Skin : ScriptableObject
     {
         [SerializeField] private List<SkinData> _skinData;
+
+        public AnimatorOverrideController this[AnimationName index]
+        {
+            get
+            {
+                if (_skinData != null)
+                    foreach (SkinData skin in _skinData)
+                        if(index == skin.Name)
+                            return skin.Controller;
+                return null;
+            }
+        }
+
+        public AnimatorOverrideController GetSkinAnimatorOverrideController(AnimationName index)
+        {
+            return this[index];
+        }
     }
 
     [System.Serializable]

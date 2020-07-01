@@ -6,11 +6,10 @@ using Objects;
 public class AnimatorOverrider : MonoBehaviour
 {
     public Skin Skin;
-    
     public Animator Animator;
 
     private void Start()
     {
-        //Animator.runtimeAnimatorController = ;
+        Animator.runtimeAnimatorController = Skin.GetSkinAnimatorOverrideController(AnimationName.M16);
     }
 }

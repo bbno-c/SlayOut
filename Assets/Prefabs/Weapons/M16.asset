@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d5e41f1742f56e45b2c4a3e266b39aa, type: 3}
-  m_Name: DefaultSkin
+  m_Script: {fileID: 11500000, guid: b78704ec34d0eb34e8eb387ba409e5bb, type: 3}
+  m_Name: M16
   m_EditorClassIdentifier: 
-  _skinData:
-  - _name: 0
-    _controller: {fileID: 0}
-  - _name: 0
-    _controller: {fileID: 0}
+  BulletPrefab: {fileID: 0}
+  StartDelay: 0
+  FireTime: 0
+  ReloadTime: 0
+  MaxAmmo: 0
