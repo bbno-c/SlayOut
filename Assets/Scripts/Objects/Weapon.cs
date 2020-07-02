@@ -11,16 +11,29 @@ namespace Objects
 
 	public class Weapon : MonoBehaviour
 	{
+		private WeaponInfo _currentWeapon;
+
 		public bool CanFire => gameObject.activeSelf && _state == WeaponFireState.None;
 		private WeaponFireState _state;
 		private float _timer;
-		private int _ammoLeft;
+
+		public void WeaponChangedEvent(WeaponInfo currentWeapon)
+        {
+			_currentWeapon = currentWeapon;
+			SetWeapon();
+		}
 
 		private void SetWeapon()
 		{
-			_state = WeaponFireState.Reloading;
-			_timer = 1f + WeaponData.StartDelay;
-			_ammoLeft = WeaponData.MaxAmmo;
+			if (_currentWeapon.AmmoLeft == 1)
+			{
+				Reload();
+			}
+            else
+            {
+				_state = WeaponFireState.None;
+				_timer = 1f + _currentWeapon.Data.StartDelay;
+			}
 		}
 
 		public void Fire()
@@ -29,7 +42,7 @@ namespace Objects
 				return;
 
 			_state = WeaponFireState.Firing;
-			_timer = WeaponData.FireTime;
+			_timer = _currentWeapon.Data.FireTime;
 
 			CreateBullet();
 		}
@@ -41,37 +54,43 @@ namespace Objects
 				_timer -= Time.deltaTime;
 				if(_timer <= 0f)
 				{
-					if(_state == WeaponFireState.Firing && (_ammoLeft > 1 || WeaponData.isMeleWeapon))
+					if(_state == WeaponFireState.Firing && (_currentWeapon.AmmoLeft > 0 || _currentWeapon.Data.isMeleWeapon))
 					{
 						_state = WeaponFireState.None;
 						_timer = 0f;
-						if(!WeaponData.isMeleWeapon)
-							_ammoLeft--;
+						if(!_currentWeapon.Data.isMeleWeapon)
+							_currentWeapon.AmmoLeft--;
 					}
-					else if(_state == WeaponFireState.Firing && _ammoLeft > 0)
+					else if(_state == WeaponFireState.Firing && _currentWeapon.AmmoLeft == 0)
 					{
 						_state = WeaponFireState.Reloading;
-						_timer = WeaponData.ReloadTime;
+						_timer = _currentWeapon.Data.ReloadTime;
 					}
 					else if(_state == WeaponFireState.Reloading)
 					{
 						_state = WeaponFireState.None;
 						_timer = 0f;
-						_ammoLeft = WeaponData.MaxAmmo;
+						_currentWeapon.AmmoLeft = _currentWeapon.Data.MagazineSize;
 					}
 				}
 			}
 		}
 
+		private void Reload()
+        {
+			_state = WeaponFireState.Reloading;
+			_timer = _currentWeapon.Data.ReloadTime;
+		}
+
 		private void CreateBullet()
 		{
-			if(WeaponData.isMeleWeapon)
+			if(_currentWeapon.Data.isMeleWeapon)
             {
 
             }
             else
             {
-				Instantiate(WeaponData.BulletPrefab, transform.position + new Vector3(0.25f, 0, 0), transform.rotation);
+				Instantiate(_currentWeapon.Data.BulletPrefab, transform.position + new Vector3(0.25f, 0, 0), transform.rotation);
 			}
 		}
 	}

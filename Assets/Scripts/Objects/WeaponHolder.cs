@@ -1,20 +1,55 @@
-﻿using System.Collections;
+﻿using Objects;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using TMPro;
 using UnityEngine;
 
 public class WeaponHolder : MonoBehaviour
 {
-    public int AmmoLeft;
-    public int AllAmmo;
-    // Start is called before the first frame update
-    void Start()
+    private List<WeaponInfo> _playerWeapons;
+
+    private WeaponInfo _currentWeapon;
+    private int _currentIndex;
+
+    public event Action<WeaponInfo> WeaponChange;
+
+    private void OnWeaponChange()
     {
-        
+        WeaponChange?.Invoke(_currentWeapon);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void AddElement(WeaponData element)
     {
-        
+        if (_playerWeapons == null)
+        { 
+            _playerWeapons = new List<WeaponInfo>();
+            var weaponInfo = new WeaponInfo(element);
+            _playerWeapons.Add(weaponInfo);
+            return;
+        }
+
+        foreach (WeaponInfo weaponInfo in _playerWeapons)
+            if (element == weaponInfo.Data)
+                weaponInfo.AddAmmo();
+    }
+
+}
+
+public class WeaponInfo
+{
+    public WeaponData Data;
+    public int AmmoLeft;
+    public int AllAmmo;
+
+    public WeaponInfo(WeaponData data)
+    {
+        AmmoLeft = data.MagazineSize;
+        AllAmmo = data.StartAmmo;
+    }
+
+    public void AddAmmo()
+    {
+        AllAmmo += Data.StartAmmo;
     }
 }

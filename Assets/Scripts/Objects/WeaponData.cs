@@ -8,11 +8,12 @@ namespace Objects
 		public AnimationName WeaponName;
 		public bool isMeleWeapon;
 
+		public Sprite Sprite;
 		public GameObject BulletPrefab;
 		public float StartDelay;
 		public float FireTime;
 		public float ReloadTime;
 		public int MagazineSize;
-		public Sprite SpawnerSprite;
+		public int StartAmmo;
 	}
 }
