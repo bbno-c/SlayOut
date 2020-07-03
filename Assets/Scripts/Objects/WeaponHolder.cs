@@ -31,7 +31,7 @@ public class WeaponHolder : MonoBehaviour
 
         foreach (WeaponInfo weaponInfo in _playerWeapons)
             if (element == weaponInfo.Data)
-                weaponInfo.AddAmmo();
+                weaponInfo.PickupAmmo();
     }
 
 }
@@ -48,8 +48,15 @@ public class WeaponInfo
         AllAmmo = data.StartAmmo;
     }
 
-    public void AddAmmo()
+    private void PickupAmmo()
     {
         AllAmmo += Data.StartAmmo;
+    }
+    
+    private void AddAmmo()
+    {
+        int diff = data.MagazineSize - AmmoLeft;
+        AllAmmo -= diff;
+        AmmoLeft += diff;
     }
 }
