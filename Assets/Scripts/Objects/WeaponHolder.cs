@@ -21,6 +21,8 @@ public class WeaponHolder : MonoBehaviour
 
     public void AddElement(WeaponData element)
     {
+        bool exists = false;
+        
         if (_playerWeapons == null)
         { 
             _playerWeapons = new List<WeaponInfo>();
@@ -28,10 +30,20 @@ public class WeaponHolder : MonoBehaviour
             _playerWeapons.Add(weaponInfo);
             return;
         }
-
+        
         foreach (WeaponInfo weaponInfo in _playerWeapons)
             if (element == weaponInfo.Data)
-                weaponInfo.PickupAmmo();
+                exists = true;
+                
+        if(!exists)
+        {
+            var weaponInfo = new WeaponInfo(element);
+            _playerWeapons.Add(weaponInfo);
+        }
+        else
+        {
+            weaponInfo.PickupAmmo();
+        }
     }
 
 }
