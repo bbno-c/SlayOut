@@ -6,7 +6,8 @@ namespace Objects
 	{
 		None,
 		Firing,
-		Reloading
+		Reloading,
+		Delay
 	}
 
 	public class Weapon : MonoBehaviour
@@ -31,8 +32,8 @@ namespace Objects
 			}
             else
             {
-				_state = WeaponFireState.None;
-				_timer = 1f + _currentWeapon.Data.StartDelay;
+				_state = WeaponFireState.Delay;
+				_timer = _currentWeapon.Data.StartDelay;
 			}
 		}
 
@@ -54,7 +55,7 @@ namespace Objects
 				_timer -= Time.deltaTime;
 				if(_timer <= 0f)
 				{
-					if(_state == WeaponFireState.Firing && (_currentWeapon.AmmoLeft > 0 || _currentWeapon.Data.isMeleWeapon))
+					if((_state == WeaponFireState.Firing && (_currentWeapon.AmmoLeft > 0 || _currentWeapon.Data.isMeleWeapon)) || _state == WeaponFireState.Delay)
 					{
 						_state = WeaponFireState.None;
 						_timer = 0f;
