@@ -15,6 +15,7 @@ namespace Objects
 		private WeaponInfo _currentWeapon;
 
 		public bool CanFire => gameObject.activeSelf && _state == WeaponFireState.None;
+		public event Action Reloaded;
 		private WeaponFireState _state;
 		private float _timer;
 
@@ -28,7 +29,7 @@ namespace Objects
 		{
 			if (_currentWeapon.AmmoLeft == 0)
 			{
-				Reload();
+				Reloading();
 			}
             else
             {
@@ -71,16 +72,21 @@ namespace Objects
 					{
 						_state = WeaponFireState.None;
 						_timer = 0f;
-						_currentWeapon.AmmoLeft = _currentWeapon.Data.MagazineSize;
+						OnReloaded();
 					}
 				}
 			}
 		}
 
-		private void Reload()
+		private void Reloading()
         {
 			_state = WeaponFireState.Reloading;
 			_timer = _currentWeapon.Data.ReloadTime;
+		}
+		
+		private void OnReloaded()
+		{
+			Reloaded?.Invoke();
 		}
 
 		private void CreateBullet()
