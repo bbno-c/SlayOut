@@ -25,7 +25,7 @@ namespace Objects
 
 		private void SetWeapon()
 		{
-			if (_currentWeapon.AmmoLeft == 1)
+			if (_currentWeapon.AmmoLeft == 0)
 			{
 				Reload();
 			}
