@@ -12,7 +12,14 @@ public class WeaponHolder : MonoBehaviour
     private WeaponInfo _currentWeapon;
     private int _currentIndex;
 
+    [Serializable] private WeaponData _startWeapon;
     public event Action<WeaponInfo> WeaponChange;
+    
+    private void Start()
+    {
+        if(_startWeapon != null)
+            AddElement(_startWeapon);
+    }
 
     private void OnWeaponChange()
     {
