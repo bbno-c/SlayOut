@@ -35,8 +35,11 @@ namespace Objects
 
             if (_player.Fire != null)
                 foreach (var input in FireInput)
-                    if (input.Key == KeyCode.None || Input.GetKeyDown(input.Key))
+                    if (Input.GetKey(input.Key))
                         _player.Fire.Apply(input.FireType);
+
+            if (_player.WeaponHolder != null)
+                _player.WeaponHolder.ChangeWeapon(Input.GetAxis("Mouse ScrollWheel"));
         }
     }
 }

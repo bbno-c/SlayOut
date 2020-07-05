@@ -12,6 +12,7 @@ namespace Objects
         public Rigidbody2D PlayerRigidbody;
         public Transform TorsoTransform;
         public Transform LegsTransform;
+        public float Speed = 1;
 
 
         private Vector3 _moveDirection;
@@ -27,7 +28,7 @@ namespace Objects
 
         private void FixedUpdate()
         {
-            PlayerRigidbody.velocity = new Vector2(_moveDirection.x, _moveDirection.y);
+            PlayerRigidbody.velocity = new Vector2(_moveDirection.x, _moveDirection.y) * Speed;
         }
 
         public void MoveDirection(Vector3 direction)

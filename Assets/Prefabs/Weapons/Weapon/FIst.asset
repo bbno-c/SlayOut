@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b78704ec34d0eb34e8eb387ba409e5bb, type: 3}
+  m_Name: FIst
+  m_EditorClassIdentifier: 
+  WeaponName: 0
+  isMeleWeapon: 1
+  Sprite: {fileID: 21300000, guid: 350e36f769a356d41acd30c0509787fe, type: 3}
+  BulletPrefab: {fileID: 0}
+  StartDelay: 0
+  FireTime: 1
+  ReloadTime: 0
+  MagazineSize: 0
+  StartAmmo: 0

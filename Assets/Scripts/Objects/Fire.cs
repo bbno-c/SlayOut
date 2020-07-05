@@ -27,7 +27,7 @@ namespace Objects
 				if (info.FireType == fireType)
 					foreach (var weapon in info.Weapons)
 						if (weapon.CanFire)
-							weapon.Fire();
+							weapon.Fire();			
 		}
 	}
 }
