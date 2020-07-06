@@ -71,11 +71,6 @@ namespace Objects
 						if(!_currentWeapon.Data.isMeleWeapon)
 							_currentWeapon.AmmoLeft--;
 					}
-					else if(_state == WeaponFireState.DelayBetwenBullets && _currentWeapon.AmmoLeft == 0)
-					{
-						_state = WeaponFireState.Reloading;
-						_timer = _currentWeapon.Data.ReloadTime;
-					}
 					else if(_state == WeaponFireState.Reloading || _state == WeaponFireState.StartDelay)
 					{
 						_state = WeaponFireState.None;
