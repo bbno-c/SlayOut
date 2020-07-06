@@ -44,7 +44,7 @@ namespace Objects
 		{
 			if (!CanFire)
             {
-				if (_currentWeapon.AmmoLeft == 0)
+				if (_currentWeapon.AmmoLeft == 0 && _state != WeaponFireState.Reloading)
 					Reloading();
 				return;
 			}
@@ -68,7 +68,7 @@ namespace Objects
 					{
 						_state = WeaponFireState.None;
 						_timer = 0f;
-						if(!_currentWeapon.Data.isMeleWeapon && !(_state == WeaponFireState.StartDelay))
+						if(!_currentWeapon.Data.isMeleWeapon)
 							_currentWeapon.AmmoLeft--;
 					}
 					else if(_state == WeaponFireState.DelayBetwenBullets && _currentWeapon.AmmoLeft == 0)
@@ -76,16 +76,14 @@ namespace Objects
 						_state = WeaponFireState.Reloading;
 						_timer = _currentWeapon.Data.ReloadTime;
 					}
-					else if(_state == WeaponFireState.Reloading)
+					else if(_state == WeaponFireState.Reloading || _state == WeaponFireState.StartDelay)
 					{
 						_state = WeaponFireState.None;
 						_timer = 0f;
-						OnReloaded();
-					}
-					else if(_state == WeaponFireState.StartDelay)
-                    {
-						_state = WeaponFireState.None;
-						_timer = 0f;
+						if(_state == WeaponFireState.Reloading)
+						{
+							OnReloaded();
+						}
 					}
 				}
 			}
