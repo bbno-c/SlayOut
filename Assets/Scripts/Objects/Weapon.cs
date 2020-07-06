@@ -28,7 +28,7 @@ namespace Objects
 
 		private void SetWeapon()
 		{
-			if (_currentWeapon.AmmoLeft == 0 && !_currentWeapon.Data.isMeleWeapon)
+			if (_currentWeapon.AmmoLeft == 0 && _currentWeapon.AllAmmo > 0 && !_currentWeapon.Data.isMeleWeapon)
 			{
 				Reloading();
 			}
