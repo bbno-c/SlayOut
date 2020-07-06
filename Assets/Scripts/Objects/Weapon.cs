@@ -92,7 +92,7 @@ namespace Objects
 
 		public void ReloadingOnAmmoPickup(WeaponInfo weapon)
 		{
-			if(weapon == _currentWeapon)
+			if(weapon == _currentWeapon && _currentWeapon.AmmoLeft == 0 && _state != WeaponFireState.Reloading)
             {
 				_state = WeaponFireState.Reloading;
 				_timer = _currentWeapon.Data.ReloadTime;
