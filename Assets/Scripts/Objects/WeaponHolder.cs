@@ -3,10 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using TMPro;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class WeaponHolder : MonoBehaviour
 {
+    
+
     private List<WeaponInfo> _playerWeapons;
     private WeaponInfo _currentWeapon;
     private int _currentIndex;
@@ -15,7 +18,7 @@ public class WeaponHolder : MonoBehaviour
     public AnimatorOverrider AnimatorOverrider;
     public WeaponData StartWeapon;
     public event Action<WeaponInfo> WeaponChange;
-    
+
     private void Start()
     {
         _playerWeapons = new List<WeaponInfo>();
@@ -150,6 +153,7 @@ public class WeaponInfo
                 bullet.transform.position = weapon.position;
                 bullet.transform.rotation = weapon.rotation;
                 bullet.SetActive(true);
+                AmmoLeft--;
                 return;
             }
     }
