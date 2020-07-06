@@ -44,7 +44,7 @@ namespace Objects
 		{
 			if (!CanFire)
             {
-				if (_currentWeapon.AmmoLeft == 0 && _state != WeaponFireState.Reloading)
+				if (_currentWeapon.AmmoLeft == 0 && _currentWeapon.AllAmmo > 0 && _state != WeaponFireState.Reloading)
 					Reloading();
 				return;
 			}
