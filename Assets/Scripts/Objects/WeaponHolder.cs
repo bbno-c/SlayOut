@@ -45,7 +45,7 @@ public class WeaponHolder : MonoBehaviour
             if (element == weaponInfo.Data)
             {
                 exists = true;
-                weaponInfo.PickupAmmo();
+                weaponInfo.PickupAmmo(_currentWeapon);
                 return;
             }
                 
@@ -124,10 +124,10 @@ public class WeaponInfo
         AllAmmo = data.StartAmmo;
     }
 
-    public void PickupAmmo()
+    public void PickupAmmo(WeaponInfo currentWeapon)
     {
         AllAmmo += Data.MagazineSize;
-        if(_currentWeapon == this)
+        if(currentWeapon == this)
             AmmoPickupEvent?.Invoke();
     }
     
