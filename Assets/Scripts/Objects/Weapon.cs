@@ -71,7 +71,7 @@ namespace Objects
 			Debug.Log(_state);
 		}
 
-		private void Reloading()
+		public void Reloading()
         {
 			if(_currentWeapon.AmmoLeft < _currentWeapon.Data.MagazineSize && _state != WeaponFireState.Reloading || _currentWeapon.AmmoLeft == 0 && _currentWeapon.AllAmmo > 0 && _state != WeaponFireState.Reloading)
 				WeaponSetState(WeaponFireState.Reloading, _currentWeapon.Data.ReloadTime);

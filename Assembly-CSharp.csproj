@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\Controllers\GameController.cs" />
     <Compile Include="Assets\Scripts\Controllers\HudController.cs" />
     <Compile Include="Assets\Scripts\Controllers\MenuController.cs" />
+    <Compile Include="Assets\Scripts\Controllers\WeaponPanelController.cs" />
     <Compile Include="Assets\Scripts\Core\IController.cs" />
     <Compile Include="Assets\Scripts\Core\IGame.cs" />
     <Compile Include="Assets\Scripts\Core\IView.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="Assets\Scripts\Views\GameView.cs" />
     <Compile Include="Assets\Scripts\Views\HudView.cs" />
     <Compile Include="Assets\Scripts\Views\MenuView.cs" />
+    <Compile Include="Assets\Scripts\Views\WeaponPanelView.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
