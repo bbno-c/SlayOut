@@ -114,7 +114,7 @@ public class WeaponInfo
     public WeaponData Data;
     public int AmmoLeft;
     public int AllAmmo;
-    public event Action<WeaponInfo> AmmoPickupEvent;
+    public event Action AmmoPickupEvent;
 
     public WeaponInfo(WeaponData data, List<GameObject> bulletPool)
     {
@@ -128,7 +128,7 @@ public class WeaponInfo
     {
         AllAmmo += Data.MagazineSize;
         if(_currentWeapon == this)
-            AmmoPickupEvent?.Invoke(this);
+            AmmoPickupEvent?.Invoke();
     }
     
     public void AddAmmo()
