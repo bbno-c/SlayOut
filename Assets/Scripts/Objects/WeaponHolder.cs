@@ -148,6 +148,7 @@ public class WeaponInfo
 
     public void CreateBullet(Transform weapon)
     {
+        if(AmmoLeft > 0)
         foreach(GameObject bullet in _bulletPool)
             if(!bullet.activeSelf)
             {
