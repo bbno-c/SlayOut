@@ -47,7 +47,7 @@ namespace Objects
 				CreateBullet();
 				WeaponSetState(WeaponFireState.DelayBetwenBullets, _currentWeapon.Data.FireTime);
 			}
-			else if (_currentWeapon.AmmoLeft <= 0 && _currentWeapon.AllAmmo > 0 && _state != WeaponFireState.Reloading)
+			else
 			{
 				Reloading();
 			}
@@ -73,15 +73,8 @@ namespace Objects
 
 		private void Reloading()
         {
-			WeaponSetState(WeaponFireState.Reloading, _currentWeapon.Data.ReloadTime);
-		}
-
-		public void ReloadingOnAmmoPickup(WeaponInfo weapon)
-		{
-			if(weapon == _currentWeapon && _currentWeapon.AmmoLeft == 0 && _state != WeaponFireState.Reloading)
-            {
+			if(_currentWeapon.AmmoLeft < _currentWeapon.Data.MagazineSize && _state != WeaponFireState.Reloading || _currentWeapon.AmmoLeft == 0 && _currentWeapon.AllAmmo > 0 && _state != WeaponFireState.Reloading)
 				WeaponSetState(WeaponFireState.Reloading, _currentWeapon.Data.ReloadTime);
-			}
 		}
 
 		private void OnReloaded()
