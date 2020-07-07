@@ -62,9 +62,9 @@ namespace Objects
 				{
 					if(_state == WeaponFireState.DelayBetwenBullets || _state == WeaponFireState.Reloading || _state == WeaponFireState.StartDelay)
 					{
-						WeaponSetState(WeaponFireState.None, 0f);
 						if (_state == WeaponFireState.Reloading)
 							OnReloaded();
+						WeaponSetState(WeaponFireState.None, 0f);
 					}
 				}
 			}
