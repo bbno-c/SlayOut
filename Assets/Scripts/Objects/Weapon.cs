@@ -47,7 +47,7 @@ namespace Objects
 				CreateBullet();
 				WeaponSetState(WeaponFireState.DelayBetwenBullets, _currentWeapon.Data.FireTime);
 			}
-			else if (_currentWeapon.AmmoLeft <= 0 && _currentWeapon.AllAmmo > 0)
+			else if (_currentWeapon.AmmoLeft <= 0 && _currentWeapon.AllAmmo > 0 && _state != WeaponFireState.Reloading)
 			{
 				Reloading();
 			}
