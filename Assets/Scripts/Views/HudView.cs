@@ -12,6 +12,7 @@ namespace Views
 
 		[SerializeField]
 		private EndGameView _endGameView;
+		public IEndGameView EndGameView => _endGameView;
 
 		public TextMeshProUGUI ScoreText;
 		public TextMeshProUGUI HitpointsText;
@@ -27,7 +28,5 @@ namespace Views
 		{
 			HitpointsText.text = Mathf.RoundToInt(value) + "%";
 		}
-
-		public IEndGameView EndGameView => _endGameView;
 	}
 }

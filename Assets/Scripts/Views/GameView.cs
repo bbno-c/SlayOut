@@ -12,12 +12,16 @@ namespace Views
         public Transform PlayerStartPoint;
         public InputController InputController;
         public CameraFollow CameraFollow;
+
         public GameObject[] GameObjects;
 
         [SerializeField]
         public MenuView _menuView;
         [SerializeField]
         private HudView _hudView;
+
+        public IHudView HudView => _hudView;
+        public IMenuView MenuView => _menuView;
 
         public event Action PlayerDeadEvent;
         public event Action<float> PlayerHealthChangeEvent;
@@ -38,27 +42,6 @@ namespace Views
             {
 
             }
-        }
-
-        private void SpawnPlayer()
-        {
-            var player = Instantiate(PlayerPrefab, PlayerStartPoint.position, PlayerStartPoint.rotation);
-
-            if (player == null)
-                return;
-
-            var health = player.Health;
-
-            if (health == null)
-                return;
-
-            InputController.SetPlayer(player);
-            CameraFollow.Target = player.transform;
-            GameController.Player = player;
-
-            health.DieEvent += OnPlayerDead;
-            health.ChangeEvent += OnPlayerHealthChange;
-            OnPlayerHealthChange(health.Hitpoints);
         }
 
         public void StartGame()
@@ -83,8 +66,26 @@ namespace Views
                 o.SetActive(false);
         }
 
-        public IHudView HudView => _hudView;
-        public IMenuView MenuView => _menuView;
+        private void SpawnPlayer()
+        {
+            var player = Instantiate(PlayerPrefab, PlayerStartPoint.position, PlayerStartPoint.rotation);
+
+            if (player == null)
+                return;
+
+            var health = player.Health;
+
+            if (health == null)
+                return;
+
+            InputController.SetPlayer(player);
+            CameraFollow.Target = player.transform;
+            GameController.Player = player;
+
+            health.DieEvent += OnPlayerDead;
+            health.ChangeEvent += OnPlayerHealthChange;
+            OnPlayerHealthChange(health.Hitpoints);
+        }
 
         private void OnPlayerDead()
         {

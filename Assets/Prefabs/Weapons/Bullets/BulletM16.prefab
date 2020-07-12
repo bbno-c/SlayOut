@@ -165,7 +165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpriteRenderer: {fileID: 5936309624178399518}
   Animator: {fileID: -6442367154464342658}
-  Speed: 1
+  Speed: 5
   LifeTime: 0.5
   Damage: 10
   Rigidbody: {fileID: 7672994975925969330}

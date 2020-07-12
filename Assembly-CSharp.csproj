@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\Controllers\HudController.cs" />
     <Compile Include="Assets\Scripts\Controllers\MenuController.cs" />
     <Compile Include="Assets\Scripts\Controllers\WeaponPanelController.cs" />
+    <Compile Include="Assets\Scripts\Core\BaseView.cs" />
     <Compile Include="Assets\Scripts\Core\IController.cs" />
     <Compile Include="Assets\Scripts\Core\IGame.cs" />
     <Compile Include="Assets\Scripts\Core\IView.cs" />
@@ -84,7 +85,6 @@
     <Compile Include="Assets\Scripts\Objects\WeaponData.cs" />
     <Compile Include="Assets\Scripts\Objects\WeaponHolder.cs" />
     <Compile Include="Assets\Scripts\Objects\WeaponSpawner.cs" />
-    <Compile Include="Assets\Scripts\Views\BaseView.cs" />
     <Compile Include="Assets\Scripts\Views\EndGameView.cs" />
     <Compile Include="Assets\Scripts\Views\GameView.cs" />
     <Compile Include="Assets\Scripts\Views\HudView.cs" />

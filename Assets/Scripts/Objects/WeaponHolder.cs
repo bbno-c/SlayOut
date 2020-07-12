@@ -127,7 +127,7 @@ public class WeaponInfo
     public void PickupAmmo(WeaponInfo currentWeapon)
     {
         AllAmmo += Data.MagazineSize;
-        if(currentWeapon == this)
+        if(currentWeapon == this && AmmoLeft == 0)
             AmmoPickupEvent?.Invoke();
     }
     

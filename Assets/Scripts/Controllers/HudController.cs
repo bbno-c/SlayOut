@@ -8,6 +8,8 @@ namespace Controllers
         void SetHealth(float value);
 
         IEndGameView EndGameView { get; }
+
+        IWeaponPanelView WeaponPanelView { get; }
     }
 
     public class HudController : IController<IHudView>
@@ -27,6 +29,8 @@ namespace Controllers
             _game.ScoreChangedEvent += OnScoreChanged;
             _game.PlayerHealthChangeEvent += OnPlayerHealthChanged;
             _view = view;
+
+            _view.WeaponPanelView?.Open(new WeaponPanelController());
         }
 
         public void OnClose(IHudView view)
