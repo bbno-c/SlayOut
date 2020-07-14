@@ -31,6 +31,6 @@ public class WeaponPanelController : IController<IWeaponPanelView>
         
         private void CreatePanel(WeaponInfo weapon)
         {
-            
+            _view?.InitPanel(weapon);
         }
 }
