@@ -2,18 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponPanelView : MonoBehaviour
+public class WeaponPanelView : BaseView<IWeaponPanelView>, IWeaponPanelView
 {
-    [SerializeField]
-    private GameObject WeaponPanel;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
+    protected override IWeaponPanelView View => this;
+    
+    public VerticalLayoutGroup VerticalLayoutGroup;
+    public GameObject WeaponPanel;
+    
+    private Dictionary<WeaponInfo, GameObject> _weaponPanels;
+    
+    public void InitPanel(WeaponInfo weapon)
     {
         
     }

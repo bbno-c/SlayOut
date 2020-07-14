@@ -18,6 +18,7 @@ public class WeaponHolder : MonoBehaviour
     public AnimatorOverrider AnimatorOverrider;
     public WeaponData StartWeapon;
     public event Action<WeaponInfo> WeaponChange;
+    public event Action<WeaponInfo> ElementAdded;
 
     private void Start()
     {
@@ -36,6 +37,11 @@ public class WeaponHolder : MonoBehaviour
     {
         WeaponChange?.Invoke(_currentWeapon);
     }
+    
+    private void OnAddElement(WeaponData element)
+    {
+        ElementAdded?.Invoke(element);
+    }
 
     public void AddElement(WeaponData element)
     {
@@ -46,7 +52,7 @@ public class WeaponHolder : MonoBehaviour
             {
                 exists = true;
                 weaponInfo.PickupAmmo(_currentWeapon);
-                return;
+                break;
             }
                 
         if(!exists)
@@ -62,6 +68,7 @@ public class WeaponHolder : MonoBehaviour
             var weaponInfo = new WeaponInfo(element, bulletPool);
             _playerWeapons.Add(weaponInfo);
             weaponInfo.AmmoPickupEvent += Weapon.Reloading;
+            OnAddElement(element);
         }
     }
 
@@ -69,14 +76,17 @@ public class WeaponHolder : MonoBehaviour
     {
         if(_playerWeapons != null)
         {
-            if (_currentIndex < (_playerWeapons.Count - 1))
+            for(int i = 1; i < _playerWeapons.Count; i++)
             {
-                _currentIndex++;
+                if (_currentIndex < (_playerWeapons.Count - 1))
+                    _currentIndex++;
+                else
+                    _currentIndex = 0;
+                    
+                if(_playerWeapons[_currentIndex].IsActive)
+                    break;
             }
-            else
-            {
-                _currentIndex = 0;
-            }
+            
             _currentWeapon = _playerWeapons[_currentIndex];
             OnWeaponChange();
         }
@@ -115,6 +125,7 @@ public class WeaponInfo
     public int AmmoLeft;
     public int AllAmmo;
     public event Action AmmoPickupEvent;
+    public bool IsActive => AmmoLeft + AllAmmo > 0;
 
     public WeaponInfo(WeaponData data, List<GameObject> bulletPool)
     {

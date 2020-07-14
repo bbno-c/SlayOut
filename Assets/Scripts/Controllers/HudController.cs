@@ -30,7 +30,7 @@ namespace Controllers
             _game.PlayerHealthChangeEvent += OnPlayerHealthChanged;
             _view = view;
 
-            _view.WeaponPanelView?.Open(new WeaponPanelController());
+            _view.WeaponPanelView?.Open(new WeaponPanelController(_game));
         }
 
         public void OnClose(IHudView view)
