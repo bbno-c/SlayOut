@@ -18,6 +18,7 @@ public class WeaponHolder : MonoBehaviour
     public AnimatorOverrider AnimatorOverrider;
     public WeaponData StartWeapon;
     public event Action<WeaponInfo> WeaponChange;
+    public event Action<WeaponInfo> ElementAdded;
 
     private void Start()
     {
@@ -36,6 +37,11 @@ public class WeaponHolder : MonoBehaviour
     {
         WeaponChange?.Invoke(_currentWeapon);
     }
+    
+    private void OnAddElement(WeaponData element)
+    {
+        ElementAdded?.Invoke(element);
+    }
 
     public void AddElement(WeaponData element)
     {
@@ -46,7 +52,7 @@ public class WeaponHolder : MonoBehaviour
             {
                 exists = true;
                 weaponInfo.PickupAmmo(_currentWeapon);
-                return;
+                break;
             }
                 
         if(!exists)
@@ -63,6 +69,8 @@ public class WeaponHolder : MonoBehaviour
             _playerWeapons.Add(weaponInfo);
             weaponInfo.AmmoPickupEvent += Weapon.Reloading;
         }
+        
+        OnAddElement(element);
     }
 
     public void NextWeapon()
