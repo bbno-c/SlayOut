@@ -2,7 +2,7 @@ using Core;
 
 public interface IWeaponPanelView : IView
     {
-        
+        void InitPanel(WeaponInfo weapon);
         IWeaponPanelView WeaponPanelView { get; }
     }
 
