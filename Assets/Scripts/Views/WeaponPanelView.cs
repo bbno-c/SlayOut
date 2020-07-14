@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class WeaponPanelView : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject WeaponPanel;
     // Start is called before the first frame update
     void Start()
     {

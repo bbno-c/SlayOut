@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1966269378768310822}
   - component: {fileID: 6151027492066037132}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: AmmoLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -272,7 +272,7 @@ GameObject:
   - component: {fileID: 256573763971145509}
   - component: {fileID: 8303830905459232273}
   m_Layer: 5
-  m_Name: Text (TMP) (2)
+  m_Name: DivideSymbol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -428,7 +428,7 @@ GameObject:
   - component: {fileID: 517903843852739216}
   - component: {fileID: 8304185768305951755}
   m_Layer: 5
-  m_Name: Image
+  m_Name: WeaponIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -502,7 +502,7 @@ GameObject:
   - component: {fileID: 7063926752834560750}
   - component: {fileID: 5620379013139630291}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: AllAmmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
