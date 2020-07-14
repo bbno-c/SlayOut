@@ -8,7 +8,6 @@ namespace Controllers
         void SetHealth(float value);
 
         IEndGameView EndGameView { get; }
-
         IWeaponPanelView WeaponPanelView { get; }
     }
 

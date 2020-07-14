@@ -1,17 +1,17 @@
 using Core;
 
-public interface IWeaponPanelView : IView
+namespace Controllers
+{
+    public interface IWeaponPanelView : IView
     {
         void InitPanel(WeaponInfo weapon);
-        IWeaponPanelView WeaponPanelView { get; }
     }
 
-public class WeaponPanelController : IController<IWeaponPanelView>
-{
-        private IWeaponPanelView _view;
-        
+    public class WeaponPanelController : IController<IWeaponPanelView>
+    {
         private readonly IGame _game;
-        
+        private IWeaponPanelView _view;
+
         public WeaponPanelController(IGame game)
         {
             _game = game;
@@ -33,4 +33,5 @@ public class WeaponPanelController : IController<IWeaponPanelView>
         {
             _view?.InitPanel(weapon);
         }
+    }
 }

@@ -11,13 +11,15 @@ namespace Views
 		protected override IHudView View => this;
 
 		[SerializeField]
+		private WeaponPanelView _weaponPanelView;
+		public IWeaponPanelView WeaponPanelView => _weaponPanelView;
+
+		[SerializeField]
 		private EndGameView _endGameView;
 		public IEndGameView EndGameView => _endGameView;
 
 		public TextMeshProUGUI ScoreText;
 		public TextMeshProUGUI HitpointsText;
-
-		private Character _playerCharacter;
 
 		public void SetScore(int value)
 		{
