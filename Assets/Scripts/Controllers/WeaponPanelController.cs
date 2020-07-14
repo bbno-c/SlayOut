@@ -19,7 +19,7 @@ public class WeaponPanelController : IController<IWeaponPanelView>
 
         public void OnOpen(IWeaponPanelView view)
         {
-            
+            _game.Player.WeaponHolder.ElementAdded += CreatePanel;
             _view = view;
         }
 
@@ -27,5 +27,10 @@ public class WeaponPanelController : IController<IWeaponPanelView>
         {
             
             _view = null;
+        }
+        
+        private void CreatePanel(WeaponInfo weapon)
+        {
+            
         }
 }
