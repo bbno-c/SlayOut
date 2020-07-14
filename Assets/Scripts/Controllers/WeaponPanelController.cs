@@ -1,18 +1,31 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using Core;
 
-public class WeaponPanelController : MonoBehaviour
+public interface IWeaponPanelView : IView
+    {
+        
+        IWeaponPanelView WeaponPanelView { get; }
+    }
+
+public class WeaponPanelController : IController<IWeaponPanelView>
 {
-    // Start is called before the first frame update
-    void Start()
-    {
+        private IWeaponPanelView _view;
         
-    }
+        private readonly IGame _game;
+        
+        public WeaponPanelController(IGame game)
+        {
+            _game = game;
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+        public void OnOpen(IWeaponPanelView view)
+        {
+            
+            _view = view;
+        }
+
+        public void OnClose(IWeaponPanelView view)
+        {
+            
+            _view = null;
+        }
 }
