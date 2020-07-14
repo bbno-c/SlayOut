@@ -68,9 +68,8 @@ public class WeaponHolder : MonoBehaviour
             var weaponInfo = new WeaponInfo(element, bulletPool);
             _playerWeapons.Add(weaponInfo);
             weaponInfo.AmmoPickupEvent += Weapon.Reloading;
+            OnAddElement(element);
         }
-        
-        OnAddElement(element);
     }
 
     public void NextWeapon()
