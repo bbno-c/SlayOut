@@ -122,6 +122,7 @@ public class WeaponInfo
     public int AmmoLeft;
     public int AllAmmo;
     public event Action AmmoPickupEvent;
+    public bool IsActive => AmmoLeft + AllAmmo > 0;
 
     public WeaponInfo(WeaponData data, List<GameObject> bulletPool)
     {
