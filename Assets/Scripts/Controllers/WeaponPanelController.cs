@@ -25,7 +25,7 @@ public class WeaponPanelController : IController<IWeaponPanelView>
 
         public void OnClose(IWeaponPanelView view)
         {
-            
+            _game.Player.WeaponHolder.ElementAdded -= CreatePanel;
             _view = null;
         }
         
