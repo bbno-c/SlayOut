@@ -9,7 +9,10 @@ public class WeaponPanelView : BaseView<IWeaponPanelView>, IWeaponPanelView
     public VerticalLayoutGroup VerticalLayoutGroup;
     public GameObject WeaponPanel;
     
-    private List<GameObject> _weaponPanels;
+    private Dictionary<WeaponInfo, GameObject> _weaponPanels;
     
-    
+    public void InitPanel(WeaponInfo weapon)
+    {
+        
+    }
 }
