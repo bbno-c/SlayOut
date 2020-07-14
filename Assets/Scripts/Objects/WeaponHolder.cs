@@ -76,14 +76,17 @@ public class WeaponHolder : MonoBehaviour
     {
         if(_playerWeapons != null)
         {
-            if (_currentIndex < (_playerWeapons.Count - 1))
+            for(int i = 1; i < _playerWeapons.Count; i++)
             {
-                _currentIndex++;
+                if (_currentIndex < (_playerWeapons.Count - 1))
+                    _currentIndex++;
+                else
+                    _currentIndex = 0;
+                    
+                if(_playerWeapons[_currentIndex].IsActive)
+                    break;
             }
-            else
-            {
-                _currentIndex = 0;
-            }
+            
             _currentWeapon = _playerWeapons[_currentIndex];
             OnWeaponChange();
         }
