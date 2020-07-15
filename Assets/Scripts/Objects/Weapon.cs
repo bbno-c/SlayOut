@@ -30,7 +30,7 @@ namespace Objects
 		{
 			if (_currentWeapon.AmmoLeft == 0 && _currentWeapon.AllAmmo > 0 && !_currentWeapon.Data.isMeleWeapon)
 			{
-				Reloading();
+				Reloading(_currentWeapon);
 			}
             else
             {
@@ -49,7 +49,7 @@ namespace Objects
 			}
 			else
 			{
-				Reloading();
+				Reloading(_currentWeapon);
 			}
 		}
 
@@ -71,9 +71,9 @@ namespace Objects
 			Debug.Log(_state);
 		}
 
-		public void Reloading()
+		public void Reloading(WeaponInfo weapon)
         {
-			if(_currentWeapon.AmmoLeft < _currentWeapon.Data.MagazineSize && _state != WeaponFireState.Reloading || _currentWeapon.AmmoLeft == 0 && _currentWeapon.AllAmmo > 0 && _state != WeaponFireState.Reloading)
+			if((_currentWeapon == weapon && _currentWeapon.AmmoLeft == 0 || _currentWeapon.AmmoLeft < _currentWeapon.Data.MagazineSize || _currentWeapon.AmmoLeft == 0 && _currentWeapon.AllAmmo > 0) && _state != WeaponFireState.Reloading)
 				WeaponSetState(WeaponFireState.Reloading, _currentWeapon.Data.ReloadTime);
 		}
 

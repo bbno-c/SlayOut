@@ -8,10 +8,11 @@ using UnityEngine;
 
 public class WeaponHolder : MonoBehaviour
 {
-    
-
     private List<WeaponInfo> _playerWeapons;
+    private List<WeaponInfo> _playerInactiveWeapons;
     private WeaponInfo _currentWeapon;
+    private WeaponInfo _previousWeapon;
+    public WeaponInfo PreviousWeapon => _previousWeapon;
     private int _currentIndex;
 
     public Weapon Weapon;
@@ -23,12 +24,14 @@ public class WeaponHolder : MonoBehaviour
     private void Start()
     {
         _playerWeapons = new List<WeaponInfo>();
+        _playerInactiveWeapons = new List<WeaponInfo>();
 
         WeaponChange += Weapon.WeaponChangeEvent;
         WeaponChange += AnimatorOverrider.ChangeWeaponAnimation;
 
         AddElement(StartWeapon);
         _currentIndex = 0;
+        _previousWeapon = null;
         _currentWeapon = _playerWeapons[_currentIndex];
         OnWeaponChange();
     }
@@ -38,9 +41,14 @@ public class WeaponHolder : MonoBehaviour
         WeaponChange?.Invoke(_currentWeapon);
     }
     
-    private void OnAddElement(WeaponData element)
+    private void OnAddElement(WeaponInfo element)
     {
         ElementAdded?.Invoke(element);
+    }
+
+    private void OnDeactivated(WeaponInfo weapon)
+    {
+
     }
 
     public void AddElement(WeaponData element)
@@ -51,6 +59,8 @@ public class WeaponHolder : MonoBehaviour
             if (element == weaponInfo.Data)
             {
                 exists = true;
+                _playerWeapons.Add(weaponInfo);
+                _playerWeapons.RemoveAt(_playerWeapons.IndexOf(weaponInfo));
                 weaponInfo.PickupAmmo(_currentWeapon);
                 break;
             }
@@ -68,11 +78,11 @@ public class WeaponHolder : MonoBehaviour
             var weaponInfo = new WeaponInfo(element, bulletPool);
             _playerWeapons.Add(weaponInfo);
             weaponInfo.AmmoPickupEvent += Weapon.Reloading;
-            OnAddElement(element);
+            OnAddElement(weaponInfo);
         }
     }
 
-    public void NextWeapon()
+    public void Next()
     {
         if(_playerWeapons != null)
         {
@@ -87,23 +97,28 @@ public class WeaponHolder : MonoBehaviour
                     break;
             }
             
+            _previousWeapon = _currentWeapon;
             _currentWeapon = _playerWeapons[_currentIndex];
             OnWeaponChange();
         }
     }
 
-    public void PreviousWeapon()
+    public void Previous()
     {
         if (_playerWeapons != null)
         {
-            if (_currentIndex > 0)
+            for(int i = 1; i < _playerWeapons.Count; i++)
             {
-                _currentIndex--;
+                if (_currentIndex > 0)
+                    _currentIndex--;
+                else
+                    _currentIndex = _playerWeapons.Count - 1;
+                    
+                if(_playerWeapons[_currentIndex].IsActive)
+                    break;
             }
-            else
-            {
-                _currentIndex = _playerWeapons.Count - 1;
-            }
+            
+            _previousWeapon = _currentWeapon;
             _currentWeapon = _playerWeapons[_currentIndex];
             OnWeaponChange();
         }
@@ -112,9 +127,9 @@ public class WeaponHolder : MonoBehaviour
     public void ChangeWeapon(float mouseWheel)
     {
         if(mouseWheel > 0f)
-            NextWeapon();
+            Next();
         if (mouseWheel < 0f)
-            PreviousWeapon();
+            Previous();
     }
 }
 
@@ -124,7 +139,10 @@ public class WeaponInfo
     public WeaponData Data;
     public int AmmoLeft;
     public int AllAmmo;
-    public event Action AmmoPickupEvent;
+    public event Action<WeaponInfo> AmmoPickupEvent;
+    public event Action<WeaponInfo>  AddAmmoEvent;
+    public event Action<WeaponInfo>  CreateBulletEvent;
+    public event Action<WeaponInfo>  DeactivatedEvent;
     public bool IsActive => AmmoLeft + AllAmmo > 0;
 
     public WeaponInfo(WeaponData data, List<GameObject> bulletPool)
@@ -138,8 +156,7 @@ public class WeaponInfo
     public void PickupAmmo(WeaponInfo currentWeapon)
     {
         AllAmmo += Data.MagazineSize;
-        if(currentWeapon == this && AmmoLeft == 0)
-            AmmoPickupEvent?.Invoke();
+        AmmoPickupEvent?.Invoke(this);
     }
     
     public void AddAmmo()
@@ -155,6 +172,7 @@ public class WeaponInfo
             AmmoLeft = AllAmmo;
             AllAmmo = 0;
         }
+        AddAmmoEvent?.Invoke(this);
     }
 
     public void CreateBullet(Transform weapon)
@@ -167,6 +185,11 @@ public class WeaponInfo
                 bullet.transform.rotation = weapon.rotation;
                 bullet.SetActive(true);
                 AmmoLeft--;
+                CreateBulletEvent?.Invoke(this);
+
+                if(!IsActive)
+                    DeactivatedEvent?.Invoke(this);
+
                 return;
             }
     }
