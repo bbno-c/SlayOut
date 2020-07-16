@@ -3,8 +3,7 @@ using UnityEngine;
 
 namespace Views
 {
-    public abstract class BaseView<TView> : MonoBehaviour, IView
-        where TView : IView
+    public abstract class BaseView<TView> : MonoBehaviour, IView where TView : IView
     {
         protected abstract TView View { get; }
         

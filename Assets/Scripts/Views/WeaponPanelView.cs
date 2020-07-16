@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using Objects;
 using Controllers;
-using Objects;
 
 namespace Views
 {

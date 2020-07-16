@@ -28,7 +28,7 @@ namespace Objects
 
 		private void SetWeapon()
 		{
-			if (_currentWeapon.AmmoLeft == 0 && _currentWeapon.AllAmmo > 0 && !_currentWeapon.Data.isMeleWeapon)
+			if (_currentWeapon.AmmoLeft == 0 && _currentWeapon.AllAmmo > 0)
 			{
 				Reloading(_currentWeapon);
 			}
@@ -64,6 +64,7 @@ namespace Objects
 					{
 						if (_state == WeaponFireState.Reloading)
 							OnReloaded();
+						
 						WeaponSetState(WeaponFireState.None, 0f);
 					}
 				}
@@ -84,14 +85,7 @@ namespace Objects
 
 		private void CreateBullet()
 		{
-			if(_currentWeapon.Data.isMeleWeapon)
-            {
-
-            }
-            else
-            {
-				_currentWeapon.CreateBullet(transform);
-			}
+			_currentWeapon.CreateBullet(transform);
 		}
 
 		private void WeaponSetState(WeaponFireState state, float timer)

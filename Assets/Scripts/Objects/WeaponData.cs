@@ -2,18 +2,27 @@
 
 namespace Objects
 {
-	[CreateAssetMenu(fileName = "NewWeapon", menuName = "Weapon")]
-	public class WeaponData : ScriptableObject
+	public abstract class WeaponData: ScriptableObject
 	{
-		public AnimationName WeaponName;
-		public bool isMeleWeapon;
-
+		public AnimationName WeaponAnimationName;
 		public Sprite Sprite;
+		public float FireTime;
+	}
+
+	[CreateAssetMenu(fileName = "NewRangeWeapon", menuName = "Weapon\RangeWeapon")]
+	public class RangeWeaponData : WeaponData
+	{
 		public GameObject BulletPrefab;
 		public float StartDelay;
-		public float FireTime;
 		public float ReloadTime;
 		public int MagazineSize;
 		public int StartAmmo;
+	}
+
+	[CreateAssetMenu(fileName = "NewMeleeWeapon", menuName = "Weapon\MeleeWeapon")]
+	public class MeleeWeaponData : WeaponData
+	{
+		public float StartDelay;
+		public float ReloadTime;
 	}
 }
