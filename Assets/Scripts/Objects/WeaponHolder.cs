@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using Objects;
 
-public class WeaponHolder<WeaponInfo> : MonoBehaviour
+public class WeaponHolder: MonoBehaviour
 {
     private List<WeaponInfo> _playerWeapons;
     private WeaponInfo _currentWeapon;

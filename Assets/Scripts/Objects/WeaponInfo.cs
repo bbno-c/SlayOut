@@ -19,7 +19,7 @@ namespace Objects
         public int AllAmmo { get; }
     }
 
-    public class RangeWeaponInfo<T>: WeaponInfo<T>, IRangeWeaponInfo where T : RangeWeaponData
+    public class RangeWeaponInfo: WeaponInfo, IRangeWeaponInfo
     {
         private int _ammoLeft;
         private int _allAmmo;
@@ -31,7 +31,7 @@ namespace Objects
         public int AmmoLeft => _ammoLeft;
         public int AllAmmo => _ammoLeft;
 
-        public RangeWeaponInfo(T data, List<GameObject> bulletPool)
+        public RangeWeaponInfo(WeaponInfo data, List<GameObject> bulletPool)
         {
             Data = data;
             _bulletPool = bulletPool;

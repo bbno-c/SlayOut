@@ -9,7 +9,7 @@ namespace Objects
 		public float FireTime;
 	}
 
-	[CreateAssetMenu(fileName = "NewRangeWeapon", menuName = "Weapon\RangeWeapon")]
+	[CreateAssetMenu(fileName = "NewRangeWeapon", menuName = "Weapon\\RangeWeapon")]
 	public class RangeWeaponData : WeaponData
 	{
 		public GameObject BulletPrefab;
@@ -19,7 +19,7 @@ namespace Objects
 		public int StartAmmo;
 	}
 
-	[CreateAssetMenu(fileName = "NewMeleeWeapon", menuName = "Weapon\MeleeWeapon")]
+	[CreateAssetMenu(fileName = "NewMeleeWeapon", menuName = "Weapon\\MeleeWeapon")]
 	public class MeleeWeaponData : WeaponData
 	{
 		public float StartDelay;
