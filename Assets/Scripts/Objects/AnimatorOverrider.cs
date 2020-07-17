@@ -15,6 +15,6 @@ public class AnimatorOverrider : MonoBehaviour
     public void ChangeWeaponAnimation(WeaponInfo currentWeapon)
     {
         if(currentWeapon != null)
-            Animator.runtimeAnimatorController = Skin.GetSkinAnimatorOverrideController(currentWeapon.Data.WeaponName);
+            Animator.runtimeAnimatorController = Skin.GetSkinAnimatorOverrideController(currentWeapon.Data.WeaponAnimationName);
     }
 }

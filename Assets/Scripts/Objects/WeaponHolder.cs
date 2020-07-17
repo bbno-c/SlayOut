@@ -20,6 +20,7 @@ public class WeaponHolder: MonoBehaviour
 
     public event Action<WeaponInfo> WeaponChange;
     public event Action<WeaponInfo> ElementAdded;
+    public event Action<WeaponInfo> ElementExist;
 
     private void Start()
     {
@@ -52,26 +53,34 @@ public class WeaponHolder: MonoBehaviour
                     _playerWeapons.RemoveAt(_playerWeapons.IndexOf(weaponInfo));
                     _playerWeapons.Add(weaponInfo);
                 }
-                
-                weaponInfo.PickupAmmo(_currentWeapon);
+
+                ElementExist.Invoke(_currentWeapon);
+
                 break;
             }
                 
         if(!exists)
         {
-            var bulletPool = new List<GameObject>();
+            WeaponInfo weaponInfo = CreateWeaponInfo(element);
+            
+            if(weaponInfo == null)
+                return;
 
-            for (int i = 0; i < element.MagazineSize; i++)
-            {
-                bulletPool.Add(Instantiate(element.BulletPrefab));
-                bulletPool[i].SetActive(false);
-            }
-
-            var weaponInfo = new WeaponInfo(element, bulletPool);
             _playerWeapons.Add(weaponInfo);
-            weaponInfo.AmmoPickupEvent += Weapon.Reloading;
             OnAddElement(weaponInfo);
         }
+    }
+
+    private WeaponInfo CreateWeaponInfo(WeaponData newElement)
+    {
+        WeaponInfo weaponInfo;
+
+        if(newElement is RangeWeaponData)
+        {
+            return weaponInfo = new RangeWeaponInfo((RangeWeaponData)newElement, this);
+        }
+
+        return null;
     }
 
     private void OnWeaponChange()

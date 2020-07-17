@@ -13,7 +13,7 @@ namespace Objects
 
 	public class Weapon : MonoBehaviour
 	{
-		private WeaponInfo _currentWeapon;
+		private RangeWeaponInfo _currentWeapon;
 		public WeaponHolder WeaponHolder;
 
 		public bool CanFire => gameObject.activeSelf && _state == WeaponFireState.None;
@@ -22,7 +22,7 @@ namespace Objects
 
         public void WeaponChangeEvent(WeaponInfo currentWeapon)
         {
-			_currentWeapon = currentWeapon;
+			_currentWeapon = (RangeWeaponInfo)currentWeapon;
 			SetWeapon();
 		}
 

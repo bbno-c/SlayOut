@@ -4,9 +4,10 @@ using UnityEngine;
 
 namespace Objects
 {
-    public class WeaponInfo
+    public interface WeaponInfo
     {
-        public WeaponData Data;
+        public WeaponData Data {get;}
+        public bool IsActive {get;}
     }
 
     public interface IRangeWeaponInfo
@@ -21,6 +22,8 @@ namespace Objects
 
     public class RangeWeaponInfo: WeaponInfo, IRangeWeaponInfo
     {
+        private RangeWeaponData _data;
+        public WeaponData Data => (WeaponData)_data;
         private int _ammoLeft;
         private int _allAmmo;
         private List<GameObject> _bulletPool;
@@ -31,23 +34,34 @@ namespace Objects
         public int AmmoLeft => _ammoLeft;
         public int AllAmmo => _ammoLeft;
 
-        public RangeWeaponInfo(WeaponInfo data, List<GameObject> bulletPool)
+        public RangeWeaponInfo(RangeWeaponData data, WeaponHolder weaponHolder)
         {
-            Data = data;
+            _data = data;
+
+            var bulletPool = new List<GameObject>();
+            for (int i = 0; i < data.MagazineSize; i++)
+            {
+                bulletPool.Add(Instantiate(data.BulletPrefab));
+                bulletPool[i].SetActive(false);
+            }
+            
             _bulletPool = bulletPool;
             _ammoLeft = data.MagazineSize;
             _allAmmo = data.StartAmmo;
+
+            AmmoPickupEvent += weaponHolder.Weapon.Reloading;
+            weaponHolder.ElementExist += PickupAmmo;
         }
 
         public void PickupAmmo(WeaponInfo currentWeapon)
         {
-            _allAmmo += Data.MagazineSize;
+            _allAmmo += _data.MagazineSize;
             AmmoPickupEvent?.Invoke(this);
         }
         
         public void AddAmmo()
         {
-            int diff = Data.MagazineSize - _ammoLeft;
+            int diff = _data.MagazineSize - _ammoLeft;
             if(_allAmmo - diff >= 0)
             {
                 _allAmmo -= diff;
