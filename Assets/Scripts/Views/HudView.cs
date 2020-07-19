@@ -18,6 +18,10 @@ namespace Views
 		private EndGameView _endGameView;
 		public IEndGameView EndGameView => _endGameView;
 
+		[SerializeField]
+		private WeaponStateBarView _weaponStateBarView;
+		public IWeaponStateBarView WeaponStateBarView => _weaponStateBarView;
+
 		public TextMeshProUGUI ScoreText;
 		public TextMeshProUGUI HitpointsText;
 

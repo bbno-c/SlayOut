@@ -305,8 +305,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b331a7638eaf6b74c8aefffa41a3dd8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponData: {fileID: 0}
-  SpawnTime: 0
+  WeaponData: {fileID: 11400000, guid: a8ce7d145574efb4bbe76bfab53d81d4, type: 2}
+  SpawnTime: 3
   Animator: {fileID: 3869678539968466059}
   BoxCollider2D: {fileID: 8433919202714018447}
   Weapon: {fileID: 6171766814425526507}

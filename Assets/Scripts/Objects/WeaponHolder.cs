@@ -11,6 +11,7 @@ public class WeaponHolder: MonoBehaviour
     private List<WeaponInfo> _playerWeapons;
     private WeaponInfo _currentWeapon;
     private WeaponInfo _previousWeapon;
+    public WeaponInfo CurrentWeapon => _currentWeapon;
     public WeaponInfo PreviousWeapon => _previousWeapon;
     private int _currentIndex;
 
@@ -77,7 +78,14 @@ public class WeaponHolder: MonoBehaviour
 
         if(newElement is RangeWeaponData)
         {
-            return weaponInfo = new RangeWeaponInfo((RangeWeaponData)newElement, this);
+            RangeWeaponData wd = (RangeWeaponData)newElement;
+            var bulletPool = new List<GameObject>();
+            for (int i = 0; i < wd.MagazineSize; i++)
+            {
+                bulletPool.Add(Instantiate(wd.BulletPrefab));
+                bulletPool[i].SetActive(false);
+            }
+            return weaponInfo = new RangeWeaponInfo((RangeWeaponData)newElement, this, bulletPool);
         }
 
         return null;

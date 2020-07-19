@@ -40,6 +40,10 @@ namespace Objects
 
             if (_player.WeaponHolder != null)
                 _player.WeaponHolder.ChangeWeapon(Input.GetAxis("Mouse ScrollWheel"));
+
+            if (_player.WeaponHolder != null)
+                if (Input.GetKeyDown(KeyCode.R))
+                     _player.WeaponHolder.Weapon.Reloading(_player.WeaponHolder.CurrentWeapon);
         }
     }
 }

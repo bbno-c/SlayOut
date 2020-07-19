@@ -5,7 +5,7 @@ namespace Core
 {
     public interface IGame
     {
-        public Character Player { get; set; }
+        Character Player { get; set; }
 
         event Action EndGameEvent;
         event Action<int> ScoreChangedEvent;

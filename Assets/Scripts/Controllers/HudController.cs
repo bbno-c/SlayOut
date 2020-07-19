@@ -9,6 +9,7 @@ namespace Controllers
 
         IEndGameView EndGameView { get; }
         IWeaponPanelView WeaponPanelView { get; }
+        IWeaponStateBarView WeaponStateBarView { get; }
     }
 
     public class HudController : IController<IHudView>
@@ -30,6 +31,7 @@ namespace Controllers
             _view = view;
 
             _view.WeaponPanelView?.Open(new WeaponPanelController(_game));
+            _view.WeaponStateBarView?.Open(new WeaponStateBarController(_game));
         }
 
         public void OnClose(IHudView view)

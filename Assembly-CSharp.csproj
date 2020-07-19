@@ -68,7 +68,7 @@
     <Compile Include="Assets\Scripts\Controllers\HudController.cs" />
     <Compile Include="Assets\Scripts\Controllers\MenuController.cs" />
     <Compile Include="Assets\Scripts\Controllers\WeaponPanelController.cs" />
-    <Compile Include="Assets\Scripts\Core\BaseView.cs" />
+    <Compile Include="Assets\Scripts\Controllers\WeaponStateBarController.cs" />
     <Compile Include="Assets\Scripts\Core\IController.cs" />
     <Compile Include="Assets\Scripts\Core\IGame.cs" />
     <Compile Include="Assets\Scripts\Core\IView.cs" />
@@ -87,11 +87,13 @@
     <Compile Include="Assets\Scripts\Objects\WeaponInfo.cs" />
     <Compile Include="Assets\Scripts\Objects\WeaponPanel.cs" />
     <Compile Include="Assets\Scripts\Objects\WeaponSpawner.cs" />
+    <Compile Include="Assets\Scripts\Views\BaseView.cs" />
     <Compile Include="Assets\Scripts\Views\EndGameView.cs" />
     <Compile Include="Assets\Scripts\Views\GameView.cs" />
     <Compile Include="Assets\Scripts\Views\HudView.cs" />
     <Compile Include="Assets\Scripts\Views\MenuView.cs" />
     <Compile Include="Assets\Scripts\Views\WeaponPanelView.cs" />
+    <Compile Include="Assets\Scripts\Views\WeaponStateBarView.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />

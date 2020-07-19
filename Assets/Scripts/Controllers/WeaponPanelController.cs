@@ -37,9 +37,15 @@ namespace Controllers
         private void CreatePanel(WeaponInfo weapon)
         {
             _view?.InitPanel(weapon);
-            weapon.AddAmmoEvent += _view?.UpdateWeapon;
-            weapon.AmmoPickupEvent += _view?.UpdateWeapon;
-            weapon.CreateBulletEvent += _view?.UpdateWeapon;
+
+            if (weapon is RangeWeaponInfo)
+            {
+                RangeWeaponInfo wd = (RangeWeaponInfo)weapon;
+                wd.AddAmmoEvent += _view.UpdateWeapon;
+                wd.AmmoPickupEvent += _view.UpdateWeapon;
+                wd.CreateBulletEvent += _view.UpdateWeapon;
+                wd.AmmoPickupEventNotReload += _view.UpdateWeapon;
+            }
         }
 
         private void OnWeaponChange(WeaponInfo current)

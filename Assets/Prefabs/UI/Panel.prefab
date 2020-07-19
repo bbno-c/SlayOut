@@ -168,6 +168,7 @@ GameObject:
   - component: {fileID: 3109512835759236133}
   - component: {fileID: 3898234326837881966}
   - component: {fileID: 9005449335013791875}
+  - component: {fileID: 3081409862050157962}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -260,6 +261,21 @@ MonoBehaviour:
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
+--- !u!114 &3081409862050157962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4373483384952481126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ff087973f8a3f6469f5a22cc10305f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WeaponIco: {fileID: 8304185768305951755}
+  AmmoLeft: {fileID: 6151027492066037132}
+  AllAmmo: {fileID: 5620379013139630291}
 --- !u!1 &5467586203291076694
 GameObject:
   m_ObjectHideFlags: 0

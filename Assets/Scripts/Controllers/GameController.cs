@@ -48,9 +48,9 @@ namespace Controllers
         public void NewGame()
         {
             _scores = 0;
-            _view?.HudView?.Open(new HudController(this));
             _view?.StartGame();
-		}
+            _view?.HudView?.Open(new HudController(this));
+        }
 
 		public void OnOpen(IGameView view)
 		{

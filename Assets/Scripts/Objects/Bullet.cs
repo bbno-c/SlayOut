@@ -18,7 +18,7 @@ namespace Objects
 			SpriteRenderer.flipX = false;
 			Animator.SetTrigger("Spawned");
 			_timer = LifeTime;
-			Rigidbody.velocity = (transform.right * Speed);
+			Rigidbody.velocity = transform.right * Speed;
 		}
 
 		private void Update()

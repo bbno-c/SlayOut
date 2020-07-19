@@ -9,16 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b78704ec34d0eb34e8eb387ba409e5bb, type: 3}
+  m_Script: {fileID: 0}
   m_Name: M16
-  m_EditorClassIdentifier: 
-  WeaponName: 1
-  isMeleWeapon: 0
+  m_EditorClassIdentifier: Assembly-CSharp:Objects:RangeWeaponData
+  WeaponAnimationName: 1
   Sprite: {fileID: 21300000, guid: 2aaf9ee518c2ed64bb9bbd064648fec6, type: 3}
+  FireTime: 0.1
   BulletPrefab: {fileID: 2329759752488600305, guid: 9bb7b0e0d23c899448d4f224b41f3061,
     type: 3}
-  StartDelay: 1
-  FireTime: 0.07
-  ReloadTime: 3
+  StartDelay: 0.5
+  ReloadTime: 1
   MagazineSize: 30
   StartAmmo: 0
+  BulletsPerShot: 5
+  IsShotgun: 1
+  Spread: 15

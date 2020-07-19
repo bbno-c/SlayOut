@@ -7,7 +7,7 @@ namespace Objects
 {
     public class WeaponPanel : MonoBehaviour
     {
-        public Sprite WeaponIco;
+        public Image WeaponIco;
         public TextMeshProUGUI AmmoLeft;
         public TextMeshProUGUI AllAmmo;
     }

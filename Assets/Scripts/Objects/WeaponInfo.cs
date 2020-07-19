@@ -6,18 +6,18 @@ namespace Objects
 {
     public interface WeaponInfo
     {
-        public WeaponData Data {get;}
-        public bool IsActive {get;}
+        WeaponData Data {get;}
+        bool IsActive {get;}
     }
 
     public interface IRangeWeaponInfo
     {
-        public event Action<WeaponInfo> AmmoPickupEvent;
-        public event Action<WeaponInfo> AddAmmoEvent;
-        public event Action<WeaponInfo> CreateBulletEvent;
-        public bool IsActive { get; }
-        public int AmmoLeft { get; }
-        public int AllAmmo { get; }
+        event Action<WeaponInfo> AmmoPickupEvent;
+        event Action<WeaponInfo> AddAmmoEvent;
+        event Action<WeaponInfo> CreateBulletEvent;
+        bool IsActive { get; }
+        int AmmoLeft { get; }
+        int AllAmmo { get; }
     }
 
     public class RangeWeaponInfo: WeaponInfo, IRangeWeaponInfo
@@ -30,21 +30,14 @@ namespace Objects
         public event Action<WeaponInfo> AmmoPickupEvent;
         public event Action<WeaponInfo>  AddAmmoEvent;
         public event Action<WeaponInfo>  CreateBulletEvent;
+        public event Action<WeaponInfo> AmmoPickupEventNotReload;
         public bool IsActive => _ammoLeft + _allAmmo > 0;
         public int AmmoLeft => _ammoLeft;
-        public int AllAmmo => _ammoLeft;
+        public int AllAmmo => _allAmmo;
 
-        public RangeWeaponInfo(RangeWeaponData data, WeaponHolder weaponHolder)
+        public RangeWeaponInfo(RangeWeaponData data, WeaponHolder weaponHolder, List<GameObject> bulletPool)
         {
             _data = data;
-
-            var bulletPool = new List<GameObject>();
-            for (int i = 0; i < data.MagazineSize; i++)
-            {
-                bulletPool.Add(Instantiate(data.BulletPrefab));
-                bulletPool[i].SetActive(false);
-            }
-            
             _bulletPool = bulletPool;
             _ammoLeft = data.MagazineSize;
             _allAmmo = data.StartAmmo;
@@ -56,7 +49,10 @@ namespace Objects
         public void PickupAmmo(WeaponInfo currentWeapon)
         {
             _allAmmo += _data.MagazineSize;
-            AmmoPickupEvent?.Invoke(this);
+            if (_ammoLeft > 0)
+                AmmoPickupEventNotReload?.Invoke(this);
+            else
+                AmmoPickupEvent?.Invoke(this);
         }
         
         public void AddAmmo()
@@ -75,14 +71,22 @@ namespace Objects
             AddAmmoEvent?.Invoke(this);
         }
 
-        public void CreateBullet(Transform weapon)
+        public void CreateBullet(Transform weapon, int i)
         {
             if(_ammoLeft > 0)
                 foreach(GameObject bullet in _bulletPool)
                     if(!bullet.activeSelf)
                     {
                         bullet.transform.position = weapon.position;
-                        bullet.transform.rotation = weapon.rotation;
+                        if (!_data.IsShotgun)
+                        {
+                            bullet.transform.rotation = weapon.rotation * Quaternion.Euler(0, 0, UnityEngine.Random.Range(-_data.Spread, _data.Spread));//Quaternion.AngleAxis(UnityEngine.Random.Range(-_data.Spread, _data.Spread), bullet.transform.right);
+                        }
+                        else
+                        {
+                            //bullet.transform.Rotate(new Vector3(weapon.rotation.eulerAngles.x, weapon.rotation.eulerAngles.y, weapon.rotation.eulerAngles.z * (-_data.Spread + ((_data.Spread / _data.BulletsPerShot) * i))) );
+                            //bullet.transform.rotation = weapon.rotation * Quaternion.Euler(0,0,(-_data.Spread + ((_data.Spread / _data.BulletsPerShot) * i)));//weapon.rotation * Quaternion.AngleAxis((-_data.Spread + (_data.Spread* i) ), bullet.transform.right);
+                        }
                         bullet.SetActive(true);
                         _ammoLeft--;
                         CreateBulletEvent?.Invoke(this);

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Objects;
 using Controllers;
+using Core;
 
 namespace Views
 {
@@ -16,34 +17,57 @@ namespace Views
 
         private Dictionary<WeaponInfo, WeaponPanel> _weaponPanels;
 
+        private void OnEnable()
+        {
+            _weaponPanels = new Dictionary<WeaponInfo, WeaponPanel>();
+        }
+
         public void InitPanel(WeaponInfo weapon)
         {
-            _weaponPanels.Add(weapon, Instantiate(WeaponPanel));
-            VerticalLayoutGroup.Add(_weaponPanels[weapon]);
+            if (weapon == null)
+                return;
+
+            _weaponPanels.Add(weapon, Instantiate(WeaponPanel, VerticalLayoutGroup.transform));
+
+            _weaponPanels[weapon].WeaponIco.sprite = weapon.Data.Sprite;
+
+            if (weapon is RangeWeaponInfo)
+            {
+                RangeWeaponInfo wd = (RangeWeaponInfo)weapon;
+
+                _weaponPanels[weapon].AmmoLeft.text = wd.AmmoLeft.ToString();
+                _weaponPanels[weapon].AllAmmo.text = wd.AllAmmo.ToString();
+            }
         }
 
         public void UpdateWeapon(WeaponInfo weapon)
         {
-            _weaponPanels[weapon].AmmoLeft.Text = weapon.AmmoLeft.ToString();
-            _weaponPanels[weapon].AllAmmo.Text = weapon.AllAmmo.ToString();
-
-            if(!_weaponPanels[weapon].ActiveSelf && weapon.IsActive)
+            if (weapon is RangeWeaponInfo)
             {
-                KeyValuePair<WeaponInfo, WeaponPanel> temp = new KeyValuePair(weapon, _weaponPanels[weapon]);
-                _weaponPanels.Remove(weapon);
-                _weaponPanels.Add(temp.Key, temp.Value);
-                _weaponPanels[weapon].SetActive(true);
-                VerticalLayoutGroup.Add(_weaponPanels[weapon]);
+                RangeWeaponInfo wd = (RangeWeaponInfo)weapon;
+
+                _weaponPanels[weapon].AmmoLeft.text = wd.AmmoLeft.ToString();
+                _weaponPanels[weapon].AllAmmo.text = wd.AllAmmo.ToString();
+
+                if (!_weaponPanels[weapon].gameObject.activeSelf && weapon.IsActive)
+                {
+                    KeyValuePair<WeaponInfo, WeaponPanel> temp = new KeyValuePair<WeaponInfo, WeaponPanel>(weapon, _weaponPanels[weapon]);
+                    _weaponPanels.Remove(weapon);
+                    _weaponPanels.Add(temp.Key, temp.Value);
+                    _weaponPanels[weapon].gameObject.SetActive(true);
+                    _weaponPanels[weapon].gameObject.transform.SetParent(VerticalLayoutGroup.transform);
+                }
             }
         }
 
         public void OnWeaponChange(WeaponInfo previous, WeaponInfo current)
         {
-            if(!previous.IsActive)
-            {
-                _weaponPanels[previous].SetActive(false);
-                VerticalLayoutGroup.Remove(_weaponPanels[previous]);
-            }
+            if(previous != null && previous != current)
+                if(!previous.IsActive)
+                {
+                    _weaponPanels[previous].gameObject.SetActive(false);
+                    _weaponPanels[previous].gameObject.transform.SetParent(null);
+                }
         }
     }
 }

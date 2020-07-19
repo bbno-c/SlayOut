@@ -9,7 +9,7 @@ namespace Objects
 		public float FireTime;
 	}
 
-	[CreateAssetMenu(fileName = "NewRangeWeapon", menuName = "Weapon\\RangeWeapon")]
+	[CreateAssetMenu(fileName = "NewRangeWeapon", menuName = "Weapon/RangeWeapon")]
 	public class RangeWeaponData : WeaponData
 	{
 		public GameObject BulletPrefab;
@@ -17,9 +17,12 @@ namespace Objects
 		public float ReloadTime;
 		public int MagazineSize;
 		public int StartAmmo;
+		public int BulletsPerShot;
+		public bool IsShotgun;
+		public int Spread;
 	}
 
-	[CreateAssetMenu(fileName = "NewMeleeWeapon", menuName = "Weapon\\MeleeWeapon")]
+	[CreateAssetMenu(fileName = "NewMeleeWeapon", menuName = "Weapon/MeleeWeapon")]
 	public class MeleeWeaponData : WeaponData
 	{
 		public float StartDelay;
