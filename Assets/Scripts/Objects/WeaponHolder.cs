@@ -76,19 +76,21 @@ public class WeaponHolder: MonoBehaviour
     {
         WeaponInfo weaponInfo;
 
-        if(newElement is RangeWeaponData)
+        RangeWeaponData weaponData = newElement as RangeWeaponData;
+        if(weaponData != null)
         {
-            RangeWeaponData wd = (RangeWeaponData)newElement;
             var bulletPool = new List<GameObject>();
-            for (int i = 0; i < wd.MagazineSize; i++)
+            for (int i = 0; i < weaponData.MagazineSize; i++)
             {
-                bulletPool.Add(Instantiate(wd.BulletPrefab));
+                bulletPool.Add(Instantiate(weaponData.BulletPrefab));
                 bulletPool[i].SetActive(false);
             }
-            return weaponInfo = new RangeWeaponInfo((RangeWeaponData)newElement, this, bulletPool);
+            return weaponInfo = new RangeWeaponInfo(weaponData, this, bulletPool);
         }
-
-        return null;
+        else
+        {
+            return weaponInfo = new MeleeWeaponInfo((MeleeWeaponData)newElement, this);
+        }
     }
 
     private void OnWeaponChange()

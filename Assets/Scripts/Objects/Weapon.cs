@@ -18,14 +18,25 @@ namespace Objects
 		public WeaponHolder WeaponHolder;
 		public event Action<WeaponInfo> ReloadingEvent;
 
-		public bool CanFire => gameObject.activeSelf && _state == WeaponFireState.None;
+		public bool CanFire => gameObject.activeSelf && _state == WeaponFireState.None && _isRangeWeapon;
 		public WeaponFireState _state;
 		private float _timer;
+		private bool _isRangeWeapon = true;
 
         public void WeaponChangeEvent(WeaponInfo currentWeapon)
         {
-			_currentWeapon = (RangeWeaponInfo)currentWeapon;
-			_currentRangeWeaponData = (RangeWeaponData)_currentWeapon.Data;
+			RangeWeaponInfo weapon = currentWeapon as RangeWeaponInfo;
+			if(weapon == null)
+			{
+				_isRangeWeapon = false;
+				//_currentWeapon = (MeleeWeaponInfo)currentWeapon;
+				//_currentRangeWeaponData = (MeleeWeaponData)weapon.Data;
+			} else
+			{
+				_currentWeapon = weapon;
+				_currentRangeWeaponData = (RangeWeaponData)weapon.Data;
+			}
+
 			SetWeapon();
 		}
 

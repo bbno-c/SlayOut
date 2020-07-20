@@ -20,6 +20,11 @@ namespace Objects
         int AllAmmo { get; }
     }
 
+    public interface IMeleeWeaponInfo
+    {
+        bool IsActive { get; }
+    }
+
     public class RangeWeaponInfo: WeaponInfo, IRangeWeaponInfo
     {
         private RangeWeaponData _data;
@@ -92,6 +97,19 @@ namespace Objects
                         CreateBulletEvent?.Invoke(this);
                         return;
                     }
+        }
+    }
+
+    public class MeleeWeaponInfo: WeaponInfo, IMeleeWeaponInfo
+    {
+        private MeleeWeaponData _data;
+        public WeaponData Data => (WeaponData)_data;
+
+        public bool IsActive => true;
+
+        public MeleeWeaponInfo(MeleeWeaponData data, WeaponHolder weaponHolder)
+        {
+            _data = data;
         }
     }
 }
