@@ -38,9 +38,9 @@ namespace Controllers
         {
             _view?.InitPanel(weapon);
 
-            if (weapon is RangeWeaponInfo)
+            RangeWeaponInfo wd = weapon as RangeWeaponInfo;
+            if (wd != null)
             {
-                RangeWeaponInfo wd = (RangeWeaponInfo)weapon;
                 wd.AddAmmoEvent += _view.UpdateWeapon;
                 wd.AmmoPickupEvent += _view.UpdateWeapon;
                 wd.CreateBulletEvent += _view.UpdateWeapon;

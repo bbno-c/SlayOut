@@ -42,10 +42,9 @@ namespace Views
 
         public void UpdateWeapon(WeaponInfo weapon)
         {
-            if (weapon is RangeWeaponInfo)
+            RangeWeaponInfo wd = weapon as RangeWeaponInfo;
+            if (wd != null)
             {
-                RangeWeaponInfo wd = (RangeWeaponInfo)weapon;
-
                 _weaponPanels[weapon].AmmoLeft.text = wd.AmmoLeft.ToString();
                 _weaponPanels[weapon].AllAmmo.text = wd.AllAmmo.ToString();
 

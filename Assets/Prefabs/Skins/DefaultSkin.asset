@@ -17,3 +17,5 @@ MonoBehaviour:
     _controller: {fileID: 22100000, guid: baf90924ea12f184c99f9456618de594, type: 2}
   - _name: 1
     _controller: {fileID: 22100000, guid: 22a2466fc71434c42bbbb39f42e272e0, type: 2}
+  - _name: 3
+    _controller: {fileID: 22100000, guid: f7e139e2f122daa48a4d6619b9ad5bd4, type: 2}

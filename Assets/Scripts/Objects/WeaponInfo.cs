@@ -53,6 +53,13 @@ namespace Objects
 
         public void PickupAmmo(WeaponInfo currentWeapon)
         {
+            RangeWeaponInfo wp = currentWeapon as RangeWeaponInfo;
+            if (wp == null)
+                return;
+
+            if (wp != this)
+                return;
+
             _allAmmo += _data.MagazineSize;
             if (_ammoLeft > 0)
                 AmmoPickupEventNotReload?.Invoke(this);
@@ -75,7 +82,7 @@ namespace Objects
             }
             AddAmmoEvent?.Invoke(this);
         }
-
+        
         public void CreateBullet(Transform weapon, int i)
         {
             if(_ammoLeft > 0)
@@ -85,12 +92,15 @@ namespace Objects
                         bullet.transform.position = weapon.position;
                         if (!_data.IsShotgun)
                         {
-                            bullet.transform.rotation = weapon.rotation * Quaternion.Euler(0, 0, UnityEngine.Random.Range(-_data.Spread, _data.Spread));//Quaternion.AngleAxis(UnityEngine.Random.Range(-_data.Spread, _data.Spread), bullet.transform.right);
+                            bullet.transform.rotation = Quaternion.Euler(weapon.rotation.eulerAngles.x, weapon.rotation.eulerAngles.y, weapon.rotation.eulerAngles.z + UnityEngine.Random.Range(-_data.Spread, _data.Spread));
                         }
                         else
                         {
-                            //bullet.transform.Rotate(new Vector3(weapon.rotation.eulerAngles.x, weapon.rotation.eulerAngles.y, weapon.rotation.eulerAngles.z * (-_data.Spread + ((_data.Spread / _data.BulletsPerShot) * i))) );
-                            //bullet.transform.rotation = weapon.rotation * Quaternion.Euler(0,0,(-_data.Spread + ((_data.Spread / _data.BulletsPerShot) * i)));//weapon.rotation * Quaternion.AngleAxis((-_data.Spread + (_data.Spread* i) ), bullet.transform.right);
+                            bullet.transform.rotation = Quaternion.Euler(weapon.rotation.eulerAngles.x,
+                                weapon.rotation.eulerAngles.y,
+                                weapon.rotation.eulerAngles.z + (_data.Spread / 2) -
+                                (((_data.Spread / _data.BulletsPerShot) * i))
+                                );
                         }
                         bullet.SetActive(true);
                         _ammoLeft--;

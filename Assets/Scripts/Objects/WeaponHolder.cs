@@ -55,7 +55,7 @@ public class WeaponHolder: MonoBehaviour
                     _playerWeapons.Add(weaponInfo);
                 }
 
-                ElementExist.Invoke(_currentWeapon);
+                ElementExist.Invoke(weaponInfo);
 
                 break;
             }
@@ -107,7 +107,7 @@ public class WeaponHolder: MonoBehaviour
     {
         if(_playerWeapons != null)
         {
-            for(int i = 1; i < _playerWeapons.Count; i++)
+            for(int i = 0; i < _playerWeapons.Count; i++)
             {
                 if (_currentIndex < (_playerWeapons.Count - 1))
                     _currentIndex++;
@@ -128,7 +128,7 @@ public class WeaponHolder: MonoBehaviour
     {
         if (_playerWeapons != null)
         {
-            for(int i = 1; i < _playerWeapons.Count; i++)
+            for(int i = 0; i < _playerWeapons.Count; i++)
             {
                 if (_currentIndex > 0)
                     _currentIndex--;

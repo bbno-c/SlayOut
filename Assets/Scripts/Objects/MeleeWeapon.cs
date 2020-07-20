@@ -63,7 +63,7 @@ namespace Objects
 
 		private void CreateBullet()
 		{
-			_currentWeapon.CreateBullet(transform);
+			//_currentWeapon.CreateBullet(transform);
 		}
 
 		private void WeaponSetState(WeaponFireState state, float timer)

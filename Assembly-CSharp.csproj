@@ -79,6 +79,7 @@
     <Compile Include="Assets\Scripts\Objects\Fire.cs" />
     <Compile Include="Assets\Scripts\Objects\Health.cs" />
     <Compile Include="Assets\Scripts\Objects\InputController.cs" />
+    <Compile Include="Assets\Scripts\Objects\MeleeWeapon.cs" />
     <Compile Include="Assets\Scripts\Objects\Movement.cs" />
     <Compile Include="Assets\Scripts\Objects\Skin.cs" />
     <Compile Include="Assets\Scripts\Objects\Weapon.cs" />

@@ -50,5 +50,6 @@ namespace Objects
         Unarmed,
         M16,
         Bat,
+        Shotgun
     }
 }
