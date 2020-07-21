@@ -103,7 +103,12 @@ namespace Objects
                                 );
                         }
                         bullet.SetActive(true);
-                        _ammoLeft--;
+
+                        if(_data.IsShotgun && i+1 == _data.BulletsPerShot)
+                            _ammoLeft--;
+                        else if(!_data.IsShotgun)
+                            _ammoLeft--;
+
                         CreateBulletEvent?.Invoke(this);
                         return;
                     }

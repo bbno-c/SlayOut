@@ -21,6 +21,7 @@ namespace Objects
 			if(weapon == null)
 			{
 				_isMeleeWeapon = false;
+				return;
 			} else
 			{
 				_currentWeapon = weapon;

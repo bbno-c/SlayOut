@@ -15,12 +15,13 @@ MonoBehaviour:
   WeaponAnimationName: 3
   Sprite: {fileID: 21300000, guid: dd7398ec9a88d3f48bf65d4a0509eec2, type: 3}
   FireTime: 0.5
+  AnimationMultiplier: 1
   BulletPrefab: {fileID: 2329759752488600305, guid: 9bb7b0e0d23c899448d4f224b41f3061,
     type: 3}
-  StartDelay: 1
+  StartDelay: 0.2
   ReloadTime: 2
-  MagazineSize: 12
+  MagazineSize: 6
   StartAmmo: 0
-  BulletsPerShot: 3
+  BulletsPerShot: 5
   IsShotgun: 1
-  Spread: 40
+  Spread: 60

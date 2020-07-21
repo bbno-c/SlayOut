@@ -16,7 +16,7 @@ public class WeaponHolder: MonoBehaviour
     private int _currentIndex;
 
     public Weapon Weapon;
-    public MeleeWeapon MeleeWeapon;
+    //public MeleeWeapon MeleeWeapon;
     public WeaponData StartWeapon;
     public AnimatorOverrider AnimatorOverrider;
 
@@ -29,7 +29,7 @@ public class WeaponHolder: MonoBehaviour
         _playerWeapons = new List<WeaponInfo>();
 
         WeaponChange += Weapon.WeaponChangeEvent;
-        WeaponChange += MeleeWeapon.WeaponChangeEvent;
+        //WeaponChange += MeleeWeapon.WeaponChangeEvent;
         WeaponChange += AnimatorOverrider.ChangeWeaponAnimation;
 
         AddElement(StartWeapon);
@@ -82,7 +82,7 @@ public class WeaponHolder: MonoBehaviour
         if(weaponData != null)
         {
             var bulletPool = new List<GameObject>();
-            for (int i = 0; i < weaponData.MagazineSize; i++)
+            for (int i = 0; i < weaponData.MagazineSize*weaponData.BulletsPerShot; i++)
             {
                 bulletPool.Add(Instantiate(weaponData.BulletPrefab));
                 bulletPool[i].SetActive(false);

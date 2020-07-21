@@ -15,9 +15,10 @@ MonoBehaviour:
   WeaponAnimationName: 1
   Sprite: {fileID: 21300000, guid: 2aaf9ee518c2ed64bb9bbd064648fec6, type: 3}
   FireTime: 0.1
+  AnimationMultiplier: 10
   BulletPrefab: {fileID: 2329759752488600305, guid: 9bb7b0e0d23c899448d4f224b41f3061,
     type: 3}
-  StartDelay: 0.5
+  StartDelay: 0.2
   ReloadTime: 1
   MagazineSize: 30
   StartAmmo: 0

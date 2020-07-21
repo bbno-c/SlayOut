@@ -29,6 +29,7 @@ namespace Objects
 			if(weapon == null)
 			{
 				_isRangeWeapon = false;
+				return;
 			} else
 			{
 				_currentWeapon = weapon;
@@ -48,7 +49,7 @@ namespace Objects
             {
 				WeaponSetState(WeaponFireState.StartDelay, _currentRangeWeaponData.StartDelay);
 			}
-			WeaponHolder.AnimatorOverrider.Animator.SetFloat("FireTime", _currentRangeWeaponData.FireTime*10);
+			WeaponHolder.AnimatorOverrider.Animator.SetFloat("FireTime", _currentRangeWeaponData.FireTime*_currentRangeWeaponData.AnimationMultiplier);
 		}
 
 		public void Fire()
