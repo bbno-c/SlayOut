@@ -29,8 +29,6 @@ namespace Objects
 			if(weapon == null)
 			{
 				_isRangeWeapon = false;
-				//_currentWeapon = (MeleeWeaponInfo)currentWeapon;
-				//_currentRangeWeaponData = (MeleeWeaponData)weapon.Data;
 			} else
 			{
 				_currentWeapon = weapon;
@@ -72,6 +70,9 @@ namespace Objects
 		{
 			if (_timer > 0f)
 			{
+				if(_state == WeaponFireState.DelayBetwenBullets && _currentWeapon.AmmoLeft == 0 && _currentWeapon.AllAmmo > 0)
+					Reloading(_currentWeapon);
+
 				_timer -= Time.deltaTime;
 				if(_timer <= 0f)
 				{

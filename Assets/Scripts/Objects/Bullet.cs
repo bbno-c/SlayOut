@@ -43,7 +43,7 @@ namespace Objects
 			if(health != null) 
 				health.Damage(Damage);
 
-			OnBulletHit();
+			gameObject.SetActive(false);//OnBulletHit();
 		}
 	}
 }

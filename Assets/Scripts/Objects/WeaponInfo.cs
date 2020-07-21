@@ -99,7 +99,7 @@ namespace Objects
                             bullet.transform.rotation = Quaternion.Euler(weapon.rotation.eulerAngles.x,
                                 weapon.rotation.eulerAngles.y,
                                 weapon.rotation.eulerAngles.z + (_data.Spread / 2) -
-                                (((_data.Spread / _data.BulletsPerShot) * i))
+                                (((_data.Spread / (_data.BulletsPerShot-1)) * i))
                                 );
                         }
                         bullet.SetActive(true);
@@ -120,6 +120,11 @@ namespace Objects
         public MeleeWeaponInfo(MeleeWeaponData data, WeaponHolder weaponHolder)
         {
             _data = data;
+        }
+
+        public void CreateBullet(Transform weapon)
+        {
+            
         }
     }
 }

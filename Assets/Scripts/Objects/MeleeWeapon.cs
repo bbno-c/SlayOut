@@ -21,8 +21,6 @@ namespace Objects
 			if(weapon == null)
 			{
 				_isMeleeWeapon = false;
-				//_currentWeapon = (MeleeWeaponInfo)currentWeapon;
-				//_currentRangeWeaponData = (MeleeWeaponData)weapon.Data;
 			} else
 			{
 				_currentWeapon = weapon;
@@ -63,7 +61,7 @@ namespace Objects
 
 		private void CreateBullet()
 		{
-			//_currentWeapon.CreateBullet(transform);
+			_currentWeapon.CreateBullet(transform);
 		}
 
 		private void WeaponSetState(WeaponFireState state, float timer)
