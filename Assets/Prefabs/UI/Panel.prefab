@@ -276,6 +276,7 @@ MonoBehaviour:
   WeaponIco: {fileID: 8304185768305951755}
   AmmoLeft: {fileID: 6151027492066037132}
   AllAmmo: {fileID: 5620379013139630291}
+  Image: {fileID: 3898234326837881966}
 --- !u!1 &5467586203291076694
 GameObject:
   m_ObjectHideFlags: 0

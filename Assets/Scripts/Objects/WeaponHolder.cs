@@ -17,7 +17,8 @@ public class WeaponHolder: MonoBehaviour
 
     public Weapon Weapon;
     //public MeleeWeapon MeleeWeapon;
-    public WeaponData StartWeapon;
+    [SerializeField]
+    private WeaponData StartWeapon;
     public AnimatorOverrider AnimatorOverrider;
 
     public event Action<WeaponInfo> WeaponChange;

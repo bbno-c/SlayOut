@@ -38,6 +38,7 @@ namespace Views
                 _weaponPanels[weapon].AmmoLeft.text = wd.AmmoLeft.ToString();
                 _weaponPanels[weapon].AllAmmo.text = wd.AllAmmo.ToString();
             }
+            _weaponPanels[weapon].gameObject.transform.SetAsFirstSibling();
         }
 
         public void UpdateWeapon(WeaponInfo weapon)
@@ -55,13 +56,19 @@ namespace Views
                     _weaponPanels.Add(temp.Key, temp.Value);
                     _weaponPanels[weapon].gameObject.SetActive(true);
                     _weaponPanels[weapon].gameObject.transform.SetParent(VerticalLayoutGroup.transform);
+                    _weaponPanels[weapon].gameObject.transform.SetAsFirstSibling();
                 }
             }
         }
 
         public void OnWeaponChange(WeaponInfo previous, WeaponInfo current)
         {
-            if(previous != null && previous != current)
+            if(previous != null)
+                _weaponPanels[previous].Image.color = Color.gray;
+
+            _weaponPanels[current].Image.color = Color.green;
+
+            if (previous != null && previous != current)
                 if(!previous.IsActive)
                 {
                     _weaponPanels[previous].gameObject.SetActive(false);

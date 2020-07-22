@@ -10,5 +10,6 @@ namespace Objects
         public Image WeaponIco;
         public TextMeshProUGUI AmmoLeft;
         public TextMeshProUGUI AllAmmo;
+        public Image Image;
     }
 }
