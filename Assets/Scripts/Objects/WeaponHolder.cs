@@ -15,10 +15,10 @@ public class WeaponHolder: MonoBehaviour
     public WeaponInfo PreviousWeapon => _previousWeapon;
     private int _currentIndex;
 
-    public Weapon Weapon;
-    //public MeleeWeapon MeleeWeapon;
-    [SerializeField]
-    private WeaponData StartWeapon;
+    public RangeWeapon RangeWeapon;
+    public MeleeWeapon MeleeWeapon;
+
+    public WeaponData StartWeapon;
     public AnimatorOverrider AnimatorOverrider;
 
     public event Action<WeaponInfo> WeaponChange;
@@ -29,8 +29,8 @@ public class WeaponHolder: MonoBehaviour
     {
         _playerWeapons = new List<WeaponInfo>();
 
-        WeaponChange += Weapon.WeaponChangeEvent;
-        //WeaponChange += MeleeWeapon.WeaponChangeEvent;
+        WeaponChange += RangeWeapon.WeaponChangeEvent;
+        WeaponChange += MeleeWeapon.WeaponChangeEvent;
         WeaponChange += AnimatorOverrider.ChangeWeaponAnimation;
 
         AddElement(StartWeapon);
@@ -123,7 +123,9 @@ public class WeaponHolder: MonoBehaviour
             
             _previousWeapon = _currentWeapon;
             _currentWeapon = _playerWeapons[_currentIndex];
-            OnWeaponChange();
+
+            if(_previousWeapon != _currentWeapon)
+                OnWeaponChange();
         }
     }
 
@@ -144,7 +146,9 @@ public class WeaponHolder: MonoBehaviour
             
             _previousWeapon = _currentWeapon;
             _currentWeapon = _playerWeapons[_currentIndex];
-            OnWeaponChange();
+
+            if (_previousWeapon != _currentWeapon)
+                OnWeaponChange();
         }
     }
 

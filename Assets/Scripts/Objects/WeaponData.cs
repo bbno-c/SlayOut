@@ -7,6 +7,7 @@ namespace Objects
 	{
 		public AnimationName WeaponAnimationName;
 		public Sprite Sprite;
+		public float StartDelay;
 		public float FireTime;
 		public float AnimationMultiplier;
 	}
@@ -15,7 +16,6 @@ namespace Objects
 	public class RangeWeaponData : WeaponData
 	{
 		public GameObject BulletPrefab;
-		public float StartDelay;
 		public float ReloadTime;
 		public int MagazineSize;
 		public int StartAmmo;
@@ -27,7 +27,6 @@ namespace Objects
 	[CreateAssetMenu(fileName = "NewMeleeWeapon", menuName = "Weapon/MeleeWeapon")]
 	public class MeleeWeaponData : WeaponData
 	{
-		public float StartDelay;
-		public float ReloadTime;
+		public float Range;
 	}
 }

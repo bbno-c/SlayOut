@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Mathematics;
 
 namespace Objects
 {
@@ -33,8 +34,8 @@ namespace Objects
         private int _allAmmo;
         private List<GameObject> _bulletPool;
         public event Action<WeaponInfo> AmmoPickupEvent;
-        public event Action<WeaponInfo>  AddAmmoEvent;
-        public event Action<WeaponInfo>  CreateBulletEvent;
+        public event Action<WeaponInfo> AddAmmoEvent;
+        public event Action<WeaponInfo> CreateBulletEvent;
         public event Action<WeaponInfo> AmmoPickupEventNotReload;
         public bool IsActive => _ammoLeft + _allAmmo > 0;
         public int AmmoLeft => _ammoLeft;
@@ -47,7 +48,7 @@ namespace Objects
             _ammoLeft = data.MagazineSize;
             _allAmmo = data.StartAmmo;
 
-            AmmoPickupEvent += weaponHolder.Weapon.Reloading;
+            AmmoPickupEvent += weaponHolder.RangeWeapon.Reloading;
             weaponHolder.ElementExist += PickupAmmo;
         }
 
@@ -129,7 +130,10 @@ namespace Objects
 
         public void CreateBullet(Transform weapon)
         {
-            
+            var dir = Input.mousePosition - Camera.main.WorldToScreenPoint(weapon.position);
+            var angle = Mathf.Atan2(dir.y, dir.x);
+
+            Collider2D enemiesToDamage = Physics2D.OverlapArea(new Vector2(weapon.position.x, weapon.position.y), new Vector2(weapon.position.x + math.cos(angle) * _data.Range, weapon.position.y + math.sin(angle) * _data.Range));
         }
     }
 }

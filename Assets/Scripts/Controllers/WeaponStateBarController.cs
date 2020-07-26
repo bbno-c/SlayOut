@@ -24,7 +24,7 @@ namespace Controllers
         public void OnOpen(IWeaponStateBarView view)
         {
             _game.Player.WeaponHolder.WeaponChange += OnSwitching;
-            _game.Player.WeaponHolder.Weapon.ReloadingEvent += OnReload;
+            _game.Player.WeaponHolder.RangeWeapon.ReloadingEvent += OnReload;
             _view = view;
         }
 
@@ -49,13 +49,7 @@ namespace Controllers
 
         private void OnSwitching(WeaponInfo weapon)
         {
-            float time = 0;
-            if (weapon is RangeWeaponInfo)
-            {
-                RangeWeaponInfo wd = (RangeWeaponInfo)weapon;
-                RangeWeaponData wp = (RangeWeaponData)wd.Data;
-                time = wp.StartDelay;
-            }
+            float time = weapon.Data.StartDelay;
             _view.SetTimer(time);
         }
     }

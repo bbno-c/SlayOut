@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2364404008734817663}
   - component: {fileID: 2364404008734817660}
+  - component: {fileID: 8456109160971861758}
   m_Layer: 0
   m_Name: Torso
   m_TagString: Untagged
@@ -82,6 +83,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8456109160971861758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2364404008734817634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ae3f09d8a8f4147865dd91901a3449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 2364404009090712708}
+  WeaponHolder: {fileID: 4548246956864039578}
+  SpriteRenderer: {fileID: 2364404008734817660}
 --- !u!1 &2364404009090712712
 GameObject:
   m_ObjectHideFlags: 0
@@ -240,8 +256,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FireInfos:
   - FireType: 0
-    Weapons:
+    RangeWeapons:
     - {fileID: 4532850602973911971}
+    MeleeWeapons:
+    - {fileID: 8456109160971861758}
 --- !u!114 &2509470406812257876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,8 +286,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc347d8b7cc3386438215215e634e33f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Weapon: {fileID: 4532850602973911971}
-  StartWeapon: {fileID: 11400000, guid: a14528d92ebee4a4b8b8c112421d0340, type: 2}
+  RangeWeapon: {fileID: 4532850602973911971}
+  MeleeWeapon: {fileID: 8456109160971861758}
+  StartWeapon: {fileID: 11400000, guid: e9e4184025b9eed41b922df4ab5feb27, type: 2}
   AnimatorOverrider: {fileID: 2509470406812257876}
 --- !u!1 &2364404009361417152
 GameObject:
@@ -396,4 +415,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WeaponHolder: {fileID: 4548246956864039578}
-  _state: 0

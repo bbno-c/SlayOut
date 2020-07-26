@@ -11,7 +11,7 @@ namespace Objects
 		StartDelay
 	}
 
-	public class Weapon : MonoBehaviour
+	public class RangeWeapon : MonoBehaviour
 	{
 		private RangeWeaponInfo _currentWeapon;
 		private RangeWeaponData _currentRangeWeaponData;
@@ -19,24 +19,26 @@ namespace Objects
 		public event Action<WeaponInfo> ReloadingEvent;
 
 		public bool CanFire => gameObject.activeSelf && _state == WeaponFireState.None && _isRangeWeapon;
-		public WeaponFireState _state;
+		private WeaponFireState _state;
 		private float _timer;
-		private bool _isRangeWeapon = true;
+		private bool _isRangeWeapon;
 
-        public void WeaponChangeEvent(WeaponInfo currentWeapon)
+
+		public void WeaponChangeEvent(WeaponInfo currentWeapon)
         {
 			RangeWeaponInfo weapon = currentWeapon as RangeWeaponInfo;
 			if(weapon == null)
 			{
 				_isRangeWeapon = false;
 				return;
-			} else
+			} 
+			else
 			{
+				_isRangeWeapon = true;
 				_currentWeapon = weapon;
 				_currentRangeWeaponData = (RangeWeaponData)weapon.Data;
+				SetWeapon();
 			}
-
-			SetWeapon();
 		}
 
 		private void SetWeapon()

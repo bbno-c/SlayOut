@@ -24,4 +24,4 @@ MonoBehaviour:
   StartAmmo: 0
   BulletsPerShot: 5
   IsShotgun: 1
-  Spread: 60
+  Spread: 15

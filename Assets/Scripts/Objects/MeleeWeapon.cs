@@ -1,19 +1,22 @@
 using System;
 using UnityEngine;
+using Unity.Mathematics;
 
 namespace Objects
 {
 	public class MeleeWeapon : MonoBehaviour
 	{
+		public Transform player;
 		private MeleeWeaponInfo _currentWeapon;
 		private MeleeWeaponData _currentMeleeWeaponData;
 		public WeaponHolder WeaponHolder;
-		public event Action<WeaponInfo> ReloadingEvent;
+		public SpriteRenderer SpriteRenderer;
+		private bool _reverse;
 
 		public bool CanFire => gameObject.activeSelf && _state == WeaponFireState.None && _isMeleeWeapon;
-		public WeaponFireState _state;
+		private WeaponFireState _state;
 		private float _timer;
-		private bool _isMeleeWeapon = true;
+		private bool _isMeleeWeapon;
 
         public void WeaponChangeEvent(WeaponInfo currentWeapon)
         {
@@ -21,20 +24,23 @@ namespace Objects
 			if(weapon == null)
 			{
 				_isMeleeWeapon = false;
+				SpriteRenderer.flipY = false;
 				return;
-			} else
+			}
+			else
 			{
+				_isMeleeWeapon = true;
 				_currentWeapon = weapon;
 				_currentMeleeWeaponData = (MeleeWeaponData)weapon.Data;
+				SpriteRenderer.flipY = _reverse;
+				SetWeapon();
 			}
-
-			SetWeapon();
 		}
 
 		private void SetWeapon()
 		{
 			WeaponSetState(WeaponFireState.StartDelay, _currentMeleeWeaponData.StartDelay);
-			WeaponHolder.AnimatorOverrider.Animator.SetFloat("FireTime", _currentMeleeWeaponData.FireTime*10);
+			WeaponHolder.AnimatorOverrider.Animator.SetFloat("FireTime", _currentMeleeWeaponData.FireTime* _currentMeleeWeaponData.AnimationMultiplier);
 		}
 
 		public void Fire()
@@ -42,6 +48,8 @@ namespace Objects
 			WeaponHolder.AnimatorOverrider.Animator.SetTrigger("Attack");
 			CreateBullet();
 			WeaponSetState(WeaponFireState.DelayBetwenBullets, _currentMeleeWeaponData.FireTime);
+			_reverse = !_reverse;
+			SpriteRenderer.flipY = _reverse;
 		}
 
 		private void Update()
@@ -69,6 +77,19 @@ namespace Objects
         {
 			_state = state;
 			_timer = timer;
+		}
+
+		private void OnDrawGizmosSelected()
+		{
+			var dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
+			var angle = Mathf.Atan2(dir.y, dir.x);
+
+			Gizmos.color = Color.red;
+
+			Gizmos.DrawLine(
+				new Vector2(transform.position.x, transform.position.y),
+				new Vector2(transform.position.x + math.cos(angle) * 0.3f,
+				transform.position.y + math.sin(angle) * 0.3f));
 		}
 	}
 }

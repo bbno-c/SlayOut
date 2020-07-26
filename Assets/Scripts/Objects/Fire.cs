@@ -5,16 +5,15 @@ namespace Objects
 {
 	public enum FireType
 	{
-		Shoot,
-		Throw,
-		Punch
+		Shoot
 	}
 
 	[Serializable]
 	public class FireInfo
 	{
 		public FireType FireType;
-		public Weapon[] Weapons;
+		public RangeWeapon[] RangeWeapons;
+		public MeleeWeapon[] MeleeWeapons;
 	}
 
 	public class Fire : MonoBehaviour
@@ -25,9 +24,15 @@ namespace Objects
 		{
 			foreach(var info in FireInfos)
 				if (info.FireType == fireType)
-					foreach (var weapon in info.Weapons)
+                {
+					foreach (var weapon in info.RangeWeapons)
 						if (weapon.CanFire)
-							weapon.Fire();			
+							weapon.Fire();
+
+					foreach (var weapon in info.MeleeWeapons)
+						if (weapon.CanFire)
+							weapon.Fire();
+				}
 		}
 	}
 }

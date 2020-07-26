@@ -1612,10 +1612,6 @@ MonoBehaviour:
   FireInput:
   - Key: 323
     FireType: 0
-  - Key: 324
-    FireType: 1
-  - Key: 114
-    FireType: 2
 --- !u!4 &1005368706
 Transform:
   m_ObjectHideFlags: 0
