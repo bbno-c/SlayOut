@@ -224,6 +224,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08b08b8adeaa03b44adfe2b7a0a3467b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LegsAnimator: {fileID: 5623188033543772290}
+  LegsOnJumpSprite: {fileID: 21300000, guid: 62559f2c2ec4b9d42999823df4c95260, type: 3}
+  LegsSpriteRenderer: {fileID: 2364404009361417181}
   AnimatorOverrider: {fileID: 2509470406812257876}
   PlayerRigidbody: {fileID: 2364404009090712705}
   TorsoTransform: {fileID: 2364404008734817663}

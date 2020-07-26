@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp:Objects:MeleeWeaponData
   WeaponAnimationName: 0
   Sprite: {fileID: 21300000, guid: c0adb1e130db4eb4aa92da8602269386, type: 3}
-  FireTime: 0.5
-  AnimationMultiplier: 2
   StartDelay: 0.1
-  ReloadTime: 0
+  FireTime: 0.2
+  AnimationMultiplier: 5
+  Range: 0.3
