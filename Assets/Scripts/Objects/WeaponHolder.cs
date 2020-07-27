@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using Objects;
 
+[System.Serializable]
 public class WeaponHolder: MonoBehaviour
 {
     private List<WeaponInfo> _playerWeapons;

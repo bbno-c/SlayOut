@@ -30,6 +30,7 @@ namespace Objects
 			if(weapon == null)
 			{
 				_isRangeWeapon = false;
+				WeaponSetState(WeaponFireState.None, 0f);
 				return;
 			} 
 			else

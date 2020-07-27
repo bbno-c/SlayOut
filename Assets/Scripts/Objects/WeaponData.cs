@@ -11,7 +11,7 @@ namespace Objects
 		public float FireTime;
 		public float AnimationMultiplier;
 	}
-
+	[System.Serializable]
 	[CreateAssetMenu(fileName = "NewRangeWeapon", menuName = "Weapon/RangeWeapon")]
 	public class RangeWeaponData : WeaponData
 	{
@@ -23,7 +23,7 @@ namespace Objects
 		public bool IsShotgun;
 		public int Spread;
 	}
-
+	[System.Serializable]
 	[CreateAssetMenu(fileName = "NewMeleeWeapon", menuName = "Weapon/MeleeWeapon")]
 	public class MeleeWeaponData : WeaponData
 	{

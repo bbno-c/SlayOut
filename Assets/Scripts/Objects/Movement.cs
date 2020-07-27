@@ -15,16 +15,13 @@ namespace Objects
 
     public class Movement : MonoBehaviour
     {
-        public Sprite LegsOnJumpSprite;
-        public SpriteRenderer LegsSpriteRenderer;
-
         public AnimatorOverrider AnimatorOverrider;
         public Rigidbody2D PlayerRigidbody;
+
         public Transform TorsoTransform;
         public Transform LegsTransform;
 
         private Vector2 _jumpDir;
-
         public float Speed;
         private MovementState _state;
         private float _timer;
@@ -45,15 +42,11 @@ namespace Objects
 
             if (_timer > 0f)
             {
-                if (_state == MovementState.Jump)
-                    PlayerRigidbody.velocity = new Vector2(_jumpDir.x, _jumpDir.y) * Speed*2;
-
                 _timer -= Time.deltaTime;
                 if (_timer <= 0f)
                 {
                     if (_state == MovementState.Jump)
                     {
-                        LegsSpriteRenderer.sprite = null;
                         MovementSetState(MovementState.DelayBetwenJumps, 1f);
                     }
                     else
@@ -68,6 +61,8 @@ namespace Objects
         {
             if (_state != MovementState.Jump)
                 PlayerRigidbody.velocity = new Vector2(_moveDirection.x, _moveDirection.y) * Speed;
+            else
+                PlayerRigidbody.velocity = new Vector2(_jumpDir.x, _jumpDir.y) * Speed * 1.5f;
         }
 
         public void MoveDirection(Vector3 direction)
@@ -89,8 +84,6 @@ namespace Objects
             _jumpDir.y = _moveDirection.y;
 
             AnimatorOverrider.Animator.SetFloat("Magnitude", 0);
-
-            LegsSpriteRenderer.sprite = LegsOnJumpSprite;
 
             MovementSetState(MovementState.Jump, 0.5f);
         }
