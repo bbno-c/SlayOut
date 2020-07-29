@@ -80,8 +80,10 @@
     <Compile Include="Assets\Scripts\Objects\Health.cs" />
     <Compile Include="Assets\Scripts\Objects\InputController.cs" />
     <Compile Include="Assets\Scripts\Objects\MeleeWeapon.cs" />
+    <Compile Include="Assets\Scripts\Objects\MeleeWeaponData.cs" />
     <Compile Include="Assets\Scripts\Objects\Movement.cs" />
     <Compile Include="Assets\Scripts\Objects\RangeWeapon.cs" />
+    <Compile Include="Assets\Scripts\Objects\RangeWeaponData.cs" />
     <Compile Include="Assets\Scripts\Objects\Skin.cs" />
     <Compile Include="Assets\Scripts\Objects\WeaponData.cs" />
     <Compile Include="Assets\Scripts\Objects\WeaponHolder.cs" />

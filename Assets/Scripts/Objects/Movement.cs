@@ -80,12 +80,12 @@ namespace Objects
             if (_state == MovementState.Jump || _state == MovementState.DelayBetwenJumps)
                 return;
 
-            _jumpDir.x = _moveDirection.x;
-            _jumpDir.y = _moveDirection.y;
+            _jumpDir.x = _moveDirection.x != 0 ? _moveDirection.x > 0 ? _moveDirection.x / _moveDirection.x : -_moveDirection.x / _moveDirection.x : _moveDirection.x;
+            _jumpDir.y = _moveDirection.y != 0 ? _moveDirection.y > 0 ? _moveDirection.y / _moveDirection.y : -_moveDirection.y / _moveDirection.y : _moveDirection.y;
 
             AnimatorOverrider.Animator.SetFloat("Magnitude", 0);
 
-            MovementSetState(MovementState.Jump, 0.5f);
+            MovementSetState(MovementState.Jump, 0.3f);
         }
 
         private void MovementSetState(MovementState state, float timer)
