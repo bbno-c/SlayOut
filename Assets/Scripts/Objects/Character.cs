@@ -7,6 +7,7 @@ namespace Objects
     public class Character : MonoBehaviour
     {
 		public AnimatorOverrider AnimatorOverrider;
+		public AbilityHolder AbilityHolder;
 		public WeaponHolder WeaponHolder;
         public Movement Movement;
 		public Health Health;

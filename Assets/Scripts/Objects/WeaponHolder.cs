@@ -15,10 +15,10 @@ public class WeaponHolder: MonoBehaviour
     public WeaponInfo PreviousWeapon => _previousWeapon;
     private int _currentIndex;
 
-    [Serializefield] private RangeWeapon RangeWeapon;
-    [Serializefield] private MeleeWeapon MeleeWeapon;
-    [Serializefield] private WeaponData StartWeapon;
-    [Serializefield] private AnimatorOverrider AnimatorOverrider;
+    public RangeWeapon RangeWeapon;
+    public MeleeWeapon MeleeWeapon;
+    [SerializeField] private WeaponData StartWeapon;
+    public AnimatorOverrider AnimatorOverrider;
 
     public event Action<WeaponInfo> WeaponChange;
     public event Action<WeaponInfo> ElementAdded;

@@ -21,7 +21,7 @@ namespace Objects
         {
             if(_playerAbilities != null && index+1 <= _playerAbilities.Count && index >= 0)
             {
-                _playerAbilities.Find(index).ApplyAbility();
+                _playerAbilities[index].ApplyAbility();
             }
         }
     }

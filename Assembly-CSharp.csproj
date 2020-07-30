@@ -72,6 +72,8 @@
     <Compile Include="Assets\Scripts\Core\IController.cs" />
     <Compile Include="Assets\Scripts\Core\IGame.cs" />
     <Compile Include="Assets\Scripts\Core\IView.cs" />
+    <Compile Include="Assets\Scripts\Objects\Ability.cs" />
+    <Compile Include="Assets\Scripts\Objects\AbilityHolder.cs" />
     <Compile Include="Assets\Scripts\Objects\AnimatorOverrider.cs" />
     <Compile Include="Assets\Scripts\Objects\Bullet.cs" />
     <Compile Include="Assets\Scripts\Objects\CameraFollow.cs" />
