@@ -6,7 +6,6 @@ using UnityEngine.UI;
 using UnityEngine;
 using Objects;
 
-[System.Serializable]
 public class WeaponHolder: MonoBehaviour
 {
     private List<WeaponInfo> _playerWeapons;
@@ -16,11 +15,10 @@ public class WeaponHolder: MonoBehaviour
     public WeaponInfo PreviousWeapon => _previousWeapon;
     private int _currentIndex;
 
-    public RangeWeapon RangeWeapon;
-    public MeleeWeapon MeleeWeapon;
-
-    public WeaponData StartWeapon;
-    public AnimatorOverrider AnimatorOverrider;
+    [Serializefield] private RangeWeapon RangeWeapon;
+    [Serializefield] private MeleeWeapon MeleeWeapon;
+    [Serializefield] private WeaponData StartWeapon;
+    [Serializefield] private AnimatorOverrider AnimatorOverrider;
 
     public event Action<WeaponInfo> WeaponChange;
     public event Action<WeaponInfo> ElementAdded;
