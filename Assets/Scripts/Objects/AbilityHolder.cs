@@ -8,6 +8,7 @@ using Objects;
 
 namespace Objects
 {
+    [Serializable]
     public struct PlayerAbility
     {
         public Ability Ability;
@@ -20,11 +21,13 @@ namespace Objects
 
     public class AbilityHolder : MonoBehaviour
     {
-        private List<PlayerAbility> _playerAbilities;
+        [SerializeField] private List<PlayerAbility> _playerAbilities;
 
         private void Start()
         {
-            //забрать настройки и статы абилок
+            foreach (PlayerAbility playerAbility in _playerAbilities)
+                playerAbility.Ability.Initialize(gameObject, null);
+            //инициализация абилок
         }
 
         private void Update()

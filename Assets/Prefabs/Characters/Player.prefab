@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 4206394245258424211}
   - component: {fileID: 4395634430168273134}
   - component: {fileID: 2204700143785116654}
+  - component: {fileID: 7343930701072925269}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -210,7 +211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AnimatorOverrider: {fileID: 4206394245258424211}
-  AbilityHolder: {fileID: 0}
+  AbilityHolder: {fileID: 7343930701072925269}
   WeaponHolder: {fileID: 4395634430168273134}
   Movement: {fileID: 5860767309560895961}
   Health: {fileID: 2105265935571950098}
@@ -305,6 +306,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9dcf7d631fe6994a9ae0441e7696fc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7343930701072925269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4501342112907768133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf9e2d482d9d7ff4ab07effc1edb0b77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerAbilities:
+  - Ability: {fileID: 11400000, guid: f73b9f34e66055849b658d446884c82a, type: 2}
+    Cooldown: 0
+    Timer: 0
 --- !u!1 &5084000582201833324
 GameObject:
   m_ObjectHideFlags: 0
