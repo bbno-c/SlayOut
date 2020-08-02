@@ -2,7 +2,6 @@
 
 namespace Objects
 {
-	[System.Serializable]
 	public abstract class WeaponData: ScriptableObject
 	{
 		public AnimationName WeaponAnimationName;

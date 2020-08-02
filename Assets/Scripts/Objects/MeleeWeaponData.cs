@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace Objects
 {
-	[System.Serializable]
 	[CreateAssetMenu(fileName = "NewMeleeWeapon", menuName = "Weapon/MeleeWeapon")]
 	public class MeleeWeaponData : WeaponData
 	{

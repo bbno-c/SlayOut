@@ -1,45 +1,48 @@
+using System;
 using UnityEngine;
 
 namespace Objects
 {
-    public class BuildingsGrid : MonoBehaviour, IAbility
+    public class BuildingsGrid : MonoBehaviour
     {
-        public Vector2Int GridSize = new Vector2Int(10, 10);
-
-        private Building[,] grid;
-        private Building flyingBuilding;
+        private Building FlyingBuilding;
         private Camera mainCamera;
 
         private Transform _playerTransform;
         private float _radius;
-        
+
+        public float Radius { get => _radius; set => _radius = value; }
+
         private void Awake()
         {
-            grid = new Building[GridSize.x, GridSize.y];
-            
             mainCamera = Camera.main;
+        }
+
+        internal void Initialize()
+        {
+            throw new NotImplementedException();
         }
 
         public void ApplyAbility()
         {
-            StartPlacingBuilding(buildingPrefab);
+            //StartPlacingBuilding(buildingPrefab);
         }
 
         public void StartPlacingBuilding(Building buildingPrefab)
         {
-            if (flyingBuilding != null)
+            if (FlyingBuilding != null)
             {
-                Destroy(flyingBuilding.gameObject);
+                Destroy(FlyingBuilding.gameObject);
             }
             
-            flyingBuilding = Instantiate(buildingPrefab);
+            FlyingBuilding = Instantiate(buildingPrefab);
         }
 
         private void Update()
         {
-            if (flyingBuilding != null)
+            if (FlyingBuilding != null)
             {
-                var groundPlane = new Plane(Vector3.up, Vector3.zero);
+                var groundPlane = new Plane(Vector3.right, Vector3.zero);
                 Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
 
                 if (groundPlane.Raycast(ray, out float position))
@@ -51,13 +54,13 @@ namespace Objects
 
                     bool available = true;
 
-                    if (x < _playerTransform.position.x - _radius || x > _radius - flyingBuilding.Size.x) available = false;
-                    if (y < _playerTransform.position.y - _radius || y > _radius - flyingBuilding.Size.y) available = false;
+                    if (x < _playerTransform.position.x - Radius || x > Radius - FlyingBuilding.Size.x) available = false;
+                    if (y < _playerTransform.position.y - Radius || y > Radius - FlyingBuilding.Size.y) available = false;
 
                     if (available && IsPlaceTaken(x, y)) available = false;
 
-                    flyingBuilding.transform.position = new Vector3(x, 0, y);
-                    flyingBuilding.SetTransparent(available);
+                    FlyingBuilding.transform.position = new Vector3(x, 0, y);
+                    FlyingBuilding.SetTransparent(available);
 
                     if (available && Input.GetMouseButtonDown(0))
                     {
@@ -76,8 +79,13 @@ namespace Objects
 
         private void PlaceFlyingBuilding(int placeX, int placeY)
         {
-            flyingBuilding.SetNormal();
-            flyingBuilding = null;
+            FlyingBuilding.SetNormal();
+            FlyingBuilding = null;
+        }
+
+        public void ApplyChanges()
+        {
+            
         }
     }
 }

@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace Objects
 {
-	[System.Serializable]
 	[CreateAssetMenu(fileName = "NewRangeWeapon", menuName = "Weapon/RangeWeapon")]
 	public class RangeWeaponData : WeaponData
 	{

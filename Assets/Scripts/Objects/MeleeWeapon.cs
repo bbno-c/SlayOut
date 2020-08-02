@@ -88,8 +88,7 @@ namespace Objects
 
 			Gizmos.DrawLine(
 				new Vector2(transform.position.x, transform.position.y),
-				new Vector2(transform.position.x + math.cos(angle) * 0.3f,
-				transform.position.y + math.sin(angle) * 0.3f));
+				new Vector2(transform.position.x + math.cos(angle) * _currentMeleeWeaponData.Range,	transform.position.y + math.sin(angle) * _currentMeleeWeaponData.Range));
 		}
 	}
 }

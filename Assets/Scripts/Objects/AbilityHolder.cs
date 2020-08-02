@@ -8,20 +8,42 @@ using Objects;
 
 namespace Objects
 {
-    public interface IAbility
+    public struct PlayerAbility
     {
-        void ApplyAbility();
+        public Ability Ability;
+        public float Cooldown;
+        public bool IsAvailable => Timer <= 0;
+        public float Timer;
+        public void TimerStep() { if (Timer > 0f) Timer -= Time.deltaTime; }
+        public void SetCooldown() => Timer = Cooldown;
     }
 
-    public class AbilityHolder: MonoBehaviour
+    public class AbilityHolder : MonoBehaviour
     {
-        private List<IAbility> _playerAbilities;
+        private List<PlayerAbility> _playerAbilities;
+
+        private void Start()
+        {
+            //забрать настройки и статы абилок
+        }
+
+        private void Update()
+        {
+            foreach (PlayerAbility playerAbility in _playerAbilities)
+            {
+                playerAbility.TimerStep();
+            }
+        }
 
         public void Apply(int index)
         {
-            if(_playerAbilities != null && index+1 <= _playerAbilities.Count && index >= 0)
+            if (_playerAbilities != null && index + 1 <= _playerAbilities.Count && index >= 0)
             {
-                _playerAbilities[index].ApplyAbility();
+                if(_playerAbilities[index].IsAvailable)
+                {
+                    _playerAbilities[index].Ability.TriggerAbility();
+                    _playerAbilities[index].SetCooldown();
+                }
             }
         }
     }

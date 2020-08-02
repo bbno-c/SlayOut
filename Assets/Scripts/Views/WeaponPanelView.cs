@@ -49,6 +49,9 @@ namespace Views
                 _weaponPanels[weapon].AmmoLeft.text = wd.AmmoLeft.ToString();
                 _weaponPanels[weapon].AllAmmo.text = wd.AllAmmo.ToString();
 
+                if(!weapon.IsActive)
+                    _weaponPanels[wd].Image.color = Color.red;
+
                 if (!_weaponPanels[weapon].gameObject.activeSelf && weapon.IsActive)
                 {
                     KeyValuePair<WeaponInfo, WeaponPanel> temp = new KeyValuePair<WeaponInfo, WeaponPanel>(weapon, _weaponPanels[weapon]);
