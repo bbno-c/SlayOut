@@ -24,7 +24,7 @@ namespace Objects
 
         private void Start()
         {
-            //забрать настройки и статы абилок
+            //инициализация абилок
         }
 
         private void Update()

@@ -54,12 +54,12 @@ namespace Objects
 
                     bool available = true;
 
-                    if (x < _playerTransform.position.x - Radius || x > Radius - FlyingBuilding.Size.x) available = false;
-                    if (y < _playerTransform.position.y - Radius || y > Radius - FlyingBuilding.Size.y) available = false;
+                    if (x < _playerTransform.position.x - Radius || x > _playerTransform.position.x + Radius - FlyingBuilding.Size.x) available = false;
+                    if (y < _playerTransform.position.y - Radius || y > _playerTransform.position.x + Radius - FlyingBuilding.Size.y) available = false;
 
                     if (available && IsPlaceTaken(x, y)) available = false;
 
-                    FlyingBuilding.transform.position = new Vector3(x, 0, y);
+                    FlyingBuilding.transform.position = new Vector3(x, y, 0);
                     FlyingBuilding.SetTransparent(available);
 
                     if (available && Input.GetMouseButtonDown(0))
@@ -81,11 +81,6 @@ namespace Objects
         {
             FlyingBuilding.SetNormal();
             FlyingBuilding = null;
-        }
-
-        public void ApplyChanges()
-        {
-            
         }
     }
 }
