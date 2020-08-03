@@ -72,10 +72,10 @@
     <Compile Include="Assets\Scripts\Objects\Building.cs" />
     <Compile Include="Assets\Scripts\Objects\RangeWeaponData.cs" />
     <Compile Include="Assets\Scripts\Objects\InputController.cs" />
+    <Compile Include="Assets\Scripts\Objects\PlayerAbilityStats.cs" />
     <Compile Include="Assets\Scripts\Objects\BuildingsGrid.cs" />
     <Compile Include="Assets\Scripts\Controllers\MenuController.cs" />
     <Compile Include="Assets\Scripts\Views\WeaponStateBarView.cs" />
-    <Compile Include="Assets\Scripts\Objects\AbilityChange.cs" />
     <Compile Include="Assets\Scripts\Objects\WeaponPanel.cs" />
     <Compile Include="Assets\Scripts\Controllers\HudController.cs" />
     <Compile Include="Assets\Scripts\Objects\WeaponInfo.cs" />
@@ -84,6 +84,7 @@
     <Compile Include="Assets\Scripts\Objects\AnimatorOverrider.cs" />
     <Compile Include="Assets\Scripts\Objects\MeleeWeapon.cs" />
     <Compile Include="Assets\Scripts\Objects\Movement.cs" />
+    <Compile Include="Assets\Scripts\Objects\Ability.cs" />
     <Compile Include="Assets\Scripts\Controllers\EndGameController.cs" />
     <Compile Include="Assets\Scripts\Objects\WeaponHolder.cs" />
     <Compile Include="Assets\Scripts\Objects\Health.cs" />
@@ -93,9 +94,8 @@
     <Compile Include="Assets\Scripts\Core\IView.cs" />
     <Compile Include="Assets\Scripts\Views\WeaponPanelView.cs" />
     <Compile Include="Assets\Scripts\Views\GameView.cs" />
-    <Compile Include="Assets\Scripts\Objects\Ability.cs" />
-    <Compile Include="Assets\Scripts\Objects\CreateBuilding.cs" />
     <Compile Include="Assets\Scripts\Objects\CreateHealAura.cs" />
+    <Compile Include="Assets\Scripts\Objects\CreateBuilding.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />

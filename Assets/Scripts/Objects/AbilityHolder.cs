@@ -27,7 +27,6 @@ namespace Objects
         {
             foreach (PlayerAbility playerAbility in _playerAbilities)
                 playerAbility.Ability.Initialize(gameObject, null);
-            //инициализация абилок
         }
 
         private void Update()

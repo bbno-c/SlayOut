@@ -81,14 +81,15 @@ namespace Objects
 
 		private void OnDrawGizmosSelected()
 		{
+			Gizmos.color = Color.red;
+
 			var dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
 			var angle = Mathf.Atan2(dir.y, dir.x);
 
-			Gizmos.color = Color.red;
-
 			Gizmos.DrawLine(
 				new Vector2(transform.position.x, transform.position.y),
-				new Vector2(transform.position.x + math.cos(angle) * _currentMeleeWeaponData.Range,	transform.position.y + math.sin(angle) * _currentMeleeWeaponData.Range));
+				new Vector2(transform.position.x + math.cos(angle) * _currentMeleeWeaponData.Range,
+							transform.position.y + math.sin(angle) * _currentMeleeWeaponData.Range));
 		}
 	}
 }
