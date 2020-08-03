@@ -10,20 +10,23 @@ namespace Objects
         BuildingRadius
     }
 
+    [System.Serializable]
     public struct AbilityPrameters
     {
         public Parameter Parameter;
         public int MaxLevel;
         public int CurrentLevel;
     }
-    
+
+    [System.Serializable]
     public struct AbilityStats
     {
         public Ability Ability;
         public List<AbilityPrameters> AbilityPrametersList;
     }
 
-    public class AbilityChange
+    [System.Serializable]
+    public class PlayerAbilityStats
     {
         public List<AbilityStats> AbilityStats;
     }
