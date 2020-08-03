@@ -21,7 +21,6 @@ namespace Objects
             _buildingsGrid.Initialize();
 
             _buildingsGrid.Radius = Radius + buildingRadiusLvl;
-            _buildingsGrid.FlyingBuilding = BuildingPrefab;
         }
         
         public override void TriggerAbility()

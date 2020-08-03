@@ -5,14 +5,13 @@ namespace Objects
 {
     public class BuildingsGrid : MonoBehaviour
     {
-        private Building _flyingBuilding;
+        private Building FlyingBuilding;
         private Camera mainCamera;
 
         private Transform _playerTransform;
         private float _radius;
 
         public float Radius { get => _radius; set => _radius = value; }
-        public Building FlyingBuilding { get => _flyingBuilding; set => _flyingBuilding = value; }
 
         private void Awake()
         {
@@ -21,7 +20,12 @@ namespace Objects
 
         internal void Initialize()
         {
-            _playerTransform = gameObject.GetComponentInParent<Transform>();
+            throw new NotImplementedException();
+        }
+
+        public void ApplyAbility()
+        {
+            //StartPlacingBuilding(buildingPrefab);
         }
 
         public void StartPlacingBuilding(Building buildingPrefab)
@@ -77,6 +81,20 @@ namespace Objects
         {
             FlyingBuilding.SetNormal();
             FlyingBuilding = null;
+        }
+
+        private void OnDrawGizmos()
+        {
+            for (int x = -Radius; x < Radius; x++)
+            {
+                for (int y = -Radius/2; y < (Radius-x)/2; y++)
+                {
+                    if ((x + y) % 2 == 0) Gizmos.color = new Color(0.88f, 0f, 1f, 0.3f);
+                    else Gizmos.color = new Color(1f, 0.68f, 0f, 0.3f);
+
+                    Gizmos.DrawCube(transform.position + new Vector3(x, y, 0), new Vector3(1, 1, 0));
+                }
+            }
         }
     }
 }
