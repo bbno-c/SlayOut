@@ -53,17 +53,12 @@ namespace Objects
                 float pointX = transform.position.x + math.cos(angle) * Radius;
                 float pointY = transform.position.y + math.sin(angle) * Radius;
 
-                float lenghtX = math.abs(transform.position.x + math.cos(angle) * Radius) - math.abs(transform.position.x);
-                float lenghtY = math.abs(transform.position.y + math.sin(angle) * Radius) - math.abs(transform.position.y);
+                float vecX = worldPosition.x - transform.position.x;
+                float vecY = worldPosition.y - transform.position.y;
 
-                float CurlenghtX = math.abs(math.abs(worldPosition.x) - math.abs(transform.position.x));
-                float CurlenghtY = math.abs(math.abs(worldPosition.y) - math.abs(transform.position.y));
+                float vecLen = math.sqrt(vecX * vecX + vecY * vecY);
 
-                float length = math.sqrt(CurlenghtX * CurlenghtX + CurlenghtY * CurlenghtY);
-
-                if (math.abs(length) > math.abs(Radius)) available = false;
-                //if (math.abs(CurlenghtY) > math.abs(Radius)) available = false;
-
+                if (vecLen > Radius) available = false;
                 if (available && IsPlaceTaken(x, y)) available = false;
 
                 if (available) FlyingBuilding.transform.position = new Vector2(x, y);

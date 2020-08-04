@@ -12,11 +12,10 @@ namespace Objects
     public struct PlayerAbility
     {
         public Ability Ability;
-        public float Cooldown;
-        public bool IsAvailable => Timer <= 0;
-        public float Timer;
-        public void TimerStep() { if (Timer > 0f) Timer -= Time.deltaTime; }
-        public void SetCooldown() => Timer = Cooldown;
+        public bool IsAvailable => _timer <= 0;
+        private float _timer;
+        public void TimerStep() { if (_timer > 0f) _timer -= Time.deltaTime; }
+        public void SetCooldown() => _timer = Ability.BaseCoolDown;
     }
 
     public class AbilityHolder : MonoBehaviour
@@ -25,6 +24,9 @@ namespace Objects
 
         private void Start()
         {
+            // добавить инициализацию _playerAbilities
+            // парсить абилки из общего класса
+
             foreach (PlayerAbility playerAbility in _playerAbilities)
                 playerAbility.Ability.Initialize(gameObject, null);
         }

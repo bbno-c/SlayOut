@@ -15,7 +15,7 @@ namespace Objects
     {
         public Parameter Parameter;
         public int MaxLevel;
-        public int CurrentLevel;
+        [HideInInspector] public int CurrentLevel;
     }
 
     [System.Serializable]
@@ -28,6 +28,64 @@ namespace Objects
     [System.Serializable]
     public class PlayerAbilityStats
     {
-        public List<AbilityStats> AbilityStats;
-    }
+        public List<AbilityStats> AbilityStatsList;
+
+        private void AbilityChecked(AbilityStats ability)
+        {
+            if(AbilityStatsList ==  null)
+                return;
+
+            foreach(AbilityStats abilityStats in AbilityStatsList)
+            {
+                if(abilityStats.Ability == ability.Ability)
+                {
+                    AbilityStatsList.Remove(abilityStats);
+                    return;
+                }
+            }
+            AbilityStatsList.Add(ability);
+        }
+
+        private void AddLevel(AbilityStats ability, Parameter parameter)
+        {
+            if(AbilityStatsList ==  null)
+                return;
+
+            foreach(AbilityStats abilityStats in AbilityStatsList)
+            {
+                if(abilityStats.Ability == ability.Ability)
+                {
+                    foreach(AbilityPrameters existingParam in AbilityPrametersList)
+                    {
+                        if(parameter == existingParam.Parameter)
+                        {
+                            if(existingParam.CurrentLevel < existingParam.MaxLevel)
+                                existingParam.CurrentLevel++;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void RemoveLevel(AbilityStats ability)
+        {
+            if(AbilityStatsList ==  null)
+                return;
+
+            foreach(AbilityStats abilityStats in AbilityStatsList)
+            {
+                if(abilityStats.Ability == ability.Ability)
+                {
+                    foreach(AbilityPrameters existingParam in AbilityPrametersList)
+                    {
+                        if(parameter == existingParam.Parameter)
+                        {
+                            if(existingParam.CurrentLevel > 0)
+                                existingParam.CurrentLevel--;
+                        }
+                    }
+                }
+            }
+        }
+    }   
 }

@@ -38,6 +38,12 @@ namespace Views
                 _weaponPanels[weapon].AmmoLeft.text = wd.AmmoLeft.ToString();
                 _weaponPanels[weapon].AllAmmo.text = wd.AllAmmo.ToString();
             }
+            else if(weapon is MeleeWeaponInfo)
+            {
+                _weaponPanels[weapon].AmmoLeft.SetActive(false);
+                _weaponPanels[weapon].AllAmmo.SetActive(false);
+                _weaponPanels[weapon].Image.SetActive(false);
+            }
             _weaponPanels[weapon].gameObject.transform.SetAsFirstSibling();
         }
 

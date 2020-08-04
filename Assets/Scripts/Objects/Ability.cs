@@ -8,7 +8,7 @@ namespace Objects
     {
         public Sprite aSprite;
         public AudioClip aSound;
-        public float aBaseCoolDown = 1f;
+        public float BaseCoolDown = 1f;
 
         public abstract void Initialize(GameObject obj, List<AbilityStats> abilityStatsList);
         public abstract void TriggerAbility();

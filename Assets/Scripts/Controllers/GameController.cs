@@ -26,6 +26,9 @@ namespace Controllers
         public event Action<float> PlayerHealthChangeEvent;
         private readonly List<GameObject> _objects = new List<GameObject>();
         public Character Player { get; set; }
+
+        public PlayerAbilityStats PlayerAbilityStats; // ДЕСЕРPИАЛИЗОВАТЬ
+
         private IGameView _view;
         private int _scores;
 
