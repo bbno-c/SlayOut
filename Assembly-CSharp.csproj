@@ -60,6 +60,7 @@
     <Compile Include="Assets\Scripts\Objects\MeleeWeaponData.cs" />
     <Compile Include="Assets\Scripts\Objects\Bullet.cs" />
     <Compile Include="Assets\Scripts\Objects\RangeWeapon.cs" />
+    <Compile Include="Assets\Scripts\Controllers\AbilityMenuController.cs" />
     <Compile Include="Assets\Scripts\Views\HudView.cs" />
     <Compile Include="Assets\Scripts\Controllers\WeaponPanelController.cs" />
     <Compile Include="Assets\Scripts\Objects\Skin.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Assets\Scripts\Views\WeaponStateBarView.cs" />
     <Compile Include="Assets\Scripts\Objects\WeaponPanel.cs" />
     <Compile Include="Assets\Scripts\Controllers\HudController.cs" />
+    <Compile Include="Assets\Scripts\Views\AbilityMenuView.cs" />
     <Compile Include="Assets\Scripts\Objects\WeaponInfo.cs" />
     <Compile Include="Assets\Scripts\Objects\AbilityHolder.cs" />
     <Compile Include="Assets\Scripts\Core\IGame.cs" />

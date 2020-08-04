@@ -58,7 +58,7 @@ namespace Objects
 
                 float vecLen = math.sqrt(vecX * vecX + vecY * vecY);
 
-                if (vecLen > Radius) available = false;
+                if (Mathf.FloorToInt(vecLen) > Radius) available = false;
                 if (available && IsPlaceTaken(x, y)) available = false;
 
                 if (available) FlyingBuilding.transform.position = new Vector2(x, y);
@@ -98,6 +98,14 @@ namespace Objects
             //        Gizmos.DrawCube(new Vector3(Mathf.RoundToInt(transform.position.x + x), Mathf.RoundToInt(transform.position.y + y), 0), new Vector3(1, 1, 0));
             //    }
             //}
+            for(int x = -Radius; x<=Radius;x++)
+                for (int y = -Radius; y <= Radius; y++)
+                {
+                    if ((x + y) % 2 == 0) Gizmos.color = new Color(0.88f, 0f, 1f, 0.3f);
+                    else Gizmos.color = new Color(1f, 0.68f, 0f, 0.3f);
+
+                    Gizmos.DrawCube(new Vector3(Mathf.RoundToInt(transform.position.x + x), Mathf.RoundToInt(transform.position.y + y), 0), new Vector3(1, 1, 0));
+                }
 
             {
                 Gizmos.color = Color.red;
@@ -116,8 +124,8 @@ namespace Objects
                 Gizmos.color = Color.green;
                 Gizmos.DrawLine(
                 new Vector2(transform.position.x, transform.position.y),
-                new Vector2(transform.position.x + math.cos(angle) * Radius,
-                            transform.position.y + math.sin(angle) * Radius));
+                new Vector2(Mathf.FloorToInt(transform.position.x + math.cos(angle) * Radius),
+                            Mathf.FloorToInt(transform.position.y + math.sin(angle) * Radius)));
             }
 
         }

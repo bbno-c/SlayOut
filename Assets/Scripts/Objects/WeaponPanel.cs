@@ -10,6 +10,7 @@ namespace Objects
         public Image WeaponIco;
         public TextMeshProUGUI AmmoLeft;
         public TextMeshProUGUI AllAmmo;
+        public TextMeshProUGUI DivideSymbol;
         public Image Image;
     }
 }

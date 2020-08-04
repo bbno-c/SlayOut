@@ -5,8 +5,8 @@ namespace Controllers
 {
     public interface IAbilityMenuView : IView
     {
-        List<AbilityStats> AbilityStats { get; set; }
-        event Action<string> PlayEvent;
+        //List<AbilityStats> AbilityStats { get; set; }
+        //event Action<string> PlayEvent;
     }
 
     public class AbilityMenuController : IController<IAbilityMenuView>
@@ -15,11 +15,11 @@ namespace Controllers
 
         private IAbilityMenuView _view;
 
-        public MenuController(IGame game)
+        public AbilityMenuController(IGame game)
         {
             _game = game;
 
-            if(game.PlayerAbilityStats != null)
+            //if(game.PlayerAbilityStats != null)
             {
 
             }
@@ -29,13 +29,13 @@ namespace Controllers
 
         public void OnOpen(IAbilityMenuView view)
         {
-            view.PlayEvent += OnPlay;
+            //view.PlayEvent += OnPlay;
             _view = view;
         }
 
-        public void OnClose(IMenuView view)
+        public void OnClose(IAbilityMenuView view)
         {
-            view.PlayEvent -= OnPlay;
+            //view.PlayEvent -= OnPlay;
             _view = null;
         }
     }

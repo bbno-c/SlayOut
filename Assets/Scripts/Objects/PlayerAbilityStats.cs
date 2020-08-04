@@ -55,14 +55,14 @@ namespace Objects
             {
                 if(abilityStats.Ability == ability.Ability)
                 {
-                    foreach(AbilityPrameters existingParam in AbilityPrametersList)
-                    {
-                        if(parameter == existingParam.Parameter)
-                        {
-                            if(existingParam.CurrentLevel < existingParam.MaxLevel)
-                                existingParam.CurrentLevel++;
-                        }
-                    }
+                    //foreach(AbilityPrameters existingParam in AbilityPrametersList)
+                    //{
+                    //    if(parameter == existingParam.Parameter)
+                    //    {
+                    //        if(existingParam.CurrentLevel < existingParam.MaxLevel)
+                    //            existingParam.CurrentLevel++;
+                    //    }
+                    //}
                 }
             }
         }
@@ -76,14 +76,14 @@ namespace Objects
             {
                 if(abilityStats.Ability == ability.Ability)
                 {
-                    foreach(AbilityPrameters existingParam in AbilityPrametersList)
-                    {
-                        if(parameter == existingParam.Parameter)
-                        {
-                            if(existingParam.CurrentLevel > 0)
-                                existingParam.CurrentLevel--;
-                        }
-                    }
+                    //foreach(AbilityPrameters existingParam in AbilityPrametersList)
+                    //{
+                    //    if(parameter == existingParam.Parameter)
+                    //    {
+                    //        if(existingParam.CurrentLevel > 0)
+                    //            existingParam.CurrentLevel--;
+                    //    }
+                    //}
                 }
             }
         }

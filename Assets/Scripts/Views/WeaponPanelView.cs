@@ -40,9 +40,9 @@ namespace Views
             }
             else if(weapon is MeleeWeaponInfo)
             {
-                _weaponPanels[weapon].AmmoLeft.SetActive(false);
-                _weaponPanels[weapon].AllAmmo.SetActive(false);
-                _weaponPanels[weapon].Image.SetActive(false);
+                _weaponPanels[weapon].AmmoLeft.gameObject.SetActive(false);
+                _weaponPanels[weapon].AllAmmo.gameObject.SetActive(false);
+                _weaponPanels[weapon].DivideSymbol.gameObject.SetActive(false);
             }
             _weaponPanels[weapon].gameObject.transform.SetAsFirstSibling();
         }

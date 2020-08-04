@@ -5,23 +5,23 @@ using UnityEngine.UI;
 
 namespace Views
 {
-    public class AbilityMenuView : BaseView<IAbilityMenuView>, IMenuView
+    public class AbilityMenuView : BaseView<IAbilityMenuView>, IAbilityMenuView
     {
         protected override IAbilityMenuView View => this;
 
-        public List<AbilityStats> AbilityStats { get => _abilityStats; set => _abilityStats = value; }
+        //public List<AbilityStats> AbilityStats { get => _abilityStats; set => _abilityStats = value; }
 
-        [SerializeField] private List<AbilityStats> _abilityStats;
+        //[SerializeField] private List<AbilityStats> _abilityStats;
 
-        public VerticalLayoutGroup VerticalLayoutGroup;
+        //public VerticalLayoutGroup VerticalLayoutGroup;
 
-        public AbilityPanel AbilityPanel;
+        //public AbilityPanel AbilityPanel;
 
-        private List<AbilityPanel> _panelsList;
+        //private List<AbilityPanel> _panelsList;
 
         private void InitPanel()
         {
-            foreach(AbilityStats abilityStats in _abilityStats)
+            //foreach(AbilityStats abilityStats in _abilityStats)
             {
                 //abilityStats.Ability.
             }

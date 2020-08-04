@@ -62,7 +62,7 @@ namespace Objects
 
             if (_player.AbilityHolder != null)
                 foreach (var input in AbilityInput)
-                    if (Input.GetKey(input.Key))
+                    if (Input.GetKeyUp(input.Key))
                         _player.AbilityHolder.Apply(input.Index);
         }
     }
