@@ -1,7 +1,8 @@
-using System;
+using System.Collections.Generic;
 using Objects;
 using Controllers;
 using UnityEngine.UI;
+using UnityEngine;
 
 namespace Views
 {
@@ -9,21 +10,28 @@ namespace Views
     {
         protected override IAbilityMenuView View => this;
 
-        //public List<AbilityStats> AbilityStats { get => _abilityStats; set => _abilityStats = value; }
+        public List<AbilityInfo> AbilityStats { get => _abilityStatsList; set => _abilityStatsList = value; }
+        [SerializeField] private List<AbilityInfo> _abilityStatsList;
+        private AbilityStats _abilityStats;
 
-        //[SerializeField] private List<AbilityStats> _abilityStats;
+        public VerticalLayoutGroup VerticalLayoutGroup;
+        public AbilityEditPanel AbilityEditPanel;
+        private Dictionary<AbilityInfo, AbilityEditPanel> _panels;
 
-        //public VerticalLayoutGroup VerticalLayoutGroup;
-
-        //public AbilityPanel AbilityPanel;
-
-        //private List<AbilityPanel> _panelsList;
-
-        private void InitPanel()
+        private void OnEnable()
         {
-            //foreach(AbilityStats abilityStats in _abilityStats)
+            _abilityStats.AbilityStatsList = _abilityStatsList;
+        }
+
+        public void InitPanel()
+        {
+            if (_abilityStats == null)
+                return;
+            
+            foreach(AbilityInfo AbilityInfo in _abilityStatsList)
             {
-                //abilityStats.Ability.
+                _panels.Add(AbilityInfo, Instantiate(AbilityEditPanel, VerticalLayoutGroup.transform));
+                _panels[AbilityInfo].InitPanel(AbilityInfo, _abilityStats);
             }
         }
     }

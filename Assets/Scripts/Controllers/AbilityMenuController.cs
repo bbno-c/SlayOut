@@ -1,12 +1,16 @@
+using Objects;
 using System;
 using Core;
+using System.Collections.Generic;
 
 namespace Controllers
 {
     public interface IAbilityMenuView : IView
     {
-        //List<AbilityStats> AbilityStats { get; set; }
+        List<AbilityInfo> AbilityStats { get; set; }
         //event Action<string> PlayEvent;
+
+        void InitPanel();
     }
 
     public class AbilityMenuController : IController<IAbilityMenuView>
@@ -19,7 +23,7 @@ namespace Controllers
         {
             _game = game;
 
-            //if(game.PlayerAbilityStats != null)
+            if(game.PlayerAbilityStats != null)
             {
 
             }
@@ -31,11 +35,13 @@ namespace Controllers
         {
             //view.PlayEvent += OnPlay;
             _view = view;
+            _view.InitPanel();
         }
 
         public void OnClose(IAbilityMenuView view)
         {
             //view.PlayEvent -= OnPlay;
+            _game.PlayerAbilityStats.AbilityStatsList = _view.AbilityStats;
             _view = null;
         }
     }

@@ -24,10 +24,11 @@ namespace Controllers
         public event Action EndGameEvent;
         public event Action<int> ScoreChangedEvent;
         public event Action<float> PlayerHealthChangeEvent;
-        private readonly List<GameObject> _objects = new List<GameObject>();
+        
         public Character Player { get; set; }
+        public AbilityStats PlayerAbilityStats { get; set; } // ДЕСЕРPИАЛИЗОВАТЬ
 
-        public PlayerAbilityStats PlayerAbilityStats; // ДЕСЕРPИАЛИЗОВАТЬ
+        private readonly List<GameObject> _objects = new List<GameObject>();
 
         private IGameView _view;
         private int _scores;

@@ -12,14 +12,14 @@ namespace Objects
 
         public abstract void Initialize(GameObject obj, List<AbilityStats> abilityStatsList);
         public abstract void TriggerAbility();
-        public int FindParameterLevel(Parameter parameter, List<AbilityStats> abilityStatsList)
+        public int FindParameterLevel(Parameter parameter, List<AbilityInfo> AbilityStatsList)
         {
             int level = 0;
-            foreach(AbilityStats abilityStats in abilityStatsList)
+            foreach(AbilityInfo AbilityInfo in AbilityStatsList)
             {
-                if(abilityStats.Ability == this)
+                if(AbilityInfo.Ability == this)
                 {
-                    foreach(AbilityPrameters abilityPrameter in abilityStats.AbilityPrametersList)
+                    foreach(AbilityPrameter abilityPrameter in AbilityInfo.AbilityPrametersList)
                     {
                         if(abilityPrameter.Parameter == parameter)
                         {
