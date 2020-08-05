@@ -10,7 +10,7 @@ namespace Objects
         public AudioClip aSound;
         public float BaseCoolDown = 1f;
 
-        public abstract void Initialize(GameObject obj, List<AbilityStats> abilityStatsList);
+        public abstract void Initialize(GameObject obj, List<AbilityInfo> abilityStatsList);
         public abstract void TriggerAbility();
         public int FindParameterLevel(Parameter parameter, List<AbilityInfo> AbilityStatsList)
         {

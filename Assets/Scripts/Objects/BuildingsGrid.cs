@@ -40,35 +40,37 @@ namespace Objects
         {
             if (FlyingBuilding != null)
             {
-                Vector3 worldPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-
-                int x = Mathf.RoundToInt(worldPosition.x);
-                int y = Mathf.RoundToInt(worldPosition.y);
-
                 bool available = true;
 
-                var dir = Input.mousePosition - mainCamera.WorldToScreenPoint(transform.position);
-                var angle = Mathf.Atan2(dir.y, dir.x);
-                
-                float pointX = transform.position.x + math.cos(angle) * Radius;
-                float pointY = transform.position.y + math.sin(angle) * Radius;
+                Vector3 worldPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+                Vector3 dir = Input.mousePosition - mainCamera.WorldToScreenPoint(transform.position);
+                float angle = Mathf.Atan2(dir.y, dir.x);
 
-                float vecX = worldPosition.x - transform.position.x;
-                float vecY = worldPosition.y - transform.position.y;
+                int x = worldPosition.x > 0 ? Mathf.RoundToInt(worldPosition.x) : -Mathf.RoundToInt(Mathf.Abs(worldPosition.x));
+                int y = worldPosition.y > 0 ? Mathf.RoundToInt(worldPosition.y) : -Mathf.RoundToInt(Mathf.Abs(worldPosition.y));
 
-                float vecLen = math.sqrt(vecX * vecX + vecY * vecY);
+                int pointX = (transform.position.x + math.cos(angle) * (Radius - 1)) > 0 ? Mathf.RoundToInt(transform.position.x + math.cos(angle) * (Radius - 1)) : -Mathf.RoundToInt(Mathf.Abs(transform.position.x + math.cos(angle) * (Radius - 1)));
+                int pointY = (transform.position.y + math.sin(angle) * (Radius - 1)) > 0 ? Mathf.RoundToInt(transform.position.y + math.sin(angle) * (Radius - 1)) : -Mathf.RoundToInt(Mathf.Abs(transform.position.y + math.sin(angle) * (Radius - 1)));
 
-                if (Mathf.FloorToInt(vecLen) > Radius) available = false;
+                int vecX = x - Mathf.RoundToInt(transform.position.x);
+                int vecY = y - Mathf.RoundToInt(transform.position.y);
+                int vecLen = (int)math.sqrt(vecX * vecX + vecY * vecY);
+
+                if (vecLen >= Radius) available = false;
                 if (available && IsPlaceTaken(x, y)) available = false;
 
                 if (available) FlyingBuilding.transform.position = new Vector2(x, y);
-                else FlyingBuilding.transform.position = new Vector2(Mathf.RoundToInt(pointX), Mathf.RoundToInt(pointY));
+                else FlyingBuilding.transform.position = new Vector2(pointX, pointY);
 
                 FlyingBuilding.SetTransparent(available);
 
                 if (available && Input.GetMouseButtonDown(0))
                 {
                     PlaceFlyingBuilding(x, y);
+                }
+                else if (!IsPlaceTaken(x, y) && Input.GetMouseButtonDown(0))
+                {
+                    PlaceFlyingBuilding(pointX, pointY);
                 }
             }
         }
@@ -88,45 +90,32 @@ namespace Objects
 
         private void OnDrawGizmos()
         {
-            //for (int x = -Radius; x < Radius; x++)
-            //{
-            //    for (int y = -(Radius - Math.Abs(x)); y < (Radius - Math.Abs(x)); y++)
-            //    {
-            //        if ((x + y) % 2 == 0) Gizmos.color = new Color(0.88f, 0f, 1f, 0.3f);
-            //        else Gizmos.color = new Color(1f, 0.68f, 0f, 0.3f);
-
-            //        Gizmos.DrawCube(new Vector3(Mathf.RoundToInt(transform.position.x + x), Mathf.RoundToInt(transform.position.y + y), 0), new Vector3(1, 1, 0));
-            //    }
-            //}
-            for(int x = -Radius; x<=Radius;x++)
+            for (int x = -Radius; x <= Radius; x++)
+            {
                 for (int y = -Radius; y <= Radius; y++)
                 {
                     if ((x + y) % 2 == 0) Gizmos.color = new Color(0.88f, 0f, 1f, 0.3f);
                     else Gizmos.color = new Color(1f, 0.68f, 0f, 0.3f);
 
-                    Gizmos.DrawCube(new Vector3(Mathf.RoundToInt(transform.position.x + x), Mathf.RoundToInt(transform.position.y + y), 0), new Vector3(1, 1, 0));
+                    Gizmos.DrawCube(new Vector3(Mathf.RoundToInt(transform.position.x + x),
+                        Mathf.RoundToInt(transform.position.y + y), 0), new Vector3(1, 1, 0));
                 }
-
-            {
-                Gizmos.color = Color.red;
-                Vector3 worldPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-
-                int x = Mathf.RoundToInt(worldPosition.x);
-                int y = Mathf.RoundToInt(worldPosition.y);
-
-                var dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
-                var angle = Mathf.Atan2(dir.y, dir.x);
-
-                Gizmos.DrawLine(
-                    new Vector2(transform.position.x, transform.position.y),
-                    new Vector2(x, y));
-
-                Gizmos.color = Color.green;
-                Gizmos.DrawLine(
-                new Vector2(transform.position.x, transform.position.y),
-                new Vector2(Mathf.FloorToInt(transform.position.x + math.cos(angle) * Radius),
-                            Mathf.FloorToInt(transform.position.y + math.sin(angle) * Radius)));
             }
+
+            Vector3 worldPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+            var dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
+            var angle = Mathf.Atan2(dir.y, dir.x);
+
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(
+                new Vector2(transform.position.x, transform.position.y),
+                new Vector2(worldPosition.x, worldPosition.y));
+
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(
+            new Vector2(transform.position.x, transform.position.y),
+            new Vector2(transform.position.x + math.cos(angle) * Radius,
+                        transform.position.y + math.sin(angle) * Radius));
 
         }
     }

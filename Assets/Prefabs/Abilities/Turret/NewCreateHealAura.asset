@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   aSound: {fileID: 0}
-  aBaseCoolDown: 1
-  Radius: 5
+  BaseCoolDown: 1
+  Radius: 4
   BuildingPrefab: {fileID: 2274531369232011644, guid: 98788cd980d54d1499ce2384cddb127c,
     type: 3}
