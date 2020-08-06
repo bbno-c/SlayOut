@@ -8,8 +8,7 @@ namespace Controllers
     public interface IAbilityMenuView : IView
     {
         List<AbilityInfo> AbilityStats { get; set; }
-        //event Action<string> PlayEvent;
-
+        IMenuView MenuView { get; }
         void InitPanel();
     }
 
@@ -33,16 +32,27 @@ namespace Controllers
 
         public void OnOpen(IAbilityMenuView view)
         {
-            //view.PlayEvent += OnPlay;
             _view = view;
             _view.InitPanel();
         }
 
         public void OnClose(IAbilityMenuView view)
         {
-            //view.PlayEvent -= OnPlay;
             _game.PlayerAbilityStats.AbilityStatsList = _view.AbilityStats;
             _view = null;
+        }
+
+        private void OnDiscard()
+        {
+            _view?.Close(this);
+            _view.MenuView.Open(new MenuController(_game));
+        }
+
+        private void OnSave()
+        {
+            //
+            _view?.Close(this);
+            _view.MenuView.Open(new MenuController(_game));
         }
     }
 }

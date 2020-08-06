@@ -33,7 +33,7 @@ namespace Objects
     {
         public List<AbilityInfo> AbilityStatsList;
 
-        private void AbilityChecked(AbilityInfo ability)
+        public void AbilityChecked(AbilityInfo ability)
         {
             if(AbilityStatsList ==  null)
                 return;
@@ -49,7 +49,7 @@ namespace Objects
             AbilityStatsList.Add(ability);
         }
 
-        private void AddLevel(AbilityInfo ability, Parameter parameter)
+        public void AddLevel(AbilityInfo ability, Parameter parameter)
         {
             if(AbilityStatsList ==  null)
                 return;
@@ -70,7 +70,7 @@ namespace Objects
             }
         }
 
-        private void RemoveLevel(AbilityInfo ability, Parameter parameter)
+        public void RemoveLevel(AbilityInfo ability, Parameter parameter)
         {
             if(AbilityStatsList ==  null)
                 return;
