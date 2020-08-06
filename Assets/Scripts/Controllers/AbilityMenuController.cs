@@ -10,6 +10,8 @@ namespace Controllers
         List<AbilityInfo> AbilityStats { get; set; }
         IMenuView MenuView { get; }
         void InitPanel();
+        event Action DiscardEvent;
+        event Action SaveEvent;
     }
 
     public class AbilityMenuController : IController<IAbilityMenuView>
@@ -34,10 +36,16 @@ namespace Controllers
         {
             _view = view;
             _view.InitPanel();
+
+            _view.DiscardEvent += OnDiscard;
+            _view.SaveEvent += OnSave;
         }
 
         public void OnClose(IAbilityMenuView view)
         {
+            _view.DiscardEvent -= OnDiscard;
+            _view.SaveEvent -= OnSave;
+
             _game.PlayerAbilityStats.AbilityStatsList = _view.AbilityStats;
             _view = null;
         }

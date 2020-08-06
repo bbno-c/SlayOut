@@ -17,6 +17,7 @@ namespace Objects
 
         private List<LevelChangePanel> _panels;
         private AbilityInfo _abilityInfo;
+        private bool _active;
 
         public void InitPanel(AbilityInfo abilityInfo, AbilityStats abilityStats)
         {
@@ -32,11 +33,17 @@ namespace Objects
             }
 
             AbilityCheked += abilityStats.AbilityChecked;
+
+            _active = true;
+
+            AbilityIco.sprite = abilityInfo.Ability.aSprite;
         }
 
         public void OnCheck()
         {
+            _active = !_active;
             AbilityCheked?.Invoke(_abilityInfo);
+            VerticalLayoutGroup.gameObject.SetActive(_active);
         }
     }
 }

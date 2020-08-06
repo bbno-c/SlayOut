@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Objects;
 using Controllers;
@@ -11,12 +12,15 @@ namespace Views
         protected override IAbilityMenuView View => this;
 
         public IMenuView MenuView => _menuView;
-        private IMenuView _menuView;
+        private readonly IMenuView _menuView;
 
         public List<AbilityInfo> AbilityStats { get => _abilityStatsList; set => _abilityStatsList = value; }
         [SerializeField] private List<AbilityInfo> _abilityStatsList;
 
         private AbilityStats _abilityStats;
+
+        public event Action DiscardEvent;
+        public event Action SaveEvent;
 
         public VerticalLayoutGroup VerticalLayoutGroup;
         public AbilityEditPanel AbilityEditPanel;
@@ -38,6 +42,16 @@ namespace Views
                 _panels.Add(Instantiate(AbilityEditPanel, VerticalLayoutGroup.transform));
                 _panels[_panels.LastIndexOf(AbilityEditPanel)].InitPanel(AbilityInfo, _abilityStats);
             }
+        }
+
+        public void ActionDiscard()
+        {
+            DiscardEvent?.Invoke();
+        }
+
+        public void ActionSave()
+        {
+            SaveEvent?.Invoke();
         }
     }
 }
