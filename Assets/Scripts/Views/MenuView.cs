@@ -1,6 +1,7 @@
 ﻿﻿using System;
  using Controllers;
- using UnityEngine.UI;
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace Views
 {
@@ -8,13 +9,23 @@ namespace Views
 	 {
 		 protected override IMenuView View => this;
 
-		 public Text NickNameText;
+		[SerializeField]
+		private AbilityMenuView _abilityMenuView;
+		public IAbilityMenuView AbilityMenuView => _abilityMenuView;
+
+		public Text NickNameText;
 
 		 public event Action<string> PlayEvent;
+		public event Action AbilityMenuEvent;
 
-		 public void ActionPlay()
+		public void ActionPlay()
 		 {
 			 PlayEvent?.Invoke(NickNameText.text);
 		 }
-	 }
+
+		public void AbilityMenu()
+		{
+			AbilityMenuEvent?.Invoke();
+		}
+	}
 }

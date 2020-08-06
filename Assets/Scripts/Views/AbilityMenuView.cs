@@ -12,7 +12,8 @@ namespace Views
         protected override IAbilityMenuView View => this;
 
         public IMenuView MenuView => _menuView;
-        private readonly IMenuView _menuView;
+        [SerializeField]
+        private MenuView _menuView;
 
         public List<AbilityInfo> AbilityStats { get => _abilityStatsList; set => _abilityStatsList = value; }
         [SerializeField] private List<AbilityInfo> _abilityStatsList;
@@ -29,7 +30,7 @@ namespace Views
 
         private void OnEnable()
         {
-            _abilityStats.AbilityStatsList = _abilityStatsList;
+            //_abilityStats.AbilityStatsList = _abilityStatsList;
         }
 
         public void InitPanel()

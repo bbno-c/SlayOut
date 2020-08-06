@@ -6,6 +6,8 @@ namespace Controllers
     public interface IMenuView : IView
     {
         event Action<string> PlayEvent;
+        event Action AbilityMenuEvent;
+        IAbilityMenuView AbilityMenuView { get; }
     }
 
     public class MenuController : IController<IMenuView>
@@ -22,12 +24,14 @@ namespace Controllers
         public void OnOpen(IMenuView view)
         {
             view.PlayEvent += OnPlay;
+            view.AbilityMenuEvent += OnAbilityMenu;
             _view = view;
         }
 
         public void OnClose(IMenuView view)
         {
             view.PlayEvent -= OnPlay;
+            view.AbilityMenuEvent -= OnAbilityMenu;
             _view = null;
         }
 
@@ -35,6 +39,12 @@ namespace Controllers
         {
             _view?.Close(this);
             _game.NewGame();
+        }
+
+        private void OnAbilityMenu()
+        {
+            _view?.AbilityMenuView?.Open(new AbilityMenuController(_game));
+            _view?.Close(this);
         }
     }
 }
