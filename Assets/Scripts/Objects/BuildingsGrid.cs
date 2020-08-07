@@ -77,8 +77,6 @@ namespace Objects
 
         private bool IsPlaceTaken(int placeX, int placeY)
         {
-
-
             return false;
         }
 

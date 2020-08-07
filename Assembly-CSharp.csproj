@@ -101,6 +101,9 @@
     <Compile Include="Assets/Scripts/Objects/CreateHealAura.cs" />
     <Compile Include="Assets/Scripts/Objects/CreateBuilding.cs" />
     <Compile Include="Assets/Scripts/Objects/LevelMarker.cs" />
+    <Compile Include="Assets\Scripts\Controllers\AbilityPanelController.cs" />
+    <Compile Include="Assets\Scripts\Views\AbilityPanelView.cs" />
+    <Compile Include="Assets\Scripts\Objects\AbilityPanel.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets/TextMesh Pro/Resources/Shaders/TMPro.cginc" />

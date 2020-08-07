@@ -3,18 +3,18 @@ using UnityEngine;
 
 namespace Objects
 {
-    public struct PlayerAbility
+    public class PlayerAbility
     {
         public Ability Ability;
-        public List<AbilityInfo> AbilityStatsList;
         public bool IsAvailable => Timer <= 0;
-        public float Timer;
+        public float Timer = default;
         public void TimerStep() { if (Timer > 0f) Timer -= Time.deltaTime; }
         public void SetCooldown() => Timer = Ability.BaseCoolDown;
     }
 
     public class AbilityHolder : MonoBehaviour
     {
+        public List<AbilityInfo> _abilityStatsList;
         private List<PlayerAbility> _playerAbilities;
 
         private void Start()
@@ -23,7 +23,7 @@ namespace Objects
                 return;
 
             foreach (PlayerAbility playerAbility in _playerAbilities)
-                playerAbility.Ability.Initialize(gameObject, playerAbility.AbilityStatsList);
+                playerAbility.Ability.Initialize(gameObject, _abilityStatsList);
         }
 
         private void Update()
@@ -42,7 +42,6 @@ namespace Objects
                 if(_playerAbilities[index].IsAvailable)
                 {
                     _playerAbilities[index].Ability.TriggerAbility();
-                    _playerAbilities[index].SetCooldown();
                 }
             }
         }
@@ -53,10 +52,9 @@ namespace Objects
 
             foreach (AbilityInfo abilityInfo in abilityStatsList)
             {
-                PlayerAbility ability;
+                PlayerAbility ability = new PlayerAbility();
                 ability.Ability = abilityInfo.Ability;
-                ability.AbilityStatsList = abilityStatsList;
-                ability.Timer = default;
+                _abilityStatsList = abilityStatsList;
                 _playerAbilities.Add(ability);
             }
         }
