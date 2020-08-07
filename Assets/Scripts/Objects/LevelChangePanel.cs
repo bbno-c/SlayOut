@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System;
-using System.Collections.Generic;
 using UnityEngine.UI;
 using TMPro;
 
@@ -11,28 +10,32 @@ namespace Objects
         public event Action<AbilityInfo, Parameter> LevelUp;
         public event Action<AbilityInfo, Parameter> LevelDown;
 
-        public HorizontalLayoutGroup HorizontalLayoutGroup;
-        public TextMeshProUGUI AbilityName;
-        public GameObject LevelMarker;
+        public HorizontalLayoutGroup LevelMarkersLayoutGroup;
+        public TextMeshProUGUI ParameterName;
+        public LevelMarker LevelMarker;
 
-        private GameObject[] _levelMarkers;
+        private LevelMarker[] _levelMarkers;
         private Parameter _abilityPrameter;
         private AbilityInfo _abilityInfo;
         private int _currentLvl;
 
         public void InitPanel(AbilityPrameter abilityPrameter, AbilityInfo abilityInfo)
         {
-            _abilityPrameter = abilityPrameter.Parameter;
             _abilityInfo = abilityInfo;
+            _abilityPrameter = abilityPrameter.Parameter;
             _currentLvl = abilityPrameter.CurrentLevel;
 
             for (int i = 0; i < abilityPrameter.MaxLevel; i++)
             {
-                _levelMarkers[i] = Instantiate(LevelMarker, HorizontalLayoutGroup.transform);
+                _levelMarkers[i] = Instantiate(LevelMarker, LevelMarkersLayoutGroup.transform);
 
                 if(i <= _currentLvl)
                 {
-                    _levelMarkers[i].GetComponent<Image>().color = Color.green;
+                    _levelMarkers[i].LevelMarkerImage.color = Color.green;
+                }
+                else
+                {
+                    _levelMarkers[i].LevelMarkerImage.color = Color.red;
                 }
             }
         }
@@ -41,14 +44,14 @@ namespace Objects
         {
             
             LevelUp?.Invoke(_abilityInfo, _abilityPrameter);
-            _levelMarkers[_currentLvl].GetComponent<Image>().color = Color.green;
+            _levelMarkers[_currentLvl].LevelMarkerImage.color = Color.green;
             _currentLvl++;
         }
 
         public void OnLevelDown()
         {
             LevelDown?.Invoke(_abilityInfo, _abilityPrameter);
-            _levelMarkers[_currentLvl].GetComponent<Image>().color = Color.red;
+            _levelMarkers[_currentLvl].LevelMarkerImage.color = Color.red;
             _currentLvl--;
         }
     }

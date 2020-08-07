@@ -1,5 +1,7 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
+using System.Runtime.Serialization.Formatters.Binary;
 using Core;
 using Objects;
 using UnityEngine;
@@ -26,7 +28,7 @@ namespace Controllers
         public event Action<float> PlayerHealthChangeEvent;
         
         public Character Player { get; set; }
-        public AbilityStats PlayerAbilityStats { get; set; } // ДЕСЕРPИАЛИЗОВАТЬ
+        public AbilityStats PlayerAbilityStats { get; set; }
 
         private readonly List<GameObject> _objects = new List<GameObject>();
 
@@ -58,6 +60,8 @@ namespace Controllers
 
 		public void OnOpen(IGameView view)
 		{
+            LoadAbilityStats();
+
             view.PlayerDeadEvent += OnPlayerDead;
             view.PlayerHealthChangeEvent += OnPlayerHealthChange;
             view.MenuView?.Open(new MenuController(this));
@@ -66,6 +70,8 @@ namespace Controllers
 
         public void OnClose(IGameView view)
         {
+            SaveAbilityStats();
+
             view.PlayerDeadEvent -= OnPlayerDead;
             view.PlayerHealthChangeEvent -= OnPlayerHealthChange;
             _view = null;
@@ -88,5 +94,24 @@ namespace Controllers
 		{
 			PlayerHealthChangeEvent?.Invoke(value);
 		}
+
+        private void LoadAbilityStats()
+        {
+            if (File.Exists(Application.persistentDataPath + "/gamesave.save"))
+            {
+                BinaryFormatter bf = new BinaryFormatter();
+                FileStream file = File.Open(Application.persistentDataPath + "/gamesave.save", FileMode.Open);
+                PlayerAbilityStats = (AbilityStats)bf.Deserialize(file);
+                file.Close();
+            }
+        }
+
+        private void SaveAbilityStats()
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Create(Application.persistentDataPath + "/gamesave.save");
+            bf.Serialize(file, PlayerAbilityStats);
+            file.Close();
+        }
 	}
 }

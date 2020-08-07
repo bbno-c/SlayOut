@@ -85,6 +85,8 @@ namespace Views
             health.DieEvent += OnPlayerDead;
             health.ChangeEvent += OnPlayerHealthChange;
             OnPlayerHealthChange(health.Hitpoints);
+
+            player.AbilityHolder.SetPlayerAbilities(GameController.PlayerAbilityStats.AbilityStatsList);
         }
 
         private void OnPlayerDead()

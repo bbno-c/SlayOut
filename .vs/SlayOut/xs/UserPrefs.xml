@@ -1,11 +1,10 @@
 ﻿<Properties StartupConfiguration="{45D8B1B9-090E-72AC-7E6F-4E4E1D7FE9E9}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Views/AbilityMenuView.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Objects/AbilityHolder.cs">
     <Files>
-      <File FileName="Assets/Scripts/Objects/AbilityStats.cs" Line="21" Column="51" IsPinned="True" />
-      <File FileName="Assets/Scripts/Controllers/AbilityMenuController.cs" Line="29" Column="1" />
-      <File FileName="Assets/Scripts/Views/AbilityMenuView.cs" Line="54" Column="33" />
-      <File FileName="Assets/Scripts/Objects/AbilityEditPanel.cs" Line="5" Column="13" />
-      <File FileName="Assets/Scripts/Objects/NewMonoBehaviour.cs" Line="21" Column="33" />
+      <File FileName="Assets/Scripts/Controllers/WeaponPanelController.cs" Line="41" Column="20" />
+      <File FileName="Assets/Scripts/Views/WeaponPanelView.cs" Line="6" Column="1" />
+      <File FileName="Assets/Scripts/Objects/WeaponHolder.cs" Line="2" Column="34" />
+      <File FileName="Assets/Scripts/Objects/AbilityHolder.cs" Line="36" Column="10" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -14,13 +13,10 @@
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
                 <Node name="Controllers" expanded="True" />
-                <Node name="Core" expanded="True" />
                 <Node name="Objects" expanded="True">
-                  <Node name="UI" expanded="True" />
+                  <Node name="AbilityHolder.cs" selected="True" />
                 </Node>
-                <Node name="Views" expanded="True">
-                  <Node name="AbilityMenuView.cs" selected="True" />
-                </Node>
+                <Node name="Views" expanded="True" />
               </Node>
             </Node>
           </Node>
@@ -30,7 +26,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="fb68cffb-f6a1-4429-93da-a4b0943787f8" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="61a9821d-1e0c-4f1f-a3e3-40291c997c4a" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

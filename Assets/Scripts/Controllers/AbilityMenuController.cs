@@ -7,7 +7,7 @@ namespace Controllers
 {
     public interface IAbilityMenuView : IView
     {
-        List<AbilityInfo> AbilityStats { get; set; }
+        List<AbilityInfo> AbilityStatsList { get; set; }
         IMenuView MenuView { get; }
         void InitPanel();
         event Action DiscardEvent;
@@ -26,16 +26,14 @@ namespace Controllers
 
             if(game.PlayerAbilityStats != null)
             {
-
+                _view.AbilityStatsList = _game.PlayerAbilityStats.AbilityStatsList;
             }
-            // передать класс настроек во вьюху
-            // распарсить во вьюху десерриализованный здесь ?(где-то на загрузке) PlayerAbilityStats, если он есть
         }
 
         public void OnOpen(IAbilityMenuView view)
         {
             _view = view;
-            _view.InitPanel();
+            _view?.InitPanel();
 
             _view.DiscardEvent += OnDiscard;
             _view.SaveEvent += OnSave;
@@ -45,8 +43,7 @@ namespace Controllers
         {
             _view.DiscardEvent -= OnDiscard;
             _view.SaveEvent -= OnSave;
-
-            _game.PlayerAbilityStats.AbilityStatsList = _view.AbilityStats;
+            
             _view = null;
         }
 
@@ -54,12 +51,11 @@ namespace Controllers
         {
             _view?.MenuView.Open(new MenuController(_game));
             _view?.Close(this);
-            
         }
 
         private void OnSave()
         {
-            //
+            _game.PlayerAbilityStats.AbilityStatsList = _view.AbilityStatsList;
             _view?.MenuView.Open(new MenuController(_game));
             _view?.Close(this);
         }

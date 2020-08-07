@@ -11,26 +11,28 @@ namespace Views
     {
         protected override IAbilityMenuView View => this;
 
-        public IMenuView MenuView => _menuView;
+        private AbilityStats _abilityStats;
+
         [SerializeField]
         private MenuView _menuView;
+        public IMenuView MenuView => _menuView;
 
-        public List<AbilityInfo> AbilityStats { get => _abilityStatsList; set => _abilityStatsList = value; }
-        [SerializeField] private List<AbilityInfo> _abilityStatsList;
-
-        private AbilityStats _abilityStats;
+        [SerializeField]
+        private List<AbilityInfo> _abilityStatsList;
+        public List<AbilityInfo> AbilityStatsList { get => _abilityStatsList; set => _abilityStatsList = value; }
 
         public event Action DiscardEvent;
         public event Action SaveEvent;
 
-        public VerticalLayoutGroup VerticalLayoutGroup;
+        public VerticalLayoutGroup AbilityPanelsLayoutGroup;
         public AbilityEditPanel AbilityEditPanel;
 
         private List<AbilityEditPanel> _panels;
 
         private void OnEnable()
         {
-            //_abilityStats.AbilityStatsList = _abilityStatsList;
+            _abilityStats = new AbilityStats();
+            _abilityStats.AbilityStatsList = _abilityStatsList;
         }
 
         public void InitPanel()
@@ -40,7 +42,7 @@ namespace Views
             
             foreach(AbilityInfo AbilityInfo in _abilityStatsList)
             {
-                _panels.Add(Instantiate(AbilityEditPanel, VerticalLayoutGroup.transform));
+                _panels.Add(Instantiate(AbilityEditPanel, AbilityPanelsLayoutGroup.transform));
                 _panels[_panels.LastIndexOf(AbilityEditPanel)].InitPanel(AbilityInfo, _abilityStats);
             }
         }
