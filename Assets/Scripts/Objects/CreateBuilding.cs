@@ -5,7 +5,7 @@ namespace Objects
 {
     public abstract class CreateBuilding : Ability
     {
-        public int Radius = 5;
+        public int Radius;
         public Building BuildingPrefab;
     }
 }

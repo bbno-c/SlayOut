@@ -18,6 +18,8 @@ namespace Controllers
 
         IHudView HudView { get; }
         IMenuView MenuView { get; }
+
+        List<AbilityInfo> AbilityStatsList { get; }
     }
 
     [CreateAssetMenu(menuName = "Game Controller")]
@@ -31,7 +33,6 @@ namespace Controllers
         public AbilityStats PlayerAbilityStats { get; set; }
 
         private readonly List<GameObject> _objects = new List<GameObject>();
-
         private IGameView _view;
         private int _scores;
 
@@ -60,12 +61,14 @@ namespace Controllers
 
 		public void OnOpen(IGameView view)
 		{
-            LoadAbilityStats();
-
             view.PlayerDeadEvent += OnPlayerDead;
             view.PlayerHealthChangeEvent += OnPlayerHealthChange;
+
             view.MenuView?.Open(new MenuController(this));
             _view = view;
+
+            PlayerAbilityStats.AbilityStatsList = view.AbilityStatsList;
+            LoadAbilityStats();
         }
 
         public void OnClose(IGameView view)
@@ -101,7 +104,18 @@ namespace Controllers
             {
                 BinaryFormatter bf = new BinaryFormatter();
                 FileStream file = File.Open(Application.persistentDataPath + "/gamesave.save", FileMode.Open);
-                PlayerAbilityStats = (AbilityStats)bf.Deserialize(file);
+                
+                AbilityStatsSave abilityStatsSave = new AbilityStatsSave();
+                abilityStatsSave = (AbilityStatsSave)bf.Deserialize(file);
+
+                if (abilityStatsSave != null)
+                    foreach (AbilityInfoSave abilityInfoSave in abilityStatsSave.abilityStatsSaveList)
+                    {
+                        AbilityInfo abilityInfo = PlayerAbilityStats.AbilityStatsList.Find(x => x.Ability.Name == abilityInfoSave.AbilityName);
+                        abilityInfo.Checked = abilityInfoSave.Checked;
+                        abilityInfo.AbilityPrametersList = abilityInfoSave.AbilityPrametersList;
+                    }
+
                 file.Close();
             }
         }
@@ -110,7 +124,18 @@ namespace Controllers
         {
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Create(Application.persistentDataPath + "/gamesave.save");
-            bf.Serialize(file, PlayerAbilityStats);
+
+            AbilityStatsSave abilityStatsSave = new AbilityStatsSave();
+            foreach(AbilityInfo abilityInfo in PlayerAbilityStats.AbilityStatsList)
+            {
+                AbilityInfoSave abilityInfoSave = new AbilityInfoSave();
+                abilityInfoSave.AbilityName = abilityInfo.Ability.Name;
+                abilityInfoSave.Checked = abilityInfo.Checked;
+                abilityInfoSave.AbilityPrametersList = abilityInfo.AbilityPrametersList;
+                abilityStatsSave.abilityStatsSaveList.Add(abilityInfoSave);
+            }
+
+            bf.Serialize(file, abilityStatsSave);
             file.Close();
         }
 	}

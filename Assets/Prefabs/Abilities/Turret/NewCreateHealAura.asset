@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eba98b1ff6a69584d8e9662a2d2c5cef, type: 3}
   m_Name: NewCreateHealAura
   m_EditorClassIdentifier: 
+  Name: HealAura
   aSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   aSound: {fileID: 0}
   BaseCoolDown: 1

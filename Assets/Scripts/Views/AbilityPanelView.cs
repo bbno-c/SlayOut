@@ -13,7 +13,7 @@ namespace Views
         public HorizontalLayoutGroup AbilityPanelsLayoutGroup;
         public AbilityPanel AbilityPanel;
 
-        public void InitPanel(List<AbilityInfo> abilityStatsList)
+        public void InitPanel()
         {
 
         }

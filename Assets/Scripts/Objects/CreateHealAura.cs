@@ -7,13 +7,13 @@ namespace Objects
     public class CreateHealAura : CreateBuilding
     {
         private BuildingsGrid _buildingsGrid;
-        public override void Initialize(GameObject obj, List<AbilityInfo> abilityStatsList)
+        public override void Initialize(GameObject obj, AbilityStats playerAbilityStats)
         {
             int buildingRadiusLvl = 0;
 
-            if(abilityStatsList != null)
+            if(playerAbilityStats != null)
             {
-                buildingRadiusLvl = FindParameterLevel(Parameter.BuildingRadius, abilityStatsList);
+                buildingRadiusLvl = playerAbilityStats.FindParameterLevel(Parameter.BuildingRadius, Name);
             }
 
             _buildingsGrid = obj.GetComponent<BuildingsGrid>();

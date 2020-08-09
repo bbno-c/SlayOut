@@ -6,7 +6,7 @@ namespace Controllers
 {
     public interface IAbilityPanelView : IView
     {
-        void InitPanel(List<AbilityInfo> abilityStatsList);
+        void InitPanel();
     }
 
     public class AbilityPanelController : IController<IAbilityPanelView>
@@ -21,7 +21,7 @@ namespace Controllers
 
         public void OnOpen(IAbilityPanelView view)
         {
-            view?.InitPanel(_game.Player.AbilityHolder._abilityStatsList);
+            view?.InitPanel();
             _view = view;
         }
 

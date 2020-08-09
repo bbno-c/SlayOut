@@ -32,6 +32,7 @@ namespace Controllers
 
             _view.WeaponPanelView?.Open(new WeaponPanelController(_game));
             _view.WeaponStateBarView?.Open(new WeaponStateBarController(_game));
+            //
         }
 
         public void OnClose(IHudView view)

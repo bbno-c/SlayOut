@@ -21,6 +21,8 @@ namespace Objects
 
         public void InitPanel(AbilityPrameter abilityPrameter, AbilityInfo abilityInfo)
         {
+            _levelMarkers = new LevelMarker [abilityPrameter.MaxLevel];
+
             _abilityInfo = abilityInfo;
             _abilityPrameter = abilityPrameter.Parameter;
             _currentLvl = abilityPrameter.CurrentLevel;

@@ -14,7 +14,7 @@ namespace Objects
 
     public class AbilityHolder : MonoBehaviour
     {
-        public List<AbilityInfo> _abilityStatsList;
+        private AbilityStats _playerAbilityStats;
         private List<PlayerAbility> _playerAbilities;
 
         private void Start()
@@ -23,7 +23,7 @@ namespace Objects
                 return;
 
             foreach (PlayerAbility playerAbility in _playerAbilities)
-                playerAbility.Ability.Initialize(gameObject, _abilityStatsList);
+                playerAbility.Ability.Initialize(gameObject, _playerAbilityStats);
         }
 
         private void Update()
@@ -46,16 +46,18 @@ namespace Objects
             }
         }
 
-        public void SetPlayerAbilities(List<AbilityInfo> abilityStatsList)
+        public void SetPlayerAbilities(AbilityStats playerAbilityStats)
         {
             _playerAbilities = new List<PlayerAbility>();
 
-            foreach (AbilityInfo abilityInfo in abilityStatsList)
+            foreach (AbilityInfo abilityInfo in playerAbilityStats.AbilityStatsList)
             {
-                PlayerAbility ability = new PlayerAbility();
-                ability.Ability = abilityInfo.Ability;
-                _abilityStatsList = abilityStatsList;
-                _playerAbilities.Add(ability);
+                if(abilityInfo.Checked)
+                {
+                    PlayerAbility ability = new PlayerAbility();
+                    ability.Ability = abilityInfo.Ability;
+                    _playerAbilities.Add(ability);
+                }
             }
         }
     }

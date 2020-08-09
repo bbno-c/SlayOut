@@ -2,12 +2,13 @@ using Objects;
 using System;
 using Core;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Controllers
 {
     public interface IAbilityMenuView : IView
     {
-        List<AbilityInfo> AbilityStatsList { get; set; }
+        AbilityStats AbilityStats { get; set; }
         IMenuView MenuView { get; }
         void InitPanel();
         event Action DiscardEvent;
@@ -23,16 +24,14 @@ namespace Controllers
         public AbilityMenuController(IGame game)
         {
             _game = game;
-
-            if(game.PlayerAbilityStats != null)
-            {
-                _view.AbilityStatsList = _game.PlayerAbilityStats.AbilityStatsList;
-            }
         }
 
         public void OnOpen(IAbilityMenuView view)
         {
             _view = view;
+
+            _view.AbilityStats = _game.PlayerAbilityStats;
+
             _view?.InitPanel();
 
             _view.DiscardEvent += OnDiscard;
@@ -55,7 +54,6 @@ namespace Controllers
 
         private void OnSave()
         {
-            _game.PlayerAbilityStats.AbilityStatsList = _view.AbilityStatsList;
             _view?.MenuView.Open(new MenuController(_game));
             _view?.Close(this);
         }

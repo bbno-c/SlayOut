@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Controllers;
 using Objects;
 using UnityEngine;
@@ -22,6 +23,10 @@ namespace Views
 
         public IHudView HudView => _hudView;
         public IMenuView MenuView => _menuView;
+
+        public List<AbilityInfo> AbilityStatsList { get => _abilityStatsList; }
+        [SerializeField]
+        private List<AbilityInfo> _abilityStatsList;
 
         public event Action PlayerDeadEvent;
         public event Action<float> PlayerHealthChangeEvent;
@@ -86,7 +91,7 @@ namespace Views
             health.ChangeEvent += OnPlayerHealthChange;
             OnPlayerHealthChange(health.Hitpoints);
 
-            player.AbilityHolder.SetPlayerAbilities(GameController.PlayerAbilityStats.AbilityStatsList);
+            player.AbilityHolder.SetPlayerAbilities(GameController.PlayerAbilityStats);
         }
 
         private void OnPlayerDead()

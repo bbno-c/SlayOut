@@ -9,7 +9,7 @@ namespace Objects
     }
 
     [System.Serializable]
-    public struct AbilityPrameter
+    public class AbilityPrameter
     {
         public Parameter Parameter;
         public int MaxLevel;
@@ -20,8 +20,9 @@ namespace Objects
     }
 
     [System.Serializable]
-    public struct AbilityInfo
+    public class AbilityInfo
     {
+        public bool Checked;
         public Ability Ability;
         public List<AbilityPrameter> AbilityPrametersList;
     }
@@ -36,15 +37,17 @@ namespace Objects
             if(AbilityStatsList ==  null)
                 return;
 
-            foreach(AbilityInfo AbilityInfo in AbilityStatsList)
+            AbilityStatsList.Find(x => x == ability).Checked = !ability.Checked;
+        }
+
+        public int FindParameterLevel(Parameter parameter, string abilityName)
+        {
+            foreach(AbilityInfo abilityInfo in AbilityStatsList)
             {
-                if(AbilityInfo.Ability == ability.Ability)
-                {
-                    AbilityStatsList.Remove(AbilityInfo);
-                    return;
-                }
+                if(abilityInfo.Ability.Name == abilityName)
+                    return abilityInfo.AbilityPrametersList.Find(x => x.Parameter == parameter).CurrentLevel;
             }
-            AbilityStatsList.Add(ability);
+            return 0;
         }
 
         public void AddLevel(AbilityInfo ability, Parameter parameter)
@@ -81,7 +84,7 @@ namespace Objects
                     {
                         if (parameter == existingParam.Parameter)
                         {
-                            if (existingParam.CurrentLevel < existingParam.MaxLevel)
+                            if (existingParam.CurrentLevel > 0)
                                 existingParam.LevelDown();
                         }
                     }

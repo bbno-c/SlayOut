@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7089284056907978715}
   - component: {fileID: 3730288298523793853}
   - component: {fileID: 8956844357137183713}
+  - component: {fileID: 6303686172463923315}
   m_Layer: 5
   m_Name: LevelMarker
   m_TagString: Untagged
@@ -75,3 +76,16 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6303686172463923315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6371777366705298472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5617194ef0ce54e72b7b37809f91ccb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LevelMarkerImage: {fileID: 8956844357137183713}

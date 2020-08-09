@@ -21,18 +21,23 @@ namespace Objects
 
         public void InitPanel(AbilityInfo abilityInfo, AbilityStats abilityStats)
         {
+            _panels = new List<LevelChangePanel>();
+
             _active = true;
             _abilityInfo = abilityInfo;
             AbilityIco.sprite = abilityInfo.Ability.aSprite;
+
             AbilityCheckEvent += abilityStats.AbilityChecked;
 
             foreach (AbilityPrameter AbilityPrameter in abilityInfo.AbilityPrametersList)
             {
                 _panels.Add(Instantiate(ParameterPanel, AbilityParametersLayoutGroup.transform));
 
-                _panels[_panels.LastIndexOf(ParameterPanel)].InitPanel(AbilityPrameter, abilityInfo);
-                _panels[_panels.LastIndexOf(ParameterPanel)].LevelUp += abilityStats.AddLevel;
-                _panels[_panels.LastIndexOf(ParameterPanel)].LevelDown += abilityStats.RemoveLevel;
+                LevelChangePanel panel = _panels.Find(x => ParameterPanel);
+
+                panel.InitPanel(AbilityPrameter, abilityInfo);
+                panel.LevelUp += abilityStats.AddLevel;
+                panel.LevelDown += abilityStats.RemoveLevel;
             }
         }
 
