@@ -30,7 +30,5 @@ namespace Controllers
             
             _view = null;
         }
-
-        
     }
 }

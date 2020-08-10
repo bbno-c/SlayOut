@@ -9,6 +9,7 @@ namespace Controllers
 
         IEndGameView EndGameView { get; }
         IWeaponPanelView WeaponPanelView { get; }
+        IAbilityPanelView AbilityPanelView { get; }
         IWeaponStateBarView WeaponStateBarView { get; }
     }
 
@@ -28,11 +29,12 @@ namespace Controllers
             _game.EndGameEvent += OnEndGame;
             _game.ScoreChangedEvent += OnScoreChanged;
             _game.PlayerHealthChangeEvent += OnPlayerHealthChanged;
+
             _view = view;
 
             _view.WeaponPanelView?.Open(new WeaponPanelController(_game));
+            _view.AbilityPanelView?.Open(new AbilityPanelController(_game));
             _view.WeaponStateBarView?.Open(new WeaponStateBarController(_game));
-            //
         }
 
         public void OnClose(IHudView view)

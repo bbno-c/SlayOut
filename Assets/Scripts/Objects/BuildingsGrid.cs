@@ -1,7 +1,5 @@
-using System;
 using UnityEngine;
 using Unity.Mathematics;
-using System.ComponentModel;
 
 namespace Objects
 {

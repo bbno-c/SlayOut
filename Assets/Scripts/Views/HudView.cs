@@ -1,8 +1,6 @@
 ﻿using Controllers;
-using Objects;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 namespace Views
 {
@@ -11,12 +9,16 @@ namespace Views
 		protected override IHudView View => this;
 
 		[SerializeField]
+		private EndGameView _endGameView;
+		public IEndGameView EndGameView => _endGameView;
+
+		[SerializeField]
 		private WeaponPanelView _weaponPanelView;
 		public IWeaponPanelView WeaponPanelView => _weaponPanelView;
 
 		[SerializeField]
-		private EndGameView _endGameView;
-		public IEndGameView EndGameView => _endGameView;
+		private AbilityPanelView _abilityPanelView;
+		public IAbilityPanelView AbilityPanelView => _abilityPanelView;
 
 		[SerializeField]
 		private WeaponStateBarView _weaponStateBarView;

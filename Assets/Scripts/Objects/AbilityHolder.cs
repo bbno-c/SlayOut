@@ -42,6 +42,7 @@ namespace Objects
                 if(_playerAbilities[index].IsAvailable)
                 {
                     _playerAbilities[index].Ability.TriggerAbility();
+                    // кулдаун по колбеку
                 }
             }
         }
