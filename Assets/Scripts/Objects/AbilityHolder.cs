@@ -53,7 +53,7 @@ namespace Objects
 
             foreach (AbilityInfo abilityInfo in playerAbilityStats.AbilityStatsList)
             {
-                if(abilityInfo.Checked)
+                if(abilityInfo.Checked)//---------------
                 {
                     PlayerAbility ability = new PlayerAbility();
                     ability.Ability = abilityInfo.Ability;

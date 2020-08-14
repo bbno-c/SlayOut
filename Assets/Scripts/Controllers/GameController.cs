@@ -132,6 +132,8 @@ namespace Controllers
                 abilityInfoSave.AbilityName = abilityInfo.Ability.Name;
                 abilityInfoSave.Checked = abilityInfo.Checked;
                 abilityInfoSave.AbilityPrametersList = abilityInfo.AbilityPrametersList;
+
+                abilityStatsSave.abilityStatsSaveList = new List<AbilityInfoSave>();
                 abilityStatsSave.abilityStatsSaveList.Add(abilityInfoSave);
             }
 
