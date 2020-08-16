@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Objects
 {
 	[CreateAssetMenu(fileName = "NewRangeWeapon", menuName = "Weapon/RangeWeapon")]
-	public class RangeWeaponData : WeaponData
+	public class WeaponDataRange : WeaponData
 	{
 		public GameObject BulletPrefab;
 		public float ReloadTime;

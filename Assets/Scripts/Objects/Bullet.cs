@@ -28,13 +28,15 @@ namespace Objects
             {
 				OnBulletHit();
 			}
+
+			if (Animator.GetCurrentAnimatorStateInfo(0).IsName("BulletM16"))//вынести в апдейт
+				gameObject.SetActive(false);
 		}
         private void OnBulletHit()
         {
 			SpriteRenderer.flipX = true;
 			Animator.SetTrigger("Collide");
-			if(Animator.GetCurrentAnimatorStateInfo(0).IsName("BulletM16"))
-				gameObject.SetActive(false);
+			
 		}
 
         private void OnCollisionEnter(Collision collision)

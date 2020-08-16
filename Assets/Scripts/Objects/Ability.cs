@@ -12,7 +12,7 @@ namespace Objects
         public AudioClip aSound;
         public float BaseCoolDown = 1f;
 
-        public event Action AbilityApplyedEvent;
+        public event Action AbilityApplyEvent;
 
         public abstract void Initialize(GameObject obj, AbilityStats playerAbilityStats);
         public abstract void TriggerAbility();

@@ -24,9 +24,9 @@ namespace Views
         public IHudView HudView => _hudView;
         public IMenuView MenuView => _menuView;
 
-        public List<AbilityInfo> AbilityStatsList { get => _abilityStatsList; }
+        public List<AbilityInfo> PresetAbilityStatsList { get => _presetAbilityStatsList; }
         [SerializeField]
-        private List<AbilityInfo> _abilityStatsList;
+        private List<AbilityInfo> _presetAbilityStatsList;
 
         public event Action PlayerDeadEvent;
         public event Action<float> PlayerHealthChangeEvent;

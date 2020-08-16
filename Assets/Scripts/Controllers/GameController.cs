@@ -19,7 +19,7 @@ namespace Controllers
         IHudView HudView { get; }
         IMenuView MenuView { get; }
 
-        List<AbilityInfo> AbilityStatsList { get; }
+        List<AbilityInfo> PresetAbilityStatsList { get; }
     }
 
     [CreateAssetMenu(menuName = "Game Controller")]
@@ -67,7 +67,7 @@ namespace Controllers
             view.MenuView?.Open(new MenuController(this));
             _view = view;
 
-            PlayerAbilityStats.AbilityStatsList = view.AbilityStatsList;
+            PlayerAbilityStats.AbilityStatsList = view.PresetAbilityStatsList;
             LoadAbilityStats();
         }
 
@@ -111,7 +111,7 @@ namespace Controllers
                 if (abilityStatsSave != null)
                     foreach (AbilityInfoSave abilityInfoSave in abilityStatsSave.abilityStatsSaveList)
                     {
-                        AbilityInfo abilityInfo = PlayerAbilityStats.AbilityStatsList.Find(x => x.Ability.Name == abilityInfoSave.AbilityName);
+                        AbilityInfo abilityInfo = PlayerAbilityStats?.AbilityStatsList?.Find(x => x.Ability.Name == abilityInfoSave.AbilityName);
                         abilityInfo.Checked = abilityInfoSave.Checked;
                         abilityInfo.AbilityPrametersList = abilityInfoSave.AbilityPrametersList;
                     }
@@ -126,14 +126,14 @@ namespace Controllers
             FileStream file = File.Create(Application.persistentDataPath + "/gamesave.save");
 
             AbilityStatsSave abilityStatsSave = new AbilityStatsSave();
-            foreach(AbilityInfo abilityInfo in PlayerAbilityStats.AbilityStatsList)
+            abilityStatsSave.abilityStatsSaveList = new List<AbilityInfoSave>();
+
+            foreach (AbilityInfo abilityInfo in PlayerAbilityStats.AbilityStatsList)
             {
                 AbilityInfoSave abilityInfoSave = new AbilityInfoSave();
                 abilityInfoSave.AbilityName = abilityInfo.Ability.Name;
                 abilityInfoSave.Checked = abilityInfo.Checked;
                 abilityInfoSave.AbilityPrametersList = abilityInfo.AbilityPrametersList;
-
-                abilityStatsSave.abilityStatsSaveList = new List<AbilityInfoSave>();
                 abilityStatsSave.abilityStatsSaveList.Add(abilityInfoSave);
             }
 

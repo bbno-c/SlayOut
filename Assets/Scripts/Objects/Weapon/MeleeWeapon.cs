@@ -8,7 +8,7 @@ namespace Objects
 	{
 		public Transform player;
 		private MeleeWeaponInfo _currentWeapon;
-		private MeleeWeaponData _currentMeleeWeaponData;
+		private WeaponDataMelee _currentWeaponDataMelee;
 		public WeaponHolder WeaponHolder;
 		public SpriteRenderer SpriteRenderer;
 		private bool _reverse;
@@ -31,7 +31,7 @@ namespace Objects
 			{
 				_isMeleeWeapon = true;
 				_currentWeapon = weapon;
-				_currentMeleeWeaponData = (MeleeWeaponData)weapon.Data;
+				_currentWeaponDataMelee = (WeaponDataMelee)weapon.Data;
 				SpriteRenderer.flipY = _reverse;
 				SetWeapon();
 			}
@@ -39,15 +39,15 @@ namespace Objects
 
 		private void SetWeapon()
 		{
-			WeaponSetState(WeaponFireState.StartDelay, _currentMeleeWeaponData.StartDelay);
-			WeaponHolder.AnimatorOverrider.Animator.SetFloat("FireTime", _currentMeleeWeaponData.FireTime* _currentMeleeWeaponData.AnimationMultiplier);
+			WeaponSetState(WeaponFireState.StartDelay, _currentWeaponDataMelee.StartDelay);
+			WeaponHolder.AnimatorOverrider.Animator.SetFloat("FireTime", _currentWeaponDataMelee.FireTime/*_currentWeaponDataMelee.AnimationMultiplier*/);
 		}
 
 		public void Fire()
 		{
 			WeaponHolder.AnimatorOverrider.Animator.SetTrigger("Attack");
 			CreateBullet();
-			WeaponSetState(WeaponFireState.DelayBetwenBullets, _currentMeleeWeaponData.FireTime);
+			WeaponSetState(WeaponFireState.DelayBetwenBullets, _currentWeaponDataMelee.FireTime);
 			_reverse = !_reverse;
 			SpriteRenderer.flipY = _reverse;
 		}
@@ -59,7 +59,7 @@ namespace Objects
 				_timer -= Time.deltaTime;
 				if(_timer <= 0f)
 				{
-					if(_state == WeaponFireState.DelayBetwenBullets || _state == WeaponFireState.StartDelay)
+					//if(_state == WeaponFireState.DelayBetwenBullets || _state == WeaponFireState.StartDelay)
 					{
 						WeaponSetState(WeaponFireState.None, 0f);
 					}
@@ -88,8 +88,8 @@ namespace Objects
 
 			Gizmos.DrawLine(
 				new Vector2(transform.position.x, transform.position.y),
-				new Vector2(transform.position.x + math.cos(angle) * _currentMeleeWeaponData.Range,
-							transform.position.y + math.sin(angle) * _currentMeleeWeaponData.Range));
+				new Vector2(transform.position.x + math.cos(angle) * _currentWeaponDataMelee.Range,
+							transform.position.y + math.sin(angle) * _currentWeaponDataMelee.Range));
 		}
 	}
 }

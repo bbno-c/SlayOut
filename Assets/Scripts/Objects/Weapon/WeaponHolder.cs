@@ -5,6 +5,7 @@ using Objects;
 
 public class WeaponHolder: MonoBehaviour
 {
+    [SerializeField] private WeaponData StartWeapon;
     private List<WeaponInfo> _playerWeapons;
     private WeaponInfo _currentWeapon;
     private WeaponInfo _previousWeapon;
@@ -14,7 +15,7 @@ public class WeaponHolder: MonoBehaviour
 
     public RangeWeapon RangeWeapon;
     public MeleeWeapon MeleeWeapon;
-    [SerializeField] private WeaponData StartWeapon;
+    
     public AnimatorOverrider AnimatorOverrider;
 
     public event Action<WeaponInfo> WeaponChange;
@@ -75,7 +76,7 @@ public class WeaponHolder: MonoBehaviour
     {
         WeaponInfo weaponInfo;
 
-        RangeWeaponData weaponData = newElement as RangeWeaponData;
+        WeaponDataRange weaponData = newElement as WeaponDataRange;
         if(weaponData != null)
         {
             var bulletPool = new List<GameObject>();
@@ -88,7 +89,7 @@ public class WeaponHolder: MonoBehaviour
         }
         else
         {
-            return weaponInfo = new MeleeWeaponInfo((MeleeWeaponData)newElement, this);
+            return weaponInfo = new MeleeWeaponInfo((WeaponDataMelee)newElement, this);
         }
     }
 
