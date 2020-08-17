@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Objects
 {
     [CreateAssetMenu(fileName = "NewCreateHealAura",menuName ="Abilities/CreateHealAura")]
-    public class CreateHealAura : CreateBuilding
+    public class AbilityCreateHealAura : AbilityCreateBuilding
     {
         private BuildingsGrid _buildingsGrid;
         public override void Initialize(GameObject obj, AbilityStats playerAbilityStats)

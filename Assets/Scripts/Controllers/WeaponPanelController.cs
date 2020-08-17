@@ -5,6 +5,7 @@ namespace Controllers
 {
     public interface IWeaponPanelView : IView
     {
+        WeaponHolder WeaponHolder { set; }
         void InitPanel(WeaponInfo weapon);
         void UpdateWeapon(WeaponInfo weapon);
         void OnWeaponChange(WeaponInfo previous, WeaponInfo current);
@@ -22,6 +23,7 @@ namespace Controllers
 
         public void OnOpen(IWeaponPanelView view)
         {
+            view.WeaponHolder = _game.Player.WeaponHolder;
             _game.Player.WeaponHolder.ElementAdded += CreatePanel;
             _game.Player.WeaponHolder.WeaponChange += OnWeaponChange;
             _view = view;
@@ -31,6 +33,7 @@ namespace Controllers
         {
             _game.Player.WeaponHolder.ElementAdded -= CreatePanel;
             _game.Player.WeaponHolder.WeaponChange -= OnWeaponChange;
+            _view.WeaponHolder = null;
             _view = null;
         }
         

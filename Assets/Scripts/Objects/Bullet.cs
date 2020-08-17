@@ -29,14 +29,14 @@ namespace Objects
 				OnBulletHit();
 			}
 
-			if (Animator.GetCurrentAnimatorStateInfo(0).IsName("BulletM16"))//вынести в апдейт
+			if (Animator.GetCurrentAnimatorStateInfo(0).IsName("BulletM16"))
 				gameObject.SetActive(false);
 		}
         private void OnBulletHit()
         {
-			SpriteRenderer.flipX = true;
 			Animator.SetTrigger("Collide");
-			
+			SpriteRenderer.flipX = true;
+
 		}
 
         private void OnCollisionEnter(Collision collision)
@@ -45,7 +45,7 @@ namespace Objects
 			if(health != null) 
 				health.Damage(Damage);
 
-			gameObject.SetActive(false);//OnBulletHit();
+			gameObject.SetActive(false);
 		}
 	}
 }

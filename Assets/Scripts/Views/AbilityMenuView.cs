@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
 using Objects;
 using Controllers;
-using UnityEngine.UI;
-using UnityEngine;
 
 namespace Views
 {
@@ -24,6 +24,12 @@ namespace Views
         public VerticalLayoutGroup AbilityPanelsLayoutGroup;
         public AbilityEditPanel AbilityEditPanel;
         private List<AbilityEditPanel> _panels;
+
+        private void OnDisable()
+        {
+            foreach (AbilityEditPanel abilityEditPanel in _panels)
+                Destroy(abilityEditPanel.gameObject);
+        }
 
         public void InitPanel()
         {

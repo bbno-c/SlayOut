@@ -23,10 +23,9 @@ namespace Objects
         {
             _panels = new List<LevelChangePanel>();
 
-            _active = true;
+            _active = abilityInfo.Checked;
             _abilityInfo = abilityInfo;
             AbilityIco.sprite = abilityInfo.Ability.aSprite;
-
             AbilityCheckEvent += abilityStats.AbilityChecked;
 
             foreach (AbilityPrameter AbilityPrameter in abilityInfo.AbilityPrametersList)
@@ -44,8 +43,9 @@ namespace Objects
         public void OnCheck()
         {
             _active = !_active;
-            AbilityCheckEvent?.Invoke(_abilityInfo);
             AbilityParametersLayoutGroup.gameObject.SetActive(_active);
+
+            AbilityCheckEvent?.Invoke(_abilityInfo);
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Objects
     {
         public Parameter Parameter;
         public int MaxLevel;
-        [HideInInspector] public int CurrentLevel;
+        public int CurrentLevel;
 
         public void LevelUp() => CurrentLevel++;
         public void LevelDown() => CurrentLevel--;
@@ -23,8 +23,11 @@ namespace Objects
     public class AbilityInfo
     {
         public bool Checked;
-        public Ability Ability;
-        public List<AbilityPrameter> AbilityPrametersList;
+        private Ability _ability;
+        private List<AbilityPrameter> _abilityPrametersList;
+
+        public Ability Ability { get => _ability; private set => _ability = value; }
+        public List<AbilityPrameter> AbilityPrametersList { get => _abilityPrametersList; set => _abilityPrametersList = value; }
     }
 
     [System.Serializable]

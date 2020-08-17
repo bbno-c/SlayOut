@@ -13,7 +13,7 @@ namespace Objects
 		public SpriteRenderer SpriteRenderer;
 		private bool _reverse;
 
-		public bool CanFire => gameObject.activeSelf && _state == WeaponFireState.None && _isMeleeWeapon;
+		public bool CanFire => gameObject.activeSelf && _state == WeaponFireState.None && _isMeleeWeapon && WeaponHolder.AnimatorOverrider.Animator.GetCurrentAnimatorStateInfo(0).IsName("WALK");
 		private WeaponFireState _state;
 		private float _timer;
 		private bool _isMeleeWeapon;
@@ -40,7 +40,7 @@ namespace Objects
 		private void SetWeapon()
 		{
 			WeaponSetState(WeaponFireState.StartDelay, _currentWeaponDataMelee.StartDelay);
-			WeaponHolder.AnimatorOverrider.Animator.SetFloat("FireTime", _currentWeaponDataMelee.FireTime/*_currentWeaponDataMelee.AnimationMultiplier*/);
+			WeaponHolder.AnimatorOverrider.Animator.SetFloat("FireTime", _currentWeaponDataMelee.FireTime *_currentWeaponDataMelee.AnimationMultiplier);
 		}
 
 		public void Fire()

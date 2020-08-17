@@ -12,6 +12,7 @@ namespace Views
 
         public VerticalLayoutGroup VerticalLayoutGroup;
         public WeaponPanel WeaponPanel;
+        public WeaponHolder WeaponHolder { get; set; }
 
         private Dictionary<WeaponInfo, WeaponPanel> _weaponPanels;
 
@@ -55,6 +56,8 @@ namespace Views
 
                 if(!weapon.IsActive)
                     _weaponPanels[wd].Image.color = Color.red;
+                else if(weapon.IsActive && weapon == WeaponHolder.CurrentWeapon)
+                    _weaponPanels[wd].Image.color = Color.green;
 
                 if (!_weaponPanels[weapon].gameObject.activeSelf && weapon.IsActive)
                 {

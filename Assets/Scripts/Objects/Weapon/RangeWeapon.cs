@@ -18,7 +18,7 @@ namespace Objects
         public WeaponHolder WeaponHolder;
         public event Action<WeaponInfo> ReloadingEvent;
 
-        public bool CanFire => gameObject.activeSelf && _state == WeaponFireState.None && _isRangeWeapon;
+        public bool CanFire => gameObject.activeSelf && _state == WeaponFireState.None && _isRangeWeapon && WeaponHolder.AnimatorOverrider.Animator.GetCurrentAnimatorStateInfo(0).IsName("WALK");
         private WeaponFireState _state;
         private float _timer;
         private bool _isRangeWeapon;

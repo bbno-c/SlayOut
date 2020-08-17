@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace Objects
 {
-    public abstract class CreateBuilding : Ability
+    public abstract class AbilityCreateBuilding : Ability
     {
         public int Radius;
         public Building BuildingPrefab;

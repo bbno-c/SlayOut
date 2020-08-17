@@ -26,9 +26,9 @@ public class WeaponHolder: MonoBehaviour
     {
         _playerWeapons = new List<WeaponInfo>();
 
+        WeaponChange += AnimatorOverrider.ChangeWeaponAnimation;
         WeaponChange += RangeWeapon.WeaponChangeEvent;
         WeaponChange += MeleeWeapon.WeaponChangeEvent;
-        WeaponChange += AnimatorOverrider.ChangeWeaponAnimation;
 
         AddElement(StartWeapon);
         _currentIndex = 0;

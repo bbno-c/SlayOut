@@ -133,8 +133,9 @@ namespace Objects
             var dir = Input.mousePosition - Camera.main.WorldToScreenPoint(weapon.position);
             var angle = Mathf.Atan2(dir.y, dir.x);
 
-            // может быть сломано :/ !!!!!
-            Collider2D enemiesToDamage = Physics2D.OverlapArea(new Vector2(weapon.position.x, weapon.position.y), new Vector2(weapon.position.x + math.cos(angle) * _data.Range, weapon.position.y + math.sin(angle) * _data.Range));
+            // ????? ???? ??????? :/ !!!!!
+            Collider2D enemiesToDamage = Physics2D.OverlapArea(new Vector2(weapon.position.x, weapon.position.y),
+                new Vector2(weapon.position.x + math.cos(angle) * _data.Range, weapon.position.y + math.sin(angle) * _data.Range));
         }
     }
 }
