@@ -19,7 +19,7 @@ MonoBehaviour:
   AnimationMultiplier: 10
   BulletPrefab: {fileID: 2329759752488600305, guid: 9bb7b0e0d23c899448d4f224b41f3061,
     type: 3}
-  ReloadTime: 1
+  ReloadTime: 3
   MagazineSize: 30
   StartAmmo: 0
   BulletsPerShot: 1

@@ -41,7 +41,7 @@ namespace Controllers
             if (weapon is RangeWeaponInfo)
             {
                 RangeWeaponInfo wd = (RangeWeaponInfo)weapon;
-                RangeWeaponData wp = (RangeWeaponData)wd.Data;
+                WeaponDataRange wp = (WeaponDataRange)wd.Data;
                 time = wp.ReloadTime;
             }
             _view.SetTimer(time);

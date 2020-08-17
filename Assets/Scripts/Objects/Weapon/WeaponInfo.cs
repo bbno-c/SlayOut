@@ -28,7 +28,7 @@ namespace Objects
 
     public class RangeWeaponInfo: WeaponInfo, IRangeWeaponInfo
     {
-        private RangeWeaponData _data;
+        private WeaponDataRange _data;
         public WeaponData Data => (WeaponData)_data;
         private int _ammoLeft;
         private int _allAmmo;
@@ -41,7 +41,7 @@ namespace Objects
         public int AmmoLeft => _ammoLeft;
         public int AllAmmo => _allAmmo;
 
-        public RangeWeaponInfo(RangeWeaponData data, WeaponHolder weaponHolder, List<GameObject> bulletPool)
+        public RangeWeaponInfo(WeaponDataRange data, WeaponHolder weaponHolder, List<GameObject> bulletPool)
         {
             _data = data;
             _bulletPool = bulletPool;
@@ -118,12 +118,12 @@ namespace Objects
 
     public class MeleeWeaponInfo: WeaponInfo, IMeleeWeaponInfo
     {
-        private MeleeWeaponData _data;
+        private WeaponDataMelee _data;
         public WeaponData Data => (WeaponData)_data;
 
         public bool IsActive => true;
 
-        public MeleeWeaponInfo(MeleeWeaponData data, WeaponHolder weaponHolder)
+        public MeleeWeaponInfo(WeaponDataMelee data, WeaponHolder weaponHolder)
         {
             _data = data;
         }
@@ -133,6 +133,7 @@ namespace Objects
             var dir = Input.mousePosition - Camera.main.WorldToScreenPoint(weapon.position);
             var angle = Mathf.Atan2(dir.y, dir.x);
 
+            // может быть сломано :/ !!!!!
             Collider2D enemiesToDamage = Physics2D.OverlapArea(new Vector2(weapon.position.x, weapon.position.y), new Vector2(weapon.position.x + math.cos(angle) * _data.Range, weapon.position.y + math.sin(angle) * _data.Range));
         }
     }

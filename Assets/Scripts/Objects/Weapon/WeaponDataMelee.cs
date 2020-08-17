@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Objects
 {
 	[CreateAssetMenu(fileName = "NewMeleeWeapon", menuName = "Weapon/MeleeWeapon")]
-	public class MeleeWeaponData : WeaponData
+	public class WeaponDataMelee : WeaponData
 	{
 		public float Range;
 	}
