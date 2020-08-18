@@ -10,10 +10,10 @@ namespace Objects
     {
         public event Action<AbilityInfo> AbilityCheckEvent;
 
-        public VerticalLayoutGroup AbilityParametersLayoutGroup;
         public Image AbilityIco;
         public TextMeshProUGUI Description;
         public LevelChangePanel ParameterPanel;
+        public VerticalLayoutGroup AbilityParametersLayoutGroup;
 
         private List<LevelChangePanel> _panels;
         private AbilityInfo _abilityInfo;
@@ -23,8 +23,8 @@ namespace Objects
         {
             _panels = new List<LevelChangePanel>();
 
-            _active = abilityInfo.Checked;
             _abilityInfo = abilityInfo;
+            _active = abilityInfo.Checked;
             AbilityIco.sprite = abilityInfo.Ability.aSprite;
             AbilityCheckEvent += abilityStats.AbilityChecked;
 
