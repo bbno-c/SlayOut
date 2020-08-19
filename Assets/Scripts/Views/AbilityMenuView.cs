@@ -23,6 +23,7 @@ namespace Views
 
         public VerticalLayoutGroup AbilityPanelsLayoutGroup;
         public AbilityEditPanel AbilityEditPanel;
+
         private List<AbilityEditPanel> _panels;
 
         private void OnDisable()
@@ -40,8 +41,9 @@ namespace Views
 
             foreach (AbilityInfo AbilityInfo in _abilityStats.AbilityStatsList)
             {
-                _panels.Add(Instantiate(AbilityEditPanel, AbilityPanelsLayoutGroup.transform));
-                _panels.Find(x => AbilityEditPanel).InitPanel(AbilityInfo, _abilityStats);
+                AbilityEditPanel abilityEditPanel = Instantiate(AbilityEditPanel, AbilityPanelsLayoutGroup.transform);
+                _panels.Add(abilityEditPanel);
+                abilityEditPanel.InitPanel(AbilityInfo);
             }
         }
 

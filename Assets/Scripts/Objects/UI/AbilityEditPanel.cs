@@ -19,33 +19,26 @@ namespace Objects
         private AbilityInfo _abilityInfo;
         private bool _active;
 
-        public void InitPanel(AbilityInfo abilityInfo, AbilityStats abilityStats)
+        public void InitPanel(AbilityInfo abilityInfo)
         {
             _panels = new List<LevelChangePanel>();
 
             _abilityInfo = abilityInfo;
             _active = abilityInfo.Checked;
             AbilityIco.sprite = abilityInfo.Ability.aSprite;
-            AbilityCheckEvent += abilityStats.AbilityChecked;
 
             foreach (AbilityPrameter AbilityPrameter in abilityInfo.AbilityPrametersList)
             {
-                _panels.Add(Instantiate(ParameterPanel, AbilityParametersLayoutGroup.transform));
-
-                LevelChangePanel panel = _panels.Find(x => ParameterPanel);
-
-                panel.InitPanel(AbilityPrameter, abilityInfo);
-                panel.LevelUp += abilityStats.AddLevel;
-                panel.LevelDown += abilityStats.RemoveLevel;
+                LevelChangePanel panel = Instantiate(ParameterPanel, AbilityParametersLayoutGroup.transform);
+                panel.InitPanel(AbilityPrameter);
+                _panels.Add(panel);
             }
         }
 
-        public void OnCheck()
+        public void OnCheck() //мутатор AbilityInfo
         {
             _active = !_active;
             AbilityParametersLayoutGroup.gameObject.SetActive(_active);
-
-            AbilityCheckEvent?.Invoke(_abilityInfo);
         }
     }
 }
