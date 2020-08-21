@@ -3102,6 +3102,10 @@ MonoBehaviour:
   _hudView: {fileID: 1235286897}
   _presetAbilityStatsList:
   - Checked: 1
+    Ability: {fileID: 11400000, guid: f73b9f34e66055849b658d446884c82a, type: 2}
+    AbilityPrametersList:
+    - Parameter: 0
+      ParameterName: 
 --- !u!1 &1113071844
 GameObject:
   m_ObjectHideFlags: 0
