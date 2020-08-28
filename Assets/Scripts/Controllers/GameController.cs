@@ -113,7 +113,12 @@ namespace Controllers
                     {
                         AbilityInfo abilityInfo = PlayerAbilityStats?.AbilityStatsList?.Find(x => x.Ability.Name == abilityInfoSave.AbilityName);
                         abilityInfo.Checked = abilityInfoSave.Checked;
-                        abilityInfo.AbilityPrametersList = abilityInfoSave.AbilityPrametersList;
+
+                        foreach(AbilityPrameter abilityPrameter in abilityInfoSave.AbilityPrametersList)
+                        {
+                            AbilityPrameter playerParameter = abilityInfo.AbilityPrametersList.Find(parameter => parameter.Parameter == abilityPrameter.Parameter);
+                            playerParameter.CurrentLevel = abilityPrameter.CurrentLevel;
+                        }
                     }
 
                 file.Close();

@@ -26,10 +26,14 @@ namespace Views
 
         private List<AbilityEditPanel> _panels;
 
+        [SerializeField] private int _maxAbilityPoints;
+
         private void OnDisable()
         {
             foreach (AbilityEditPanel abilityEditPanel in _panels)
                 Destroy(abilityEditPanel.gameObject);
+
+            _abilityStats = null;
         }
 
         public void InitPanel()

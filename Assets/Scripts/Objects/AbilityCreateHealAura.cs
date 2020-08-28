@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Objects
 {
@@ -17,14 +16,7 @@ namespace Objects
 
             _buildingsGrid?.Initialize();
 
-            int buildingRadiusLvl = 0;
-
-            if(playerAbilityStats != null)
-            {
-                buildingRadiusLvl = playerAbilityStats.FindParameterLevel(Parameter.BuildingRadius, Name);
-            }
-
-            _buildingsGrid.Radius = Radius + buildingRadiusLvl;
+            _buildingsGrid.Radius = Radius + playerAbilityStats.FindParameterLevel(Parameter.BuildingRadius, Name);
         }
         
         public override void TriggerAbility()

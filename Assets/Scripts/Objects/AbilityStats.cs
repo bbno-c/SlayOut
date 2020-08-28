@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections.Generic;
 
 namespace Objects
 {
@@ -13,18 +13,15 @@ namespace Objects
     {
         public Parameter Parameter;
         public string ParameterName;
-        private int _maxLevel;
-        private int _currentLevel;
+        [SerializeField] private int _maxLevel;
+        [SerializeField] private int _currentLevel;
 
+        public int MaxLevel { get => _maxLevel; }
         public int CurrentLevel
         {
             get => _currentLevel;
             set { if (value >= 0 && value <= _maxLevel) _currentLevel = value; }
         }
-        public int MaxLevel { get => _maxLevel; }
-
-        public void LevelUp() { if (_currentLevel < _maxLevel) CurrentLevel++; }
-        public void LevelDown() { if (_currentLevel > 0) CurrentLevel--; }
     }
 
     [System.Serializable]
@@ -38,6 +35,7 @@ namespace Objects
     [System.Serializable]
     public class AbilityStats
     {
+        public int UsedAbilityPoints;
         public List<AbilityInfo> AbilityStatsList;
 
         public int FindParameterLevel(Parameter parameter, string abilityName)
