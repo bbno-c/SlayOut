@@ -175,11 +175,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1d31c4dd90f856469de4e4248a57019, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AbilityParametersLayoutGroup: {fileID: 2093676512582969803}
   AbilityIco: {fileID: 1494421346467930929}
   Description: {fileID: 4395345565861957221}
   ParameterPanel: {fileID: -3276658188309580578, guid: 3a945baa6110b8043abb041fbe256603,
     type: 3}
+  AbilityParametersLayoutGroup: {fileID: 2093676512582969803}
 --- !u!114 &7425972768602893188
 MonoBehaviour:
   m_ObjectHideFlags: 0

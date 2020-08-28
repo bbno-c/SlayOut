@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: -3276658188309580578}
   - component: {fileID: 2932624543271755144}
   m_Layer: 5
-  m_Name: LevelChangePanel
+  m_Name: AbilityLevelChangePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -660,7 +660,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8861220950791336908}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -3276658188309580578}
+        m_TargetAssemblyTypeName: Objects.LevelChangePanel, Assembly-CSharp
+        m_MethodName: OnLevelUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &4094734094262635252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -801,7 +813,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7181354186594095730}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -3276658188309580578}
+        m_TargetAssemblyTypeName: Objects.LevelChangePanel, Assembly-CSharp
+        m_MethodName: OnLevelDown
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1725771401537623994
 MonoBehaviour:
   m_ObjectHideFlags: 0

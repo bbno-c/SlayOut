@@ -3101,7 +3101,11 @@ MonoBehaviour:
   _menuView: {fileID: 1903014665}
   _hudView: {fileID: 1235286897}
   _presetAbilityStatsList:
-  - Checked: 1
+  - Checked: 0
+    Ability: {fileID: 11400000, guid: f73b9f34e66055849b658d446884c82a, type: 2}
+    AbilityPrametersList:
+    - Parameter: 0
+      ParameterName: 4
 --- !u!1 &1113071844
 GameObject:
   m_ObjectHideFlags: 0

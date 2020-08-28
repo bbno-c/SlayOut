@@ -11,7 +11,7 @@ namespace Objects
     [System.Serializable]
     public class AbilityPrameter
     {
-        public readonly Parameter Parameter;
+        public Parameter Parameter;
         public string ParameterName;
         private int _maxLevel;
         private int _currentLevel;
