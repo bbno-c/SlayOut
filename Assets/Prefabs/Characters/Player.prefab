@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 10
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -216,6 +216,7 @@ MonoBehaviour:
   Movement: {fileID: 5860767309560895961}
   Health: {fileID: 2105265935571950098}
   Fire: {fileID: 3157149838939828287}
+  CameraTarget: {fileID: 3138032732720663269}
 --- !u!114 &5860767309560895961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,7 +233,7 @@ MonoBehaviour:
   PlayerRigidbody: {fileID: 8805737781229260865}
   TorsoTransform: {fileID: 797055007920674866}
   LegsTransform: {fileID: 4182328855654647154}
-  Speed: 6
+  Speed: 8
 --- !u!114 &2105265935571950098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -432,7 +433,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 9
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

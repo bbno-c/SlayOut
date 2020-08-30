@@ -52,7 +52,7 @@ namespace Controllers
 
         private void OnSave()
         {
-            //
+            _game.PlayerAbilityStats = _view.AbilityStats;
             _view?.MenuView.Open(new MenuController(_game));
             _view?.Close(this);
         }

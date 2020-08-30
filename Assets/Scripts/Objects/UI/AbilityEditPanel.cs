@@ -17,15 +17,16 @@ namespace Objects
 
         private List<LevelChangePanel> _panels;
         private AbilityInfo _abilityInfo;
-        private bool _active;
 
         public void InitPanel(AbilityInfo abilityInfo)
         {
             _panels = new List<LevelChangePanel>();
 
             _abilityInfo = abilityInfo;
-            _active = abilityInfo.Checked;
             AbilityIco.sprite = abilityInfo.Ability.aSprite;
+            Description.text = abilityInfo.Ability.Name;
+
+            AbilityParametersLayoutGroup.gameObject.SetActive(_abilityInfo.Checked);
 
             foreach (AbilityPrameter AbilityPrameter in abilityInfo.AbilityPrametersList)
             {
@@ -37,8 +38,8 @@ namespace Objects
 
         public void OnCheck() //мутатор AbilityInfo
         {
-            _active = !_active;
-            AbilityParametersLayoutGroup.gameObject.SetActive(_active);
+            _abilityInfo.Checked = !_abilityInfo.Checked;
+            AbilityParametersLayoutGroup.gameObject.SetActive(_abilityInfo.Checked);
         }
     }
 }

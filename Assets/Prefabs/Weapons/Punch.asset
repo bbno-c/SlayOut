@@ -15,6 +15,6 @@ MonoBehaviour:
   WeaponAnimationName: 0
   Sprite: {fileID: 21300000, guid: c0adb1e130db4eb4aa92da8602269386, type: 3}
   StartDelay: 0.1
-  FireTime: 0.3
-  AnimationMultiplier: 2
+  FireTime: 0.4
+  AnimationMultiplier: 1
   Range: 1.5

@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
-using UnityEditor.Animations;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Objects
 {
@@ -21,25 +17,15 @@ namespace Objects
         public Transform TorsoTransform;
         public Transform LegsTransform;
 
-        private Vector2 _jumpDir;
         public float Speed;
         private MovementState _state;
         private float _timer;
-
 
         private Vector3 _moveDirection;
         private float _lookDirection;
 
         void Update()
         {
-            TorsoTransform.rotation = Quaternion.AngleAxis(_lookDirection, Vector3.forward);
-
-            if(_state != MovementState.Jump)
-            {
-                AnimatorOverrider.Animator.SetFloat("Magnitude", _moveDirection.magnitude);
-                LegsTransform.rotation = Quaternion.AngleAxis((Mathf.Atan2(_moveDirection.y, _moveDirection.x) * Mathf.Rad2Deg), Vector3.forward);
-            }
-
             if (_timer > 0f)
             {
                 _timer -= Time.deltaTime;
@@ -59,15 +45,22 @@ namespace Objects
 
         private void FixedUpdate()
         {
+            TorsoTransform.rotation = Quaternion.AngleAxis(_lookDirection, Vector3.forward);
+
             if (_state != MovementState.Jump)
+            {
+                AnimatorOverrider.Animator.SetFloat("Magnitude", _moveDirection.magnitude);
+                LegsTransform.rotation = Quaternion.AngleAxis((Mathf.Atan2(_moveDirection.y, _moveDirection.x) * Mathf.Rad2Deg), Vector3.forward);
+
                 PlayerRigidbody.velocity = new Vector2(_moveDirection.x, _moveDirection.y) * Speed;
+            }
             else
-                PlayerRigidbody.velocity = new Vector2(_jumpDir.x, _jumpDir.y) * Speed * 1.5f;
+                PlayerRigidbody.velocity = new Vector2(_moveDirection.x, _moveDirection.y) * Speed * 2f;
         }
 
         public void MoveDirection(Vector3 direction)
         {
-            _moveDirection = direction;
+            _moveDirection = direction.normalized;
         }
 
         public void LookDirection(float direction)
@@ -79,9 +72,6 @@ namespace Objects
         {
             if (_state == MovementState.Jump || _state == MovementState.DelayBetwenJumps)
                 return;
-
-            _jumpDir.x = _moveDirection.x != 0 ? _moveDirection.x > 0 ? _moveDirection.x / _moveDirection.x : -_moveDirection.x / _moveDirection.x : _moveDirection.x;
-            _jumpDir.y = _moveDirection.y != 0 ? _moveDirection.y > 0 ? _moveDirection.y / _moveDirection.y : -_moveDirection.y / _moveDirection.y : _moveDirection.y;
 
             AnimatorOverrider.Animator.SetFloat("Magnitude", 0);
 

@@ -36,7 +36,7 @@ namespace Objects
 
             if (_player.Movement != null)
             { 
-                _player.Movement.MoveDirection(new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0.0f));
+                _player.Movement.MoveDirection(new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0.0f));
 
                 var dir = Input.mousePosition - Camera.main.WorldToScreenPoint(_player.transform.position);
                 var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;

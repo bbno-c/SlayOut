@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: NewCreateHealAura
   m_EditorClassIdentifier: 
   Name: HealAura
-  aSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  aSprite: {fileID: -1813402968832775057, guid: 5a84b076e6b89a14bac910f09db85506,
+    type: 3}
   aSound: {fileID: 0}
   BaseCoolDown: 1
   Radius: 4

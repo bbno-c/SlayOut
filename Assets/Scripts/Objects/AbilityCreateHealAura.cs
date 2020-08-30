@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Objects
 {
@@ -7,19 +6,17 @@ namespace Objects
     public class AbilityCreateHealAura : AbilityCreateBuilding
     {
         private BuildingsGrid _buildingsGrid;
+
         public override void Initialize(GameObject obj, AbilityStats playerAbilityStats)
         {
-            int buildingRadiusLvl = 0;
-
-            if(playerAbilityStats != null)
-            {
-                buildingRadiusLvl = playerAbilityStats.FindParameterLevel(Parameter.BuildingRadius, Name);
-            }
-
             _buildingsGrid = obj.GetComponent<BuildingsGrid>();
-            _buildingsGrid.Initialize();
 
-            _buildingsGrid.Radius = Radius + buildingRadiusLvl;
+            if (!_buildingsGrid)
+                return;
+
+            _buildingsGrid?.Initialize();
+
+            _buildingsGrid.Radius = Radius + playerAbilityStats.FindParameterLevel(Parameter.BuildingRadius, Name);
         }
         
         public override void TriggerAbility()

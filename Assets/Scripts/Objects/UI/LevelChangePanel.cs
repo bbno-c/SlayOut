@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
-using System;
 using UnityEngine.UI;
 using TMPro;
-using Objects;
 
 namespace Objects
 {
@@ -41,7 +39,9 @@ namespace Objects
         public void OnLevelUp()
         {
             _abilityParameter.CurrentLevel++;
-            _levelMarkers[_abilityParameter.CurrentLevel - 1].LevelMarkerImage.color = Color.green;
+
+            if(_abilityParameter.CurrentLevel > 0)
+                _levelMarkers[_abilityParameter.CurrentLevel - 1].LevelMarkerImage.color = Color.green;
         }
 
         public void OnLevelDown()

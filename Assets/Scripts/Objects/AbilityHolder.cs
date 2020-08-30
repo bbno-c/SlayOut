@@ -49,6 +49,7 @@ namespace Objects
 
         public void SetPlayerAbilities(AbilityStats playerAbilityStats)
         {
+            _playerAbilityStats = playerAbilityStats;
             _playerAbilities = new List<PlayerAbility>();
 
             foreach (AbilityInfo abilityInfo in playerAbilityStats.AbilityStatsList)
