@@ -1,4 +1,5 @@
 ﻿using System;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace Objects
@@ -23,6 +24,14 @@ namespace Objects
         public AbilityInput[] AbilityInput;
 
         private Character _player;
+        private Camera _camera;
+        private CameraFollow _cameraFollow;
+
+        private void Awake()
+        {
+            _camera = Camera.main;
+            _cameraFollow = _camera.GetComponent<CameraFollow>();
+        }
 
         public void SetPlayer(Character player)
         {
@@ -38,10 +47,13 @@ namespace Objects
             { 
                 _player.Movement.MoveDirection(new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0.0f));
 
-                var dir = Input.mousePosition - Camera.main.WorldToScreenPoint(_player.transform.position);
-                var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+                var dir = _camera.ScreenToWorldPoint(Input.mousePosition) - (_player.transform.position);
+                var angle = Mathf.Atan2(dir.y, dir.x);
+                _player.Movement.LookDirection(angle * Mathf.Rad2Deg);
 
-                _player.Movement.LookDirection(angle);
+                float pointX = (_player.transform.position.x + math.cos(angle) * (5));
+                float pointY = (_player.transform.position.y + math.sin(angle) * (5));
+                _cameraFollow.CameraDirection(pointX, pointY);
 
                 if (Input.GetKeyDown(KeyCode.Mouse1))
                     _player.Movement.Jump();

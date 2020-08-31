@@ -45,12 +45,12 @@ namespace Objects
 
         private void FixedUpdate()
         {
-            TorsoTransform.rotation = Quaternion.AngleAxis(_lookDirection, Vector3.forward);
+            TorsoTransform.rotation = Quaternion.AngleAxis(_lookDirection, TorsoTransform.forward);
 
             if (_state != MovementState.Jump)
             {
                 AnimatorOverrider.Animator.SetFloat("Magnitude", _moveDirection.magnitude);
-                LegsTransform.rotation = Quaternion.AngleAxis((Mathf.Atan2(_moveDirection.y, _moveDirection.x) * Mathf.Rad2Deg), Vector3.forward);
+                LegsTransform.rotation = Quaternion.AngleAxis((Mathf.Atan2(_moveDirection.y, _moveDirection.x) * Mathf.Rad2Deg), LegsTransform.forward);
 
                 PlayerRigidbody.velocity = new Vector2(_moveDirection.x, _moveDirection.y) * Speed;
             }
