@@ -214,9 +214,9 @@ MonoBehaviour:
   AbilityHolder: {fileID: 7343930701072925269}
   WeaponHolder: {fileID: 4395634430168273134}
   Movement: {fileID: 5860767309560895961}
+  Camera: {fileID: 0}
   Health: {fileID: 2105265935571950098}
   Fire: {fileID: 3157149838939828287}
-  CameraTarget: {fileID: 3138032732720663269}
 --- !u!114 &5860767309560895961
 MonoBehaviour:
   m_ObjectHideFlags: 0

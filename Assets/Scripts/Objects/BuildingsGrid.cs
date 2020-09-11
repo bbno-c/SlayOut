@@ -107,11 +107,11 @@ namespace Objects
                 new Vector2(transform.position.x, transform.position.y),
                 new Vector2(worldPosition.x, worldPosition.y));
 
-            Gizmos.color = Color.green;
-            Gizmos.DrawLine(
-            new Vector2(transform.position.x, transform.position.y),
-            new Vector2(transform.position.x + math.cos(angle) * Radius,
-                        transform.position.y + math.sin(angle) * Radius));
+            //Gizmos.color = Color.green;
+            //Gizmos.DrawLine(
+            //new Vector2(transform.position.x, transform.position.y),
+            //new Vector2(transform.position.x + math.cos(angle) * Radius,
+            //            transform.position.y + math.sin(angle) * Radius));
 
         }
     }

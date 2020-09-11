@@ -85,6 +85,7 @@ namespace Views
 
             InputController.SetPlayer(player);
             CameraFollow.Target = player.transform;
+            CameraFollow.Character = player;
             GameController.Player = player;
 
             health.DieEvent += OnPlayerDead;

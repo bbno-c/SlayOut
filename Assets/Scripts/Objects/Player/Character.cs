@@ -10,6 +10,7 @@ namespace Objects
 		public AbilityHolder AbilityHolder;
 		public WeaponHolder WeaponHolder;
         public Movement Movement;
+		public Camera Camera;
 		public Health Health;
 		public Fire Fire;
 
