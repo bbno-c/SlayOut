@@ -107,10 +107,10 @@ namespace Objects
             var dir = Input.mousePosition - mainCamera.WorldToScreenPoint(transform.position);
             var angle = Mathf.Atan2(dir.y, dir.x);
 
-            //Gizmos.color = Color.red;
-            //Gizmos.DrawLine(
-            //    new Vector2(transform.position.x, transform.position.y),
-            //    new Vector2(worldPosition.x, worldPosition.y));
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(
+                new Vector2(transform.position.x, transform.position.y),
+                new Vector2(worldPosition.x, worldPosition.y));
 
             //Gizmos.color = Color.green;
             //Gizmos.DrawLine(

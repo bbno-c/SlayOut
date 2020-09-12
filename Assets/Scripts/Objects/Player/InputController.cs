@@ -40,7 +40,6 @@ namespace Objects
 
                 var dir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - (_player.transform.position);
                 var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-
                 _player.Movement.LookDirection(angle);
 
                 if (Input.GetKeyDown(KeyCode.Mouse1))
