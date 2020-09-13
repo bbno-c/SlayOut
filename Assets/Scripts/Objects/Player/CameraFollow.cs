@@ -15,21 +15,17 @@ namespace Objects
         public float Radius;
         public float smoothSpeed;
 
-        public Vector2 mousePos;
         public Vector3 offset = new Vector3();
+
+        public Vector2 mousePos;
         public Vector3 mouseOffset;
-        //public Vector3 dir;
 
         public Vector3 curRotation;
-        public float curAngle;
         public Vector3 prevRotation;
+        public float curAngle;
         public float prevAngle;
-        public Vector3 equalToRot;
-        public float equalToAngle;
-        public float difAngle;
         public float rotAngle;
         public float dif;
-        bool t;
 
         private void Awake()
         {
@@ -38,7 +34,6 @@ namespace Objects
 
         void Start()
         {
-            t = true;
             CameraZ = transform.position.z;
             prevRotation = Vector3.zero;
             prevAngle = 0;
@@ -48,21 +43,18 @@ namespace Objects
         {
             if (Target != null)
             {
-                if (t)
-                {
-                    //prevRotation = Character.Movement.TorsoTransform.right;
-                    t = !t;
-                }
-
                 curRotation = Character.Movement.TorsoTransform.right;
                 curAngle = Mathf.Atan2(curRotation.y, curRotation.x) * Mathf.Rad2Deg;
                 prevAngle = Mathf.Atan2(prevRotation.y, prevRotation.x) * Mathf.Rad2Deg;
 
                 if (math.abs(curAngle-prevAngle) > 25f)
                 {
+                    float ang = curAngle > prevAngle ? prevAngle + 25f : prevAngle - 25f;
+                    Vector3 angC = new Vector3(Mathf.Cos(ang), Mathf.Sin(ang), 0);
+
                     dif = curAngle - prevAngle;
-                    rotAngle = prevAngle + dif;
-                    prevRotation = new Vector3(Mathf.Cos(rotAngle), Mathf.Sin(rotAngle),0);
+                    rotAngle = prevAngle + dif>0?dif-25f:dif+25f;
+                    prevRotation += curRotation - angC;
 
                     offset = prevRotation * Radius;
                 }
