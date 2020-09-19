@@ -50,12 +50,9 @@ namespace Objects
                 if (math.abs(curAngle-prevAngle) > 25f)
                 {
                     float ang = curAngle > prevAngle ? prevAngle + 25f : prevAngle - 25f;
-                    Vector3 angC = new Vector3(Mathf.Cos(ang), Mathf.Sin(ang), 0);
-
-                    dif = curAngle - prevAngle;
-                    rotAngle = prevAngle + dif>0?dif-25f:dif+25f;
-                    prevRotation += curRotation - angC;
-
+                    dif = curAngle - ang;
+                    rotAngle = prevAngle + dif;
+                    prevRotation = new Vector3(Mathf.Cos(rotAngle), Mathf.Sin(rotAngle), 0);
                     offset = prevRotation * Radius;
                 }
 
