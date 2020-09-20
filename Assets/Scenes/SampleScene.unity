@@ -2016,16 +2016,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Character: {fileID: 0}
   mainCamera: {fileID: 0}
-  CodeActivate: 1
+  CameraZ: 0
   Radius: 3
+  Angle: 25
   smoothSpeed: 10
-  mousePos: {x: 0, y: 0}
   offset: {x: 0, y: 0, z: 0}
+  mousePos: {x: 0, y: 0}
   mouseOffset: {x: 0, y: 0, z: 0}
-  dir: {x: 0, y: 0, z: 0}
   curRotation: {x: 0, y: 0, z: 0}
-  curAngle: 0
   prevRotation: {x: 0, y: 0, z: 0}
+  difRot: {x: 0, y: 0, z: 0}
+  curAngle: 0
+  prevAngle: 0
 --- !u!1 &554506777
 GameObject:
   m_ObjectHideFlags: 0

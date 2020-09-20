@@ -13,6 +13,7 @@ namespace Objects
 
         public float CameraZ;
         public float Radius;
+        public float Angle;
         public float smoothSpeed;
 
         public Vector3 offset = new Vector3();
@@ -22,10 +23,12 @@ namespace Objects
 
         public Vector3 curRotation;
         public Vector3 prevRotation;
+        public Vector3 difRot;
         public float curAngle;
         public float prevAngle;
-        public float rotAngle;
-        public float dif;
+
+        public float xangle;
+        public Vector3 xRot;
 
         private void Awake()
         {
@@ -39,20 +42,23 @@ namespace Objects
             prevAngle = 0;
         }
 
-        void FixedUpdate()
+        void LateUpdate()
         {
             if (Target != null)
             {
                 curRotation = Character.Movement.TorsoTransform.right;
+
                 curAngle = Mathf.Atan2(curRotation.y, curRotation.x) * Mathf.Rad2Deg;
                 prevAngle = Mathf.Atan2(prevRotation.y, prevRotation.x) * Mathf.Rad2Deg;
 
-                if (math.abs(curAngle-prevAngle) > 25f)
+                if (Mathf.Abs(curAngle-prevAngle) > Angle)
                 {
-                    float ang = curAngle > prevAngle ? prevAngle + 25f : prevAngle - 25f;
-                    dif = curAngle - ang;
-                    rotAngle = prevAngle + dif;
-                    prevRotation = new Vector3(Mathf.Cos(rotAngle), Mathf.Sin(rotAngle), 0);
+                    xangle = prevAngle + Angle;
+                    xRot = new Vector3(Mathf.Cos(xangle), Mathf.Sin(xangle), 0);
+                    difRot = curRotation - xRot;
+                    //difRot -= xRot;
+                    prevRotation += difRot;
+
                     offset = prevRotation * Radius;
                 }
 
