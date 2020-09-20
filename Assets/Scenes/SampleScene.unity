@@ -1972,7 +1972,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 7
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2017,17 +2017,20 @@ MonoBehaviour:
   Character: {fileID: 0}
   mainCamera: {fileID: 0}
   CameraZ: 0
-  Radius: 3
+  Radius: 1
   Angle: 25
   smoothSpeed: 10
   offset: {x: 0, y: 0, z: 0}
+  mouseDir: {x: 0, y: 0, z: 0}
   mousePos: {x: 0, y: 0}
   mouseOffset: {x: 0, y: 0, z: 0}
   curRotation: {x: 0, y: 0, z: 0}
-  prevRotation: {x: 0, y: 0, z: 0}
+  camDir: {x: 0, y: 0, z: 0}
   difRot: {x: 0, y: 0, z: 0}
-  curAngle: 0
-  prevAngle: 0
+  mouseAngle: 0
+  camAngle: 0
+  newCamAngle: 0
+  xRot: {x: 0, y: 0, z: 0}
 --- !u!1 &554506777
 GameObject:
   m_ObjectHideFlags: 0
