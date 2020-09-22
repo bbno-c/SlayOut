@@ -19,22 +19,18 @@ namespace Objects
         public Vector3 offset = new Vector3();
 
         public Vector3 mouseDir;
-
         public Vector2 mousePos;
         public Vector3 mouseOffset;
-
-        public Vector3 curRotation;
-        private float curAngle;
-        private float prevAngle;
-        public Vector3 camDir;
-        public Vector3 difRot;
-        public float mouseAngle;
-        public float camAngle;
-
-        public float newCamAngle;
-        private float xangle;
         public Vector3 xRot;
-        private Vector3 prevRotation;
+        public Vector3 prevRotation;
+        public Vector3 curRotation;
+        public Vector2 prevMousePos;
+
+        public float curAngle;
+        public float prevAngle;
+        public float newCamAngle;
+        public float xangle;
+        
 
         private void Awake()
         {
@@ -44,37 +40,27 @@ namespace Objects
         void Start()
         {
             CameraZ = transform.position.z;
-            camDir = Vector3.zero; prevRotation = Vector3.zero;
-            camAngle = 0; prevAngle = 0;
+            prevRotation = Vector3.zero;
+            prevAngle = 0;
         }
 
         void LateUpdate()
         {
             if (Target != null)
             {
-                //mouseDir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - (Target.position);
-                //mouseAngle = Mathf.Atan2(mouseDir.y, mouseDir.x) * Mathf.Rad2Deg;
-                //camAngle = Mathf.Atan2(camDir.y, camDir.x) * Mathf.Rad2Deg;
-                //if (mouseAngle > camAngle+25f)
-                //{
-                //    camAngle += mouseAngle - 25f;
-                //    //camAngle *= Mathf.Deg2Rad;
-                //    camDir = new Vector3(Mathf.Cos(camAngle* Mathf.Deg2Rad), Mathf.Sin(camAngle* Mathf.Deg2Rad),0);
-                //    offset = camDir * Radius;
-                //}
+                mousePos = Camera.main.WorldToScreenPoint(Input.mousePosition);
                 curRotation = Character.Movement.TorsoTransform.right;
 
                 curAngle = Mathf.Atan2(curRotation.y, curRotation.x) * Mathf.Rad2Deg;
                 prevAngle = Mathf.Atan2(prevRotation.y, prevRotation.x) * Mathf.Rad2Deg;
 
-                if (Mathf.Abs(curAngle - prevAngle) > Angle)
+                if (Mathf.Abs(curAngle - prevAngle) > Angle && mousePos != prevMousePos)
                 {
                     xangle = prevAngle + (curAngle > prevAngle ? Angle : -Angle);
                     newCamAngle += curAngle - xangle;
                     xRot = new Vector3(Mathf.Cos(newCamAngle * Mathf.Deg2Rad), Mathf.Sin(newCamAngle * Mathf.Deg2Rad), 0);
-                    //difRot = curRotation - xRot;
-                    //difRot -= xRot;
                     prevRotation = xRot;
+                    prevMousePos = Camera.main.WorldToScreenPoint(Input.mousePosition);
 
                     offset = prevRotation * Radius;
                 }
